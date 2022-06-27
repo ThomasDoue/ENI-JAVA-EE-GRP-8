@@ -2,29 +2,30 @@ package fr.eni.Enchere.bo;
 
 public class Retrait {
 	//attribue
-	private  int no_article;
+	private  int noArticle;
 	private String rue;
-	private String  code_postal;
+	private String  codePostal;
 	private String ville;
 	
 	//Constructeur:
 	
-	public Retrait(int no_article, String rue, String code_postal, String ville) {
+	public Retrait(int noArticle, String rue, String codePostal, String ville) {
 		super();
-		this.no_article = no_article;
+		this.noArticle = noArticle;
 		this.rue = rue;
-		this.code_postal = code_postal;
+		this.codePostal = codePostal;
 		this.ville = ville;
 	}
 	
-	//get et set
 	
-	public int getNo_article() {
-		return no_article;
+	//get et set
+
+	public int getNoArticle() {
+		return noArticle;
 	}
 
-	public void setNo_article(int no_article) {
-		this.no_article = no_article;
+	public void setNoArticle(int noArticle) {
+		this.noArticle = noArticle;
 	}
 
 	public String getRue() {
@@ -35,12 +36,12 @@ public class Retrait {
 		this.rue = rue;
 	}
 
-	public String getCode_postal() {
-		return code_postal;
+	public String getCodePostal() {
+		return codePostal;
 	}
 
-	public void setCode_postal(String code_postal) {
-		this.code_postal = code_postal;
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 
 	public String getVille() {
@@ -51,30 +52,14 @@ public class Retrait {
 		this.ville = ville;
 	}
 
-	
-	// to string 
-	
+	//to string
 	@Override
 	public String toString() {
-		return "Retrait [no_article=" + no_article + ", rue=" + rue + ", code_postal=" + code_postal + ", ville="
-				+ ville + "]";
+		return "Retrait [noArticle=" + noArticle + ", rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville
+				+ "]";
 	}
 	
-	
-	
-	
 
 	
 	
-	
-	
-	
-	
-	
-	
-//	no_article       INTEGER NOT NULL,
-//    rue              VARCHAR(30) NOT NULL,
-//    code_postal      VARCHAR(15) NOT NULL,
-//    ville            VARCHAR(30) NOT NULL
-
 }
