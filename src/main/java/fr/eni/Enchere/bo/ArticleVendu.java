@@ -13,7 +13,7 @@ private int prix_vente;
 private int no_utilisateur;
 private int no_categorie;
 
-//constructeur sans no_article IDENTITY(1,1)
+//constructeur sans no_article IDENTITY(1,1):
 
 public ArticleVendu(String nom_article, String description, LocalDate date_debut_encheres, LocalDate date_fin_encheres,
 		int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {
@@ -28,7 +28,7 @@ public ArticleVendu(String nom_article, String description, LocalDate date_debut
 	this.no_categorie = no_categorie;
 }
 
-//constructeur avec no_article 
+//constructeur avec no_article: 
 
 public ArticleVendu(Integer no_article, String nom_article, String description, LocalDate date_debut_encheres,
 		LocalDate date_fin_encheres, int prix_initial, int prix_vente, int no_utilisateur, int no_categorie) {

@@ -7,7 +7,7 @@ public class Retrait {
 	private String  code_postal;
 	private String ville;
 	
-	//Constructeur
+	//Constructeur:
 	
 	public Retrait(int no_article, String rue, String code_postal, String ville) {
 		super();

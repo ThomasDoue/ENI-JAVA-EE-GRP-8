@@ -18,7 +18,7 @@ public class Utilisateur {
 	private boolean administrateur;
 	
 	
-	// consctructeur sans no_utlisilateur IDENTITY(1,1)
+	// consctructeur sans no_utlisilateur IDENTITY(1,1):
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {
@@ -36,7 +36,7 @@ public class Utilisateur {
 	}
 
 
-	//constructeur avec no_utilisateur
+	//constructeur avec no_utilisateur:
 	
 	public Utilisateur(Integer no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, Integer credit, boolean administrateur) {

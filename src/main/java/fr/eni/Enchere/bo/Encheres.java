@@ -12,7 +12,7 @@ public class Encheres {
 	private int no_article;
 	private int no_utilisateur;
 	
-	//constructeur sans no_enchere IDENTITY(1,1)
+	//constructeur sans no_enchere IDENTITY(1,1):
 	
 	public Encheres(LocalDate date_enchere, int montant_enchere, int no_article, int no_utilisateur) {
 		super();
@@ -23,7 +23,7 @@ public class Encheres {
 	}
 
 	
-	//constructeur avec no_enchere 
+	//constructeur avec no_enchere: 
 	
 	public Encheres(Integer no_enchere, LocalDate date_enchere, int montant_enchere, int no_article,
 			int no_utilisateur) {
