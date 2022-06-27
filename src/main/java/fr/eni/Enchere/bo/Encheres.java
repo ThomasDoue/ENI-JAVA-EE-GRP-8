@@ -23,6 +23,22 @@ public class Encheres {
 	}
 
 	
+	//constructeur avec no_enchere 
+	
+	public Encheres(Integer no_enchere, LocalDate date_enchere, int montant_enchere, int no_article,
+			int no_utilisateur) {
+		super();
+		this.no_enchere = no_enchere;
+		this.date_enchere = date_enchere;
+		this.montant_enchere = montant_enchere;
+		this.no_article = no_article;
+		this.no_utilisateur = no_utilisateur;
+	}
+
+
+
+
+
 	//get et set
 	
 	public Integer getNo_enchere() {
