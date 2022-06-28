@@ -29,5 +29,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		}
 		
 	}
+	
+	public Utilisateur selectUser(Integer no_utlisateur) throws BLLException{
+		Utilisateur user=null;
+		try {
+			user=utilisateurDao.selectUser(no_utlisateur);
+			}catch (DALException e) {
+				throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + no_utlisateur.toString(), e);
+			}
+		return user;
+	}
 
 }
