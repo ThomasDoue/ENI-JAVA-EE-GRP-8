@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#textbox1, #textbox2 {
+    display: block;
+    float: left;    
+    width: 100px;    
+    height: 100px;    
+}
+
+#textbox1 {
+    background-color: red;
+}
+
+#textbox2 {
+    background-color: blue;
+}
