@@ -15,7 +15,6 @@
 	<p><%=request.getAttribute("errorLogin")%>
 	<%}%>
 	<form action="<%=request.getContextPath()%>/ConnexionUtilisateurServlet" method="post">
-		<input type="hidden" name="idPizza" value="${empty utilisateur?'':utilisateur.id }"/>
 		<label for="idIdentifier">Nom : </label>
 		<input type="text" name="identifier" id="idIdentifier" value=""/><br />
 		<label for="idPassword">Mot de passe : </label>
