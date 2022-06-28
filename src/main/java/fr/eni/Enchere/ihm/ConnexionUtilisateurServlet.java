@@ -20,8 +20,8 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private UtilisateurManager utilisateurMger;
+	
 	@Override
 	public void init() throws ServletException {
 		utilisateurMger = BLLFactory.getUtilisateurManager();
@@ -31,8 +31,6 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.getRequestDispatcher("/WEB-INF/pages/connexionUtilisateur.jsp").forward(req, resp);
-	
-		
 	}
 
 	@Override
@@ -40,7 +38,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		try {
 			if (!utilisateurMger.verifLogin(req.getParameter("identifier"), req.getParameter("password"))) {
 				req.setAttribute("errorLogin", "Le nom d'utilisateur ou le mot de passe est incorrect");
-				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/pages/connexionUtilisateur.jsp").forward(req, resp);
 				return;
 			} else {
 				resp.sendRedirect(req.getContextPath()+"/accueil");
