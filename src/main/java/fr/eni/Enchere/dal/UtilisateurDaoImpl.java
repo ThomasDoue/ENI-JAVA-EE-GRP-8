@@ -13,6 +13,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String CHECK_LOGIN = "SELECT ? FROM dbo.UTILISATEURS";
 	private static final String CHECK_PASSWORD= "SELECT mot_de_passe FROM dbo.UTILISATEURS WHERE ?=?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
+	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	
 	
 	/**
@@ -72,8 +73,22 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	
 	public void inscription(Utilisateur user )throws DALException{
 		try(Connection conn = ConnectionProvider.getConnection()) {
-			PreparedStatement stmtInsert = conn.prepareStatement(INSERT_USER);
+			PreparedStatement stmtCheckUserExist = conn.prepareStatement(CHECK_USER_EXIST);
 			
+			stmtCheckUserExist.setString(1,user.getPseudo());
+			stmtCheckUserExist.setString(2,user.getEmail());
+			ResultSet rsUserCheck = stmtCheckUserExist.executeQuery();
+			
+			
+			int i = 0;
+			while(rsUserCheck.next()) {
+				i++;
+			}
+			if(i == 0) {
+				throw new DALException("L'utilisateur existe déja en base - user = "+user.toString()); 
+			}
+			PreparedStatement stmtInsert = conn.prepareStatement(INSERT_USER);
+
 			stmtInsert.setString(1, user.getPseudo());
 			stmtInsert.setString(2, user.getNom());
 			stmtInsert.setString(3, user.getPseudo());
