@@ -8,6 +8,10 @@
 </head>
 <body>
 <h1>Eni App</h1>
-<button type ="submit" name="Menu" value="LogoEni"></button> <a href="<%=request.getContextPath()%>/accueil"><img alt="LogoEni" src="ressources/LogoEni.png"></a></button>
+<a href="<%=request.getContextPath()%>/accueil"><img alt="LogoEni" src="ressources/LogoEni.png"></a>
+<form>
+ <input type="button" value="Rafraichir" onClick="refresh">
+ <input type="button" value="Précedent" onclick="history.back()">
+</form>
 </body>
 </html>
