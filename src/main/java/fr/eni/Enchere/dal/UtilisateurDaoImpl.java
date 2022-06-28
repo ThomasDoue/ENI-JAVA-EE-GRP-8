@@ -6,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import fr.eni.Enchere.bo.Utilisateur;
+
 
 public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String CHECK_LOGIN = "SELECT ? FROM dbo.UTILISATEURS";
 	private static final String CHECK_PASSWORD= "SELECT mot_de_passe FROM dbo.UTILISATEURS WHERE ?=?";
+	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	
 	
 	/**
@@ -64,6 +67,27 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			
 		} catch (SQLException e) {
 			throw new DALException("erreur checkLogin - userName = "+login, e);
+		}
+	}
+	
+	public void inscription(Utilisateur user )throws DALException{
+		try(Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement stmtInsert = conn.prepareStatement(INSERT_USER);
+			
+			stmtInsert.setString(1, user.getPseudo());
+			stmtInsert.setString(2, user.getNom());
+			stmtInsert.setString(3, user.getPseudo());
+			stmtInsert.setString(4, user.getPrenom());
+			stmtInsert.setString(5, user.getEmail());
+			stmtInsert.setString(6, user.getTelephone());
+			stmtInsert.setString(7, user.getRue());
+			stmtInsert.setString(8, user.getCodePostal());
+			stmtInsert.setString(9, user.getVille());
+			stmtInsert.setString(10, user.getMotDePasse());
+			stmtInsert.executeUpdate();
+
+		}catch(SQLException e) {
+			throw new DALException("erreur lors de l'insertion du client en base - user = "+user.toString(), e);
 		}
 	}
 }
