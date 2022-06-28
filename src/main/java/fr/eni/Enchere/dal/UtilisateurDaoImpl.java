@@ -14,7 +14,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String CHECK_PASSWORD= "SELECT mot_de_passe FROM dbo.UTILISATEURS WHERE ?=?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
-	
+	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	
 	/**
 	 * L'utilisateur rentre une chaine de caractères (je l'ai appelé $login).
@@ -105,10 +105,41 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			throw new DALException("erreur lors de l'insertion du client en base - user = "+user.toString(), e);
 		}
 	}
+	
+	public Utilisateur selectUser(Integer no_utlisateur) throws DALException{
+		//creation d'un utilistateur vide 
+		Utilisateur user=null;
+		//connection à la base de donnéer traitement de la fonction  
+		try(Connection conn = ConnectionProvider.getConnection()) {
+			//préparation a la requete SQL Selecte_user
+			PreparedStatement stmtSelectUser = conn.prepareStatement(SELECT_USER);
+			//valoriser les paramètre select_user
+			stmtSelectUser.setInt(1, no_utlisateur);
+			
+			
+			ResultSet rs = stmtSelectUser.executeQuery();;
+			if (rs.next()) {
+				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),rs.getString("email"), rs.getString("telephone"),rs.getString("rue"),rs.getString("code_postal"), rs.getString("ville"));
+				System.out.println("chargement profil utilisateur OK");
+			
+			}
+			
+			
+			
+		} //message d'erreu si probléme est rencontré
+		catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Erreur selectUser ");
+		}
+		
+		
+		return user;	
+	}
+	
+	
+	
 }
-		/*
-		 * Si on arrive jusqu'ici c'est que le $login n'a pas été trouvé dans le ResultSet, on retourne faux.
-		 */	
+			
 		
 			
 
