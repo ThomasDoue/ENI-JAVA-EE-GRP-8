@@ -4,19 +4,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import fr.eni.Enchere.bo.Utilisateur;
 
 
 public class UtilisateurDaoImpl implements UtilisateurDao{
-	private static final String CHECK_LOGIN = "SELECT ? FROM dbo.UTILISATEURS";
-	private static final String CHECK_PASSWORD= "SELECT mot_de_passe FROM dbo.UTILISATEURS WHERE ?=?";
+	private static final String CHECK_IDENTIFIER_PSEUDO = "SELECT pseudo, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
+	private static final String CHECK_IDENTIFIER_EMAIL= "SELECT email, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	
 	/**
+	 * @values(String) : identifier contient l'identifieur de l'utilisateur
+	 * @values(String) : password contient le mot de passe associé à l'identifieur de l'utilisateur.
+	 * retourne true si le un couple email/pseudo-mot_de_passe est trouvé dans la base de données Encheres>UTILSIATEURS, sinon false
 	 * L'utilisateur rentre une chaine de caractères (je l'ai appelé $login).
 	 * Je créé une chaine de caractere $type qui prend les valeurs "pseudo" ou "email"
 	 * Je fais un test pour savoir si $login est un pseudo ou un email.
@@ -24,16 +26,17 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	 * 
 	 * Si le pseudo ou l'email existe je retourne true, si il n'existe pas je retourne false.
 	 */
-	public boolean loginCheck(String login, String password) throws DALException {
+	public boolean connect(String identifier, String password) throws DALException {
 		
-		/*
+		/* je créé une chaine de caractère $type qui contient les valeurs "pseudo" ou "email"
+		 * Je parcours la chaîne de caractère $identifier, si elle contient le caractère "@" $type prend la valeur "email" sinon la valeur "pseudo".
 		 * je créé un String $type qui prend la valeur "pseudo"
 		 * je parcours la chaine de caractere $login, 
 		 * si la chaine contient le caractère '@' alors $type prend la valeur "pseudo".
 		 */
 		String type = "pseudo";
-		for (int i = 0; i < login.length(); i++) {
-			if ('@' == login.charAt(i))
+		for (int i = 0; i < identifier.length(); i++) {
+			if ('@' == identifier.charAt(i))
 				type = "email";
 		}
 		/*
@@ -41,33 +44,39 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		 * Une pour vérifier le login, une pour vérifier le password
 		 */
 		try(Connection conn = ConnectionProvider.getConnection()) {
-			PreparedStatement stmtLogin = conn.prepareStatement(CHECK_LOGIN);
-			PreparedStatement stmtPassword = conn.prepareStatement(CHECK_PASSWORD);
-			
-			stmtLogin.setString(1, type);
-			ResultSet rsLogin = stmtLogin.executeQuery();	
-			
-			stmtPassword.setString(1, type);
-			stmtPassword.setString(2, login);
-			ResultSet rsPassword = stmtPassword.executeQuery();
-						
 			/*
+			 * je créé un PreparedStatement, si $type est un pseudo je lance la requête sql en fonction du pseudo, sinon en fonction de email
+			 */
+			PreparedStatement stmtLogin;
+			if (type == "pseudo") {
+				stmtLogin = conn.prepareStatement(CHECK_IDENTIFIER_PSEUDO);
+			} else {
+				stmtLogin = conn.prepareStatement(CHECK_IDENTIFIER_EMAIL);
+			}
+			/*
+			 * Je renseigne les deux variables nécessaires à ma requête.
+			 */
+			stmtLogin.setString(1, identifier);
+			stmtLogin.setString(2, password);
+			
+			ResultSet rsLogin = stmtLogin.executeQuery();	
+
+			/*
+			 * si il existe un résultat dans ma requête, 
+			 * la fonction retourne true, sinon false.
 			 * si $type a pour valeur "pseudo", j'execute la requete CHECK_PSEUDONYME qui stocke tous les pseudos et uniquement les pseudos 
 			 * dans un ResultSet.
 			 * J'execute ma requête et je compare  le $login rentré en paramètre de la fonction à chaques valeurs du resultSet.
 			 * dans le cas où $login est trouvé dans le ResultSet, je renvoie TRUE
 			 */
 
-			while(rsLogin.next()) {
-				if(login.equals(rsLogin.getString(type))) {
-					if(password.equals(rsPassword.getString("password")))
-						return true;
-				}
+			if (rsLogin.next()) {
+				return true;
 			}
 			return false;
-			
+
 		} catch (SQLException e) {
-			throw new DALException("erreur checkLogin - userName = "+login, e);
+			throw new DALException("erreur checkLogin - userName = "+identifier+" - password = "+password, e);
 		}
 	}
 	

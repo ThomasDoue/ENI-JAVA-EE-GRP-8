@@ -15,7 +15,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 	
 	public boolean verifLogin(String username, String password) throws BLLException {
 		try {
-			return utilisateurDao.loginCheck(username, password);
+			return utilisateurDao.connect(username, password);
 		} catch (DALException e) {
 			throw new BLLException ("Erreur verifLogin - username = "+username+" - password = "+password, e);
 		}		
