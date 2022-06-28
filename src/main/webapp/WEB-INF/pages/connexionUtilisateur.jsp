@@ -14,14 +14,14 @@
 	<% if(request.getAttribute("errorLogin") != null) {%>
 	<p><%=request.getAttribute("errorLogin")%>
 	<%}%>
-	<form action="<%=request.getContextPath()%>/ConnexionUtilisateurServlet" method="post">
+	
+	<form action="ConnexionUtilisateurServlet" method="post">
 		<label for="idIdentifier">Nom : </label>
 		<input type="text" name="identifier" id="idIdentifier" value=""/><br />
 		<label for="idPassword">Mot de passe : </label>
 		<input type="text" name="password" id="idPassword" value=""/><br/>		
-		<button>Log In</button>
+		<button type="submit" name="LogIn">Log In</button>
+		<button type="button" name="redirectCreateAnAccount">Create an Account</button>
 	</form>
-
-
 </body>
 </html>

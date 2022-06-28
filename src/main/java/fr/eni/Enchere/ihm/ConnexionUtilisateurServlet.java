@@ -1,6 +1,7 @@
 package fr.eni.Enchere.ihm;
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
@@ -12,7 +13,7 @@ import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 
-@WebServlet("/ConnexionUtilisateurServlet")
+@WebServlet({"","/ConnexionUtilisateurServlet"})
 public class ConnexionUtilisateurServlet extends HttpServlet {
 
 
@@ -29,12 +30,16 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		
+		
+		
 		req.getRequestDispatcher("/WEB-INF/pages/connexionUtilisateur.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
 		try {
 			if (!utilisateurMger.verifLogin(req.getParameter("identifier"), req.getParameter("password"))) {
 				req.setAttribute("errorLogin", "Le nom d'utilisateur ou le mot de passe est incorrect");
