@@ -9,8 +9,8 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 
 public class UtilisateurDaoImpl implements UtilisateurDao{
-	private static final String CHECK_IDENTIFIER_PSEUDO = "SELECT pseudo, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
-	private static final String CHECK_IDENTIFIER_EMAIL= "SELECT email, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
+	private static final String CHECK_IDENTIFIER_PSEUDO = "SELECT pseudo, mot_de_passe FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
+	private static final String CHECK_IDENTIFIER_EMAIL= "SELECT email, mot_de_passe FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
