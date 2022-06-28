@@ -5,7 +5,7 @@ import fr.eni.Enchere.bo.Utilisateur;
 public interface UtilisateurDao {
 	
 	// appelle de la fonction loginCheck 
-	boolean connect(String username, String password) throws DALException;
+	int connect(String username, String password) throws DALException;
 	
 	
 	//appelle de la fonction inscription

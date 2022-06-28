@@ -24,7 +24,7 @@
 	</form>
 	
 	<form action="ConnexionUtilisateurServlet" method="get">
-		<a href="ConnexionUtilisateurServlet?action=CreateAccount">
+		<a href="ConnexionUtilisateurServlet?action=createAccount">
 		<input type="button" value="Sign in"></a>
 	</form>
 </body>
