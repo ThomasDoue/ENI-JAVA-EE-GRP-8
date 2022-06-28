@@ -1,7 +1,13 @@
 @charset "UTF-8";
 
-body h1 {
+h1 {
     font-family: 'Poppins', sans-serif;
     color: brown;
     font-size: 5rem;
+    
+}
+
+form-group{
+	
+	text-align: center ;
 }
