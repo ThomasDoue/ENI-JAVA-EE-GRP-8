@@ -21,7 +21,11 @@
 		<label for="idPassword">Mot de passe : </label>
 		<input type="text" name="password" id="idPassword" value=""/><br/>		
 		<button type="submit" name="LogIn">Log In</button>
-		<button type="button" name="redirectCreateAnAccount">Create an Account</button>
+	</form>
+	
+	<form>
+		<a href="ConnexionUtilisateurServlet?action=CreateAccount">
+		<input type="button" value="Sign in"></a>
 	</form>
 </body>
 </html>
