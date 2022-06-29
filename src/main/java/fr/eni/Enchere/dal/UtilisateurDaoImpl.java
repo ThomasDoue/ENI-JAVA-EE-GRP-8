@@ -96,21 +96,20 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			while(rsUserCheck.next()) {
 				i++;
 			}
-			if(i == 0) {
+			if(i != 0) {
 				throw new DALException("L'utilisateur existe déja en base - user = "+user.toString()); 
 			}
 			PreparedStatement stmtInsert = conn.prepareStatement(INSERT_USER);
 
 			stmtInsert.setString(1, user.getPseudo());
 			stmtInsert.setString(2, user.getNom());
-			stmtInsert.setString(3, user.getPseudo());
-			stmtInsert.setString(4, user.getPrenom());
-			stmtInsert.setString(5, user.getEmail());
-			stmtInsert.setString(6, user.getTelephone());
-			stmtInsert.setString(7, user.getRue());
-			stmtInsert.setString(8, user.getCodePostal());
-			stmtInsert.setString(9, user.getVille());
-			stmtInsert.setString(10, user.getMotDePasse());
+			stmtInsert.setString(3, user.getPrenom());
+			stmtInsert.setString(4, user.getEmail());
+			stmtInsert.setString(5, user.getTelephone());
+			stmtInsert.setString(6, user.getRue());
+			stmtInsert.setString(7, user.getCodePostal());
+			stmtInsert.setString(8, user.getVille());
+			stmtInsert.setString(9, user.getMotDePasse());
 			stmtInsert.executeUpdate();
 
 		}catch(SQLException e) {
