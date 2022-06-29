@@ -36,12 +36,12 @@
 				<% if(request.getAttribute("errorLogin") != null) {%>
 				<p><%=request.getAttribute("errorLogin")%>
 				<%}%>
-				
+				<!--  float:right; margin-top:auto; -->
 				<form action="ConnexionUtilisateurServlet" method="post" >
-					<label for="idIdentifier" style="width:1em">Nom : </label>
-					<input class=" form-control-sm mb-3 w-25" type="text" name="identifier" id="idIdentifier" value="" style="margin:1em;"/><br />
-					<label for="idPassword">Mot de passe : </label>
-					<input class="form-control-sm mb-3 w-25"  type="text" name="password" id="idPassword" value=""/><br/>		
+					<label for="idIdentifier" style="width:5em; float:center; margin:1em;">Nom : </label>
+					<input class=" form-control-sm mb-3 w-10" type="text" name="identifier" id="idIdentifier" value="" style="margin:3em;"/><br />
+					<label for="idPassword" style="width:5em; float:center; margin:1em;">Mot de passe : </label>
+					<input class="form-control-sm mb-3 w-10"  type="text" name="password" id="idPassword" value=""style="margin:3em;"/><br/>		
 					<button type="submit" class="btn btn-outline-primary" name="LogIn">Log In</button>
 				</form>
 				
@@ -56,7 +56,7 @@
 			</form>
 			
 		</div>
-	</div>
+	
 </div>
 
 <!-- JavaScript Bundle with Popper -->
