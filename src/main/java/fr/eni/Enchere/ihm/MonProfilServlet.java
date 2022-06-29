@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 
-@WebServlet({"/RETOURFORMULAIRE"})
+@WebServlet({"/RetourFormulaire"})
 public class MonProfilServlet extends HttpServlet {
 	private UtilisateurManager utilisateurMger;
 	
@@ -21,7 +21,7 @@ public class MonProfilServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/pages/monProfilGuigui.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/ProfilUtilisateur.jsp").forward(request, response);
 	}
 
 	@Override
