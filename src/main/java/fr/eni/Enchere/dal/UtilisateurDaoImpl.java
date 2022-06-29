@@ -96,21 +96,20 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			while(rsUserCheck.next()) {
 				i++;
 			}
-			if(i == 0) {
+			if(i != 0) {
 				throw new DALException("L'utilisateur existe déja en base - user = "+user.toString()); 
 			}
 			PreparedStatement stmtInsert = conn.prepareStatement(INSERT_USER);
 
 			stmtInsert.setString(1, user.getPseudo());
 			stmtInsert.setString(2, user.getNom());
-			stmtInsert.setString(3, user.getPseudo());
-			stmtInsert.setString(4, user.getPrenom());
-			stmtInsert.setString(5, user.getEmail());
-			stmtInsert.setString(6, user.getTelephone());
-			stmtInsert.setString(7, user.getRue());
-			stmtInsert.setString(8, user.getCodePostal());
-			stmtInsert.setString(9, user.getVille());
-			stmtInsert.setString(10, user.getMotDePasse());
+			stmtInsert.setString(3, user.getPrenom());
+			stmtInsert.setString(4, user.getEmail());
+			stmtInsert.setString(5, user.getTelephone());
+			stmtInsert.setString(6, user.getRue());
+			stmtInsert.setString(7, user.getCodePostal());
+			stmtInsert.setString(8, user.getVille());
+			stmtInsert.setString(9, user.getMotDePasse());
 			stmtInsert.executeUpdate();
 
 		}catch(SQLException e) {
@@ -127,16 +126,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			PreparedStatement stmtSelectUser = conn.prepareStatement(SELECT_USER);
 			//valoriser les paramètre select_user
 			stmtSelectUser.setInt(1, no_utlisateur);
-			
+		
 			
 			ResultSet rs = stmtSelectUser.executeQuery();;
 			if (rs.next()) {
-				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),rs.getString("email"), rs.getString("telephone"),rs.getString("rue"),rs.getString("code_postal"), rs.getString("ville"));
+				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),rs.getInt("credit"));
 				System.out.println("chargement profil utilisateur OK");
-			
 			}
-			
-			
 			
 		} //message d'erreu si probléme est rencontré
 		catch (SQLException e) {
