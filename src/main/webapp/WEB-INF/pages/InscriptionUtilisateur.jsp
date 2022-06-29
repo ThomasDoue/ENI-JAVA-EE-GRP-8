@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
 </head>
 <body>
 <form method="post" action="Inscription">
