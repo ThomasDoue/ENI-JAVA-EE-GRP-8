@@ -1,26 +1,47 @@
 @charset "UTF-8";
 
+.forminscription {
+	text-align: center
+}
+
+.formpagestart {
+	padding: 15px;
+	align-self: flex-end;
+	padding-right: 60%;
+}
+
 header {
-    background: blue;
-    
+	background-color: #b8d8be;
+	border-width: 1px;
+	border-style: solid;
+	border-color: grey;
+	margin: 10px
 }
 
-body{
-	
-	background: whit;
+body {
+	background: #c8e1cc;
 }
+
 .headerposition {
-  display: flex;
-}
-.footerposition {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
-form{
-	text-align: center;
+.formpageend {
+	padding: 15px;
 }
 
-footer{
-	background: red;
+.button {
+	background-color: #c8e1cc;
+	color: green;
+	border: 2px solid #4CAF50;
+}
+
+.button:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.logoposition {
+	display: flex;
 }

@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title>Accueil</title>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <header>
-<div class="headerposition">
-<a href="<%=request.getContextPath()%>/accueil"><img alt="LogoEni" src="ressources/LogoEni.png"></a>
-<h1>Eni App</h1>
 </div>
 </header>
 <body>
