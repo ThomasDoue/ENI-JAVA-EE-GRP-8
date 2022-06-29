@@ -13,7 +13,7 @@ import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 
-@WebServlet("/ConnexionUtilisateurServlet")
+@WebServlet({"","/ConnexionUtilisateurServlet"})
 public class ConnexionUtilisateurServlet extends HttpServlet {
 
 
