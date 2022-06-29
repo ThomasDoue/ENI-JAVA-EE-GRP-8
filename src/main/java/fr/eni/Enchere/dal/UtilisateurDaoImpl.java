@@ -126,16 +126,13 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			PreparedStatement stmtSelectUser = conn.prepareStatement(SELECT_USER);
 			//valoriser les paramètre select_user
 			stmtSelectUser.setInt(1, no_utlisateur);
-			
+		
 			
 			ResultSet rs = stmtSelectUser.executeQuery();;
 			if (rs.next()) {
-				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),rs.getString("email"), rs.getString("telephone"),rs.getString("rue"),rs.getString("code_postal"), rs.getString("ville"));
+				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),rs.getInt("credit"));
 				System.out.println("chargement profil utilisateur OK");
-			
 			}
-			
-			
 			
 		} //message d'erreu si probléme est rencontré
 		catch (SQLException e) {
