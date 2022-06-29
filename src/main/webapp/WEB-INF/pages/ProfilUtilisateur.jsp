@@ -13,40 +13,35 @@
 
   <h1>Retour Formulaire</h1>
 
-<form  action="RETOURFORMULAIRE"  method="post">
-  <div class="form-group">
-	    <label for="pseudo">Pseudo :</label>
-	 	<input type="text" id="pseudo" name="pseudo"class="form-control"><br/>
- </div>
- <div class="form-group">
- 	<label for="nom">Nom   :</label>
- 	<input type="text" id="nom" name="nom" class="form-control"><br/>
- </div>
- 
- <div class="form-group">
- 	<label for="email">Email   :</label>
- 	<input type="text" id="email" name="email" class="form-control"><br/>
- </div>
- <div class="form-group">	
- 	<label for="telephone">Teléphone   :</label>
- 	<input type="text" id="telephone" name="telephone"class="form-control"  ><br/>
-</div>
- <div class="form-group">
- 	<label for="rue">Rue   :</label>
- 	<input type="text" id="rue" name="rue" class="form-control"><br/>
-</div>
- <div class="form-group">
- 	<label for="code_Postal">Code Postal :</label>
- 	<input type="text" id="code_Postal" name="code_Postal" class="form-control"><br/>
- </div>
- <div class="form-group">
-  	<label for="ville">Ville :</label>
- 	<input type="text" id="ville" name="ville" class="form-control"><br/>
- </div>
-  
- 
-  <button type="modifier" class="btn btn-primary">Modifier</button>
-</form>
+<ul>
+			<li>
+				Pseudo : ${pseudo}
+			</li>
+			<li>
+				Nom : ${nom}
+			</li>
+			<li>
+				Prénom : ${prenom}
+			</li>
+			<li>
+				Email : ${email}
+			</li>
+			<li>
+				Telèphone : ${telephone}
+			</li>
+			<li>
+				Rue : ${rue}
+			</li>
+			<li>
+				Code Postal : ${codePostal}
+			</li>
+			<li>
+				Ville : ${ville}
+			</li>
+			<li>
+				Credit : ${credit}
+			</li>
+		</ul>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

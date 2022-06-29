@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
@@ -28,7 +29,7 @@ public class InscriptionUtilisateurServlet extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int idUtilisateur = 0;
 		System.out.println("mdp : " + req.getParameter("MotDePasse") + " confirmation : " + req.getParameter("Confirmation"));
 		if(!req.getParameter("MotDePasse").equals(req.getParameter("Confirmation"))) 
 		{
@@ -44,10 +45,15 @@ public class InscriptionUtilisateurServlet extends HttpServlet {
 			System.out.println("Servlet création utilisateurs : " + user.toString());
 			try {
 				utilisateurMger.InscriptionUtilisateur(user);
+				idUtilisateur = utilisateurMger.verifConnect(user.getPseudo(),user.getMotDePasse());
+				HttpSession session = req.getSession();
+				session.setAttribute( "idUtilisateur", idUtilisateur);
+				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
 	}
 }
