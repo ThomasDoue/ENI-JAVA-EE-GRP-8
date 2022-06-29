@@ -12,9 +12,8 @@ import javax.servlet.http.HttpSession;
 import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
-import fr.eni.Enchere.bo.Utilisateur;
 
-@WebServlet({"","/ConnexionUtilisateurServlet"})
+@WebServlet("/ConnexionUtilisateurServlet")
 public class ConnexionUtilisateurServlet extends HttpServlet {
 
 
@@ -62,7 +61,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			} else {
 				HttpSession session = req.getSession();
 				session.setAttribute( "idUtilisateur", idUtilisateur);
-				System.out.println(session.getAttribute("idUtilisateur"));
+				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();
