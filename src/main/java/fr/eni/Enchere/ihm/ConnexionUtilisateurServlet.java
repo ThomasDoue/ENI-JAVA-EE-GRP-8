@@ -40,20 +40,29 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		req.getRequestDispatcher("/WEB-INF/pages/connexionUtilisateur.jsp").forward(req, resp);
 	}
 
+	/**
+	 * Je créé une variable locale idUtilisateur qui prend pour valeur le numéro d'identifiant de l' utilisateur qui se connecte.
+	 * Si cette valeur est égale à 0, cela signifie que l'utilisateur n'a pas été trouvé dans la base de donnée à travers la méthode
+	 * 	"connect" dans "UtilisateurDaoImpl", dans ce cas là un message d'erreur informe l'utilisateur que son pseudo/email ou son mdp est erroné.
+	 * Dans le cas où idUtilisateur est différent de 0 (il est induit que idUtilisateur ne peut qu'être > 0)
+	 * 	on créé une session, le numero d'identifiant de l'utilisateur rentre en attribut de session sous le nom "idUtilisateur"
+	 * L'utilisateur est redirigé vers la page d'accueil.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Utilisateur utilisateur;
-		int idUtilisateur = utilisateurMger.verifConnect(req.getParameter("identifier"), req.getParameter("password"));
+	
+		int idUtilisateur = 0;
+		
 		try {
+			idUtilisateur = utilisateurMger.verifConnect(req.getParameter("identifier"), req.getParameter("password"));
 			if (idUtilisateur == 0) {
 				req.setAttribute("errorLogin", "Le nom d'utilisateur ou le mot de passe est incorrect");
 				req.getRequestDispatcher("/WEB-INF/pages/connexionUtilisateur.jsp").forward(req, resp);
 				return;
 			} else {
-				System.out.println(idUtilisateur);
 				HttpSession session = req.getSession();
-				utilisateur = getUserById(idUtilisateur);
-				resp.sendRedirect(req.getContextPath()+"/accueil");
+				session.setAttribute( "idUtilisateur", idUtilisateur);
+				System.out.println(session.getAttribute("idUtilisateur"));
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();
