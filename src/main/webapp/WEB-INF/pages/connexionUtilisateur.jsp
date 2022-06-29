@@ -23,8 +23,8 @@
 		<button type="submit" name="LogIn">Log In</button>
 	</form>
 	
-	<form>
-		<a href="ConnexionUtilisateurServlet?action=CreateAccount">
+	<form action="ConnexionUtilisateurServlet" method="get">
+		<a href="ConnexionUtilisateurServlet?action=createAccount">
 		<input type="button" value="Sign in"></a>
 	</form>
 </body>

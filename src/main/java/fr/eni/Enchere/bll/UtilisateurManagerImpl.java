@@ -13,7 +13,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		utilisateurDao = DaoFactory.getUtilisateurDao();
 	}
 	
-	public boolean verifLogin(String username, String password) throws BLLException {
+	public int verifConnect(String username, String password) throws BLLException {
 		try {
 			return utilisateurDao.connect(username, password);
 		} catch (DALException e) {

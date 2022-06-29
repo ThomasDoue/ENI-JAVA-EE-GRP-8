@@ -9,8 +9,8 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 
 public class UtilisateurDaoImpl implements UtilisateurDao{
-	private static final String CHECK_IDENTIFIER_PSEUDO = "SELECT pseudo, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
-	private static final String CHECK_IDENTIFIER_EMAIL= "SELECT email, FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
+	private static final String CHECK_IDENTIFIER_PSEUDO = "SELECT no_utilisateur, pseudo, mot_de_passe FROM dbo.UTILISATEURS WHERE pseudo=? AND mot_de_passe=?";
+	private static final String CHECK_IDENTIFIER_EMAIL= "SELECT no_utilisateur, email, mot_de_passe FROM dbo.UTILISATEURS WHERE email=? AND mot_de_passe=?";
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
@@ -18,22 +18,25 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
 	 * @values(String) : password contient le mot de passe associé à l'identifieur de l'utilisateur.
-	 * retourne true si le un couple email/pseudo-mot_de_passe est trouvé dans la base de données Encheres>UTILSIATEURS, sinon false
+	 * retourne l'id si le un couple email/pseudo-mot_de_passe est trouvé dans la base de données Encheres>UTILSIATEURS, sinon 0
 	 * L'utilisateur rentre une chaine de caractères (je l'ai appelé $login).
 	 * Je créé une chaine de caractere $type qui prend les valeurs "pseudo" ou "email"
 	 * Je fais un test pour savoir si $login est un pseudo ou un email.
 	 * Si c'est un email je fais une requête SQL qui récupère tous les emails, de même si c'est un pseudo.
 	 * 
-	 * Si le pseudo ou l'email existe je retourne true, si il n'existe pas je retourne false.
 	 */
-	public boolean connect(String identifier, String password) throws DALException {
+	public int connect(String identifier, String password) throws DALException {
 		
 		/* je créé une chaine de caractère $type qui contient les valeurs "pseudo" ou "email"
 		 * Je parcours la chaîne de caractère $identifier, si elle contient le caractère "@" $type prend la valeur "email" sinon la valeur "pseudo".
 		 * je créé un String $type qui prend la valeur "pseudo"
 		 * je parcours la chaine de caractere $login, 
 		 * si la chaine contient le caractère '@' alors $type prend la valeur "pseudo".
+		 * 
+		 * Création d'une variable int id nommé "id" initialisé à 0, indiquant qu'il n'existe pas d'identifiant associé à 
 		 */
+		
+		int id = 0;
 		String type = "pseudo";
 		for (int i = 0; i < identifier.length(); i++) {
 			if ('@' == identifier.charAt(i))
@@ -58,7 +61,6 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			 */
 			stmtLogin.setString(1, identifier);
 			stmtLogin.setString(2, password);
-			
 			ResultSet rsLogin = stmtLogin.executeQuery();	
 
 			/*
@@ -70,10 +72,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			 * dans le cas où $login est trouvé dans le ResultSet, je renvoie TRUE
 			 */
 
+			
 			if (rsLogin.next()) {
-				return true;
+				id = rsLogin.getInt("no_utilisateur");
 			}
-			return false;
+			return id;
 
 		} catch (SQLException e) {
 			throw new DALException("erreur checkLogin - userName = "+identifier+" - password = "+password, e);
