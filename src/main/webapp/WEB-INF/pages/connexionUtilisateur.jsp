@@ -12,37 +12,49 @@
   
 </head>
 <body>
+ 
+<header>
+	<div class="contenair" class="w-100 p-3" style="background-color: #e8f4ea;">
+			<div class="row">
+				<div class="col">
+					<h1 style="  padding:1em;text-indent:2em; color:#b8d8be">ENI-encheres</h1>
+				</div>
+			</div>
+		</div>
+</header>
 
-<div class="container">
- <div class="bg-light w-100 p-3" style="height: max-height;"> 
-		<div class="row">
-			<div class="">
-					
-				<!--  		  <div class="h-25 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 25%</div>
-						  <div class="h-50 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 50%</div>
-						  <div class="h-75 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 75%</div>
-						  <div class="h-100 d-inline-block" style="width: 120px; background-color: rgba(0,0,255,.1)">Height 100%</div>
-				-->		
-					<h1 class="titreAccueil">Connexion</h1>
-					<% if(request.getAttribute("errorLogin") != null) {%>
-					<p><%=request.getAttribute("errorLogin")%>
-					<%}%>
-					
-					<form action="ConnexionUtilisateurServlet" method="post">
-						<label for="idIdentifier">Nom : </label>
-						<input type="text" name="identifier" id="idIdentifier" value=""/><br />
-						<label for="idPassword">Mot de passe : </label>
-						<input type="text" name="password" id="idPassword" value=""/><br/>		
-						<button type="submit" name="LogIn">Log In</button>
-					</form>
+
+	<div class="container bg-light px-4" style="height:100vh; width:100vw">
+		<div class="row gx-5" style="text-align:center;">
+
+
+
+		
+			<!-- 1RE LIGNE: SE CONNECTER -->
+			<div class="col">
+				<h1 class="titreAccueil">Connexion</h1>
+				<% if(request.getAttribute("errorLogin") != null) {%>
+				<p><%=request.getAttribute("errorLogin")%>
+				<%}%>
+				
+				<form action="ConnexionUtilisateurServlet" method="post" >
+					<label for="idIdentifier" style="width:1em">Nom : </label>
+					<input class=" form-control-sm mb-3 w-25" type="text" name="identifier" id="idIdentifier" value="" style="margin:1em;"/><br />
+					<label for="idPassword">Mot de passe : </label>
+					<input class="form-control-sm mb-3 w-25"  type="text" name="password" id="idPassword" value=""/><br/>		
+					<button type="submit" class="btn btn-outline-primary" name="LogIn">Log In</button>
+				</form>
 				
 			</div>
-					<div class="">
-					<form action="ConnexionUtilisateurServlet" method="get">
-						<a href="ConnexionUtilisateurServlet?action=createAccount">
-						<input type="button" value="Sign in"></a>
-					</form>
-			</div>
+		</div>
+			
+		<!-- 2EME LIGNE: CREER UN COMPTE -->
+		<div class="row gx-5">
+			<form action="ConnexionUtilisateurServlet" method="get">
+				<a href="ConnexionUtilisateurServlet?action=createAccount">
+				<input class="btn btn-secondary" type="button" value="Sign in" style="padding:5% 10%;"></a>
+			</form>
+			
 		</div>
 	</div>
 </div>

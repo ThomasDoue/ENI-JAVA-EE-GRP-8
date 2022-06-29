@@ -1,13 +1,26 @@
 @charset "UTF-8";
 
-h1 {
-    font-family: 'Poppins', sans-serif;
-    color: brown;
-    font-size: 5rem;
+header {
+    background: blue;
     
 }
 
-form-group{
+body{
 	
-	text-align: center ;
+	background: whit;
+}
+.headerposition {
+  display: flex;
+}
+.footerposition {
+	display: flex;
+	justify-content: flex-end;
+}
+
+form{
+	text-align: center;
+}
+
+footer{
+	background: red;
 }
