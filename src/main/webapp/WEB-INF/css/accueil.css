@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+header {
+    background: blue;
+    
+}
+
+body{
+	
+	background: green;
+}
+.headerposition {
+  display: flex;
+}
+.footerposition {
+	display: flex;
+	justify-content: flex-end;
+}
+
+form{
+	text-align: center;
+}
+
+footer{
+	background: red;
+}
