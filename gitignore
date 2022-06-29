@@ -4,3 +4,4 @@ classes/
 out/
 target/
 *.class
+*.classpath
