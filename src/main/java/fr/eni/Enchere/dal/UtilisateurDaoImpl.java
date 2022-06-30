@@ -83,7 +83,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		}
 	}
 	
-	public void inscription(Utilisateur user )throws DALException{
+	public void inscription(Utilisateur user )throws DALException,Exception{
 		try(Connection conn = ConnectionProvider.getConnection()) {
 			PreparedStatement stmtCheckUserExist = conn.prepareStatement(CHECK_USER_EXIST);
 			
@@ -114,6 +114,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 
 		}catch(SQLException e) {
 			throw new DALException("erreur lors de l'insertion du client en base - user = "+user.toString(), e);
+		}catch(Exception e) {
+			throw new Exception("Erreur critique lors de la récupération des données dans la couche dal");
 		}
 	}
 	

@@ -26,6 +26,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			utilisateurDao.inscription(usr);
 		}catch (DALException e){
 			throw new BLLException ("Erreur lors de l'inscription pour l'utilisateur : " + usr.toString() , e);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
