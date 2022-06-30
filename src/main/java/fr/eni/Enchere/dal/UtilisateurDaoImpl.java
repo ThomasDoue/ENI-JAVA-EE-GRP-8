@@ -15,7 +15,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	private static final String UPDATE ="INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES(??????????";
-	
+	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE id=?";
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
 	 * @values(String) : password contient le mot de passe associé à l'identifieur de l'utilisateur.
@@ -153,6 +153,17 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		
 	}
 	
+	
+	public void Delete (int id) throws DALException{
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(DELETE);
+			stmt.setInt(1,  id);
+			
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Delete utilisateur failed - id : "+id, e);
+		}
+	}
 	
 }
 			

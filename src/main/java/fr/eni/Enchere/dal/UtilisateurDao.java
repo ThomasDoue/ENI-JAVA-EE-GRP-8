@@ -14,6 +14,6 @@ public interface UtilisateurDao {
 	//appelle de la fonction selectUser
 	Utilisateur selectUser(Integer no_utlisateur) throws DALException;
 	
-	
+	void Delete(int id) throws DALException;
 	
 }

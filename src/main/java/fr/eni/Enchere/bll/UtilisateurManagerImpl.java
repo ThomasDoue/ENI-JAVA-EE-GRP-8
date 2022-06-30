@@ -42,4 +42,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		return user;
 	}
 
+	@Override
+	public void supprimerUtilisateur(int id) throws BLLException {
+		try {
+			utilisateurDao.Delete(id);
+		} catch(DALException e) {
+			throw new BLLException ("Erreur supprimerUtilisateur - id = :"+id, e);
+		}
+		
+	}
+
 }
