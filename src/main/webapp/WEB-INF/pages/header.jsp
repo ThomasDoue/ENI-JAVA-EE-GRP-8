@@ -5,22 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/css/styleXavier.css"%></style>
 </head>
 <header>
-<div class="headerposition">
-<a class="logoposition" href="<%=request.getContextPath()%>/accueil"><img alt="LogoEni" src="ressources/LogoEni.png"></a>
+<div class="headerPosition">
+	<a class="logoPosition" href="<%=request.getContextPath()%>/accueil"><img class="imageOption"alt="LogoEni" src="ressources/LogoEni.png"></a>
 
-<form class="formpagestart">
- <button class="button" type="button" value="Rafraichir." onClick="refresh">Rafraichir</button>
- <button class="button" type="button" value="Précedent." onclick="history.back()">Précedent</button>
-</form>
-<form class="formpageend">
-	<button class="button">Enchères</button>
-	<button class="button">Vendre un article</button>
-	<button class="button">Mon profil</button>
-	<button class="button">Déconnexion</button>
-</form>
+	<form class="formPageStart">
+		<button class="buttonHeader" type="button" value="Rafraichir." onClick="refresh">Rafraichir</button>
+		<button class="buttonHeader" type="button" value="Précedent." onClick="history.back()">Précedent</button>
+	</form>
+	
+	
+	<form class="formPageEnd">
+		<button class="buttonHeader">Enchères</button>
+		<button class="buttonHeader">Vendre un article</button>
+		<button class="buttonHeader">Mon profil</button>
+		<button class="buttonHeader">Déconnexion</button>
+	</form>
 </div>
 </header>
 </html>
