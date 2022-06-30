@@ -49,6 +49,32 @@ body {
 	color:#c8e1cc;
 }
 
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
+
+}
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
+}
+
 .logoposition {
 	display: flex;
 }
