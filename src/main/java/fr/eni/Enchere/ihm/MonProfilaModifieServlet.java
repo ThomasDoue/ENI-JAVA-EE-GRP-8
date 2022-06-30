@@ -34,31 +34,30 @@ public class MonProfilaModifieServlet extends HttpServlet {
 		//*************************************
 		//POUR TEST 
 		Integer userID = 3;
-		//*************************************
+		
 		
 		//creation d'une instance session vide 
 		HttpSession session = request.getSession();
-		
-		//***************************
-		//POUR TEST 
+		//mise an place de id 3 a l'utlisateur
 		session.setAttribute("No_utlisateur",userID);
 		//***************************************
 		
-		//session.getAttribute recupére le No_utlisateur
+		//creation d'une instance session vide 
+		//HttpSession session = request.getSession();
+		//**session.getAttribute recupére le No_utlisateur;
 		//Integer userID=(int)session.getAttribute("No_utilisateur");
 		
 		try {
 			Utilisateur UserAffichage = utilisateurManager.selectUser(userID);
-			request.setAttribute( "pseudo", UserAffichage.getPseudo()); 
-			request.setAttribute( "nom", UserAffichage.getNom());
+			request.setAttribute("pseudo", UserAffichage.getPseudo()); 
+			request.setAttribute("nom", UserAffichage.getNom());
 			request.setAttribute("prenom", UserAffichage.getPrenom());
-			request.setAttribute( "email", UserAffichage.getEmail());
-			request.setAttribute( "telephone", UserAffichage.getTelephone());
-			request.setAttribute( "rue", UserAffichage.getRue());
+			request.setAttribute("email", UserAffichage.getEmail());
+			request.setAttribute("telephone", UserAffichage.getTelephone());
+			request.setAttribute("rue", UserAffichage.getRue());
 			request.setAttribute("codePostal", UserAffichage.getCodePostal());
 			request.setAttribute("ville", UserAffichage.getVille());
 			request.setAttribute("motdepassseactuel",UserAffichage.getMotDePasse());
-			
 			request.setAttribute("credit", UserAffichage.getCredit());
 			
 			
@@ -78,8 +77,22 @@ public class MonProfilaModifieServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Création de l'attribut Action pour le JSP
+        String action = request.getParameter("enregistrer");
+        
+        System.out.println("je suis dans le post   :" +  action);
+        // ?Action=Supprimer Dans le JSP
+        if ("supprimer".equals(action)) {
+        	System.out.println("supprimer");
+            return;
+        }
 
-
+        // ?Action=Modifier Dans le JSP
+        if ("enregistrer".equals(action)) {
+           System.out.println("enregistrer");
+            return;
+        }
 		
 	}
 			

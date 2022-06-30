@@ -14,7 +14,7 @@
 
   <h1>Mon Profil</h1>
 
-<form  action="MonProfilBouttonModifieServlet"  method="post">
+<form  action="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
 	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}">
@@ -60,11 +60,19 @@
  </div>
  
  <a>Credit : ${credit} </a><br/>
+ </form>
+ <input type="button" name="enregistrer" value="Bouton cliquer">
+ 
+  <button type="Enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button>
+  <button type="supprimer" name="supprimer" class="btn btn-primary">Supprimer</button>
+  
+  <!-- recuperation de laction du bouton par action -->
+  <a href="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet?action=supprimer"><button class="btn btn-danger" type="button">Enregister</button></a>
+  <a href="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet?action=tutu"><button class="btn btn-warning" type="button">Supprimer mon compte</button></a>
  
  
-  <button type="Enregistrer" action=enregistrer class="btn btn-primary">Enregistrer</button>
-  <button type="Supprimer" action=supprimer class="btn btn-primary">Supprimer mon compte</button>
-</form>
+  
+
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
