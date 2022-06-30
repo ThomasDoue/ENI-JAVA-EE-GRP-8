@@ -8,6 +8,7 @@
       <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/style.css">
 <title>Retour Formulaire</title>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 

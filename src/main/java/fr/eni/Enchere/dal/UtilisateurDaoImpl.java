@@ -26,7 +26,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	 * Si c'est un email je fais une requête SQL qui récupère tous les emails, de même si c'est un pseudo.
 	 * 
 	 */
-	public int connect(String identifier, String password) throws DALException {
+	public int connect(String identifier, String password) throws DALException, Exception {
 		
 		/* je créé une chaine de caractère $type qui contient les valeurs "pseudo" ou "email"
 		 * Je parcours la chaîne de caractère $identifier, si elle contient le caractère "@" $type prend la valeur "email" sinon la valeur "pseudo".
@@ -81,6 +81,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 
 		} catch (SQLException e) {
 			throw new DALException("erreur checkLogin - userName = "+identifier+" - password = "+password, e);
+		} catch (Exception e) {
+			throw new Exception(e);
 		}
 	}
 	

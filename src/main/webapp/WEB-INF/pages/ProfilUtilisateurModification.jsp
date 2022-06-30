@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
       
 <title>Retour Formulaire</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 

@@ -4,7 +4,7 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 public interface UtilisateurManager {
 	
-	int verifConnect(String username, String password) throws BLLException;
+	int verifConnect(String username, String password) throws BLLException, Exception;
 	
 	Utilisateur selectUser(Integer no_utlisateur) throws BLLException;
 
