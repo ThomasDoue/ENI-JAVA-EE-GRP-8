@@ -16,11 +16,22 @@ public class Utilisateur {
 	private String motDePasse;
 	private Integer credit;
 	private boolean administrateur;
-	
-	
-	
-	
+
 	//constructeur pseudo nom pernom email,telephone rue codepostal ville
+	
+	public Utilisateur( String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+	
+	//constructeur pseudo nom pernom email,telephone rue codepostal ville credit
 	
 	public Utilisateur( String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville,Integer credit) {
@@ -34,6 +45,9 @@ public class Utilisateur {
 		this.ville = ville;
 		this.credit = credit;
 	}
+	
+	
+	
 	
 	public Utilisateur( String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String codePostal, String ville, String mdp) {
@@ -52,7 +66,6 @@ public class Utilisateur {
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String codePostal, String ville, String motDePasse, Integer credit, boolean administrateur) {
-		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;

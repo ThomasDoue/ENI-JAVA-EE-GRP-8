@@ -23,7 +23,10 @@
  	<label for="nom">Nom   :</label>
  	<input type="text" id="nom" name="nom" class="form-control"  value= "${nom}"><br/>
  </div>
- 
+  <div class="form-group">
+ 	<label for="prenom">Prenom   :</label>
+ 	<input type="text" id="nom" name="nom" class="form-control"  value= "${prenom}"><br/>
+ </div>
  <div class="form-group">
  	<label for="email">Email   :</label>
  	<input type="text" id="email" name="email" class="form-control" value= "${email}"><br/>
