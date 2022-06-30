@@ -7,13 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 
 <c:if test="${verifmdp == false}">
 		<p>Le mot de passe et le mot de passe de confirmation n'est pas le même.</p>	
 	</c:if>
-<form action="<%=request.getContextPath()%>/Inscription" method="post">
+<form class = "forminscription" action="<%=request.getContextPath()%>/Inscription" method="post">
 	Mon Profil
 	<br>
 	<div class="form-group">
