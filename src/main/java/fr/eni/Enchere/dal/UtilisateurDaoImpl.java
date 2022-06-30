@@ -14,6 +14,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
+	private static final String UPDATE ="INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES(??????????";
 	
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
@@ -144,6 +145,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;	
 	}
 	
+	public void Update (Utilisateur modifUser) {
+		
+		
+		
+	}
 	
 	
 }
