@@ -32,6 +32,17 @@ body {
 	padding: 15px;
 }
 
+.button {
+	background-color: #c8e1cc;
+	color: green;
+	border: 2px solid #4CAF50;
+}
+
+.button:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
 
 .logoposition {
 	display: flex;
@@ -44,15 +55,27 @@ body {
 	justify-content: space-around;
 	margin: 50%
 }
-/*--------------- BUTTON ---------------*/
 
-.button {
-	background-color: #c8e1cc;
-	color: green;
-	border: 2px solid #4CAF50;
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
 }
 
-.button:hover {
-	background-color: #4CAF50;
-	color: white;
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
 }
