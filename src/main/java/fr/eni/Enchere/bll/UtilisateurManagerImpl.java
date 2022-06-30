@@ -28,6 +28,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			utilisateurDao.inscription(usr);
 		}catch (DALException e){
 			throw new BLLException ("Erreur lors de l'inscription pour l'utilisateur : " + usr.toString() , e);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
@@ -40,18 +43,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 				throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + no_utilisateur.toString(), e);
 			}
 		return user;
-	}
-	
-	
-	public void UpdateUser(Utilisateur user) throws BLLException{
-		try {
-			utilisateurDao.UpdateUser(user);			
-		}catch (DALException e) {
-			throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + user.toString(), e);
-		}
-		
-		
-		
 	}
 
 }

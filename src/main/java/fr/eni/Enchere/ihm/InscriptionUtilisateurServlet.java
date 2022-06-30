@@ -45,12 +45,7 @@ public class InscriptionUtilisateurServlet extends HttpServlet {
 			System.out.println("Servlet création utilisateurs : " + user.toString());
 			try {
 				utilisateurMger.InscriptionUtilisateur(user);
-				try {
-					idUtilisateur = utilisateurMger.verifConnect(user.getPseudo(),user.getMotDePasse());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				idUtilisateur = utilisateurMger.verifConnect(user.getPseudo(),user.getMotDePasse());
 				HttpSession session = req.getSession();
 				session.setAttribute( "idUtilisateur", idUtilisateur);
 				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
