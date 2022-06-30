@@ -52,6 +52,9 @@ public class InscriptionUtilisateurServlet extends HttpServlet {
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 		}

@@ -10,6 +10,11 @@ public Categorie(String libelle) {
 	this.libelle = libelle;
 }
 
+public Categorie(Integer noCategorie,String libelle) {
+	this.noCategorie = noCategorie;
+	this.libelle = libelle;
+}
+
 //get et set
 public Integer getNoCategorie() {
 	return noCategorie;
