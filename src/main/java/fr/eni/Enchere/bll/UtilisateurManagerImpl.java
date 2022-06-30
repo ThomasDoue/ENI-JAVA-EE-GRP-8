@@ -13,11 +13,13 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		utilisateurDao = DaoFactory.getUtilisateurDao();
 	}
 	
-	public int verifConnect(String username, String password) throws BLLException {
+	public int verifConnect(String username, String password) throws BLLException, Exception {
 		try {
 			return utilisateurDao.connect(username, password);
 		} catch (DALException e) {
 			throw new BLLException ("Erreur verifLogin - username = "+username+" - password = "+password, e);
+		}	catch (Exception e) {
+			throw new Exception (e);
 		}		
 	}
 	
@@ -33,12 +35,12 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		
 	}
 	
-	public Utilisateur selectUser(Integer no_utlisateur) throws BLLException{
+	public Utilisateur selectUser(Integer no_utilisateur) throws BLLException{
 		Utilisateur user=null;
 		try {
-			user=utilisateurDao.selectUser(no_utlisateur);
+			user=utilisateurDao.selectUser(no_utilisateur);
 			}catch (DALException e) {
-				throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + no_utlisateur.toString(), e);
+				throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + no_utilisateur.toString(), e);
 			}
 		return user;
 	}

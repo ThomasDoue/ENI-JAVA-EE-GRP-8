@@ -7,12 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
       
 <title>Retour Formulaire</title>
+<style><%@include file="/WEB-INF/css/style.css"%></style>
+<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 
   <h1>Retour Formulaire</h1>
 
-<form  action="RetourFormulaire"  method="post">
+<form class="forminscription" action="RetourFormulaire"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
 	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}"><br/>
@@ -21,7 +23,10 @@
  	<label for="nom">Nom   :</label>
  	<input type="text" id="nom" name="nom" class="form-control"  value= "${nom}"><br/>
  </div>
- 
+  <div class="form-group">
+ 	<label for="prenom">Prenom   :</label>
+ 	<input type="text" id="nom" name="nom" class="form-control"  value= "${prenom}"><br/>
+ </div>
  <div class="form-group">
  	<label for="email">Email   :</label>
  	<input type="text" id="email" name="email" class="form-control" value= "${email}"><br/>

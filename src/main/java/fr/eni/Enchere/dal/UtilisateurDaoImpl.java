@@ -14,6 +14,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
+	private static final String UPDATE ="INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES(??????????";
 	
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
@@ -25,7 +26,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	 * Si c'est un email je fais une requête SQL qui récupère tous les emails, de même si c'est un pseudo.
 	 * 
 	 */
-	public int connect(String identifier, String password) throws DALException {
+	public int connect(String identifier, String password) throws DALException, Exception {
 		
 		/* je créé une chaine de caractère $type qui contient les valeurs "pseudo" ou "email"
 		 * Je parcours la chaîne de caractère $identifier, si elle contient le caractère "@" $type prend la valeur "email" sinon la valeur "pseudo".
@@ -80,6 +81,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 
 		} catch (SQLException e) {
 			throw new DALException("erreur checkLogin - userName = "+identifier+" - password = "+password, e);
+		} catch (Exception e) {
+			throw new Exception(e);
 		}
 	}
 	
@@ -146,6 +149,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;	
 	}
 	
+	public void Update (Utilisateur modifUser) {
+		
+		
+		
+	}
 	
 	
 }

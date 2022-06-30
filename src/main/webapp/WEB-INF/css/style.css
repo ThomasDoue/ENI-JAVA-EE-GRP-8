@@ -1,26 +1,126 @@
 @charset "UTF-8";
 
-header {
-    background: blue;
-    
-}
-
-body{
+.forminscription {
+	display: table-row-group;
 	
-	background: whit;
-}
-.headerposition {
-  display: flex;
-}
-.footerposition {
-	display: flex;
-	justify-content: flex-end;
 }
 
-form{
+.formpagestart {
+	padding: 15px;
+	align-self: flex-end;
+	padding-right: 60%;
+}
+
+header {
+	background-color: #b8d8be;
+	border-width: 1px;
+	border-style: solid;
+	border-color: grey;
+	margin: 10px;
+	padding: 25px;
+}
+
+body {
+	background: #c8e1cc;
+	color: green;
+	
+}
+
+.headerposition {
+	display: flex;
+	justify-content: space-between;
+}
+
+.formpageend {
+	padding: 15px;
+}
+
+.button {
+	font-family: 'Lobster', cursive;
+	background-color: #c8e1cc;
+	color: green;
+	border: 1px solid #4CAF50;
+	padding: 15px;
+	border-radius: 50px;
+}
+
+.button:hover {
+	background-color: #4CAF50;
+	color:#c8e1cc;
+}
+
+
+.logoposition {
+	display: flex;
+}
+.titre{
 	text-align: center;
 }
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
 
-footer{
-	background: red;
+}
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
+}
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+}
+.bodyAccueil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	}
+	
+.inputAccueil {
+  max-width: 190px;
+  height: 30px;
+  border: 2px solid transparent;
+  outline: none;
+  border-bottom: 2px solid green;
+  caret-color: grey;
+  background-color: #c8e1cc;
+  padding: 5px;
+  transition: .5s linear;
+  font-family: 'Lobster', cursive;
+  letter-spacing: 1px;
+}
+
+.inputAcuueil:focus {
+  border: 2px solid black;
+  caret-color: grey;
+  color: #4CAF50;
+  box-shadow: 4px 4px 10px #4CAF50;
+}
+
+.inputAccueil:focus::placeholder {
+  color: #4CAF50;
+}
+
+select{
+	background-color: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	color: green;
+	border: 1px solid #4CAF50;
+	border-radius: 50px;
+	margin-top: 10px;
+	padding: 10px;
 }
