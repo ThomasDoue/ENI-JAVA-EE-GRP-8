@@ -14,7 +14,7 @@
 
   <h1>Retour Formulaire</h1>
 
-<form  action="RetourFormulaire"  method="post">
+<form class="forminscription" action="RetourFormulaire"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
 	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}"><br/>

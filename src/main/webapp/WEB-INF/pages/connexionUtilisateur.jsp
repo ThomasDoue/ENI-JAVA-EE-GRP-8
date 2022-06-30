@@ -15,16 +15,7 @@
   
 </head>
 <body>
- 
-<header>
-	<div class="contenair" class="w-100 p-3" style="background-color: #e8f4ea;">
-			<div class="row">
-				<div class="col">
-					<h1 style="  padding:1em;text-indent:2em; color:#b8d8be">ENI-encheres</h1>
-				</div>
-			</div>
-		</div>
-</header>
+
 
 
 	<div class="container bg-light px-4" style="height:100vh; width:100vw">

@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 .forminscription {
-	text-align: center
+	display: table-row-group;
+	
 }
 
 .formpagestart {
@@ -44,4 +45,12 @@ body {
 
 .logoposition {
 	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
 }
