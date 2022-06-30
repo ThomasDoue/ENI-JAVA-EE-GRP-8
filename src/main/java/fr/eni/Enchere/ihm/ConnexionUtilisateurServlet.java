@@ -66,6 +66,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}	catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
