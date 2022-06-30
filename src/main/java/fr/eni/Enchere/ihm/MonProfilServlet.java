@@ -22,62 +22,50 @@ public class MonProfilServlet extends HttpServlet {
 		utilisateurMger = BLLFactory.getUtilisateurManager();
 	}
 
+	/**
+	 *recuperation des différent paramétre du profil utlisateur qui est sur la base de donnéer
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//recuperation du numéro de l'utilisateur de la page de connection par al session 
-		Integer utilisateur = 1;
-//		HttpSession session = request.getSession();
-//		
-//		int utilisateur = (int) session.getAttribute("idUtilisateur"); 
-//		System.out.println(utilisateur);
-//		utilisateurMger.selectUser(no_utilisateur);
+		//recuperation du numéro de l'utilisateur de la page de connection par la session 
+		Integer utilisateur = 3;
+		HttpSession session = request.getSession();
+		session.setAttribute("No_utlisateur",utilisateur);
+		
 		try {
+			//appel de la fonction manageur avec le selectUtilisateur 
+			
 			Utilisateur RetourProfil =utilisateurMger.selectUser(utilisateur);
+			//insertion du pseudo recuperer de la base vers la page html. 
 			request.setAttribute("pseudo",RetourProfil.getPseudo());
+			//insertion du nom recuperer de la base vers la page html. 
 			request.setAttribute("nom",RetourProfil.getNom());
-			request.setAttribute("premon",RetourProfil.getPrenom());
+			//insertion du prenom recuperer de la base vers la page html. 
+			request.setAttribute("prenom",RetourProfil.getPrenom());
+			//insertion du email recuperer de la base vers la page html. 
 			request.setAttribute("email",RetourProfil.getEmail());
+			//insertion du telephone recuperer de la base vers la page html. 
 			request.setAttribute("telephone",RetourProfil.getTelephone());
+			//insertion du rue recuperer de la base vers la page html. 
 			request.setAttribute("rue",RetourProfil.getRue());
+			//insertion du codePostal recuperer de la base vers la page html. 
 			request.setAttribute("codePostal",RetourProfil.getCodePostal());
+			//insertion du ville recuperer de la base vers la page html. 
 			request.setAttribute("ville",RetourProfil.getVille());
+			//insertion du credit recuperer de la base vers la page html. 
 			request.setAttribute("credit", RetourProfil.getCredit());
-			System.out.println(RetourProfil.toString());
-
-
+			
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 		request.getRequestDispatcher("/WEB-INF/pages/ProfilUtilisateur.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//recuperation du numéro de l'utilisateur de la page de connection par al session 
-		Integer utilisateur = 1; 
-//		utilisateurMger.selectUser(no_utilisateur);
-		try {
-			Utilisateur RetourProfil =utilisateurMger.selectUser(utilisateur);
-			request.setAttribute("pseudo",RetourProfil.getPseudo());
-			request.setAttribute("nom",RetourProfil.getNom());
-			request.setAttribute("premon",RetourProfil.getPrenom());
-			request.setAttribute("email",RetourProfil.getEmail());
-			request.setAttribute("telephone",RetourProfil.getTelephone());
-			request.setAttribute("rue",RetourProfil.getRue());
-			request.setAttribute("codePostal",RetourProfil.getCodePostal());
-			request.setAttribute("ville",RetourProfil.getVille());
-			request.setAttribute("credit", RetourProfil.getCredit());
-			System.out.println(RetourProfil.toString());
 
-
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 
