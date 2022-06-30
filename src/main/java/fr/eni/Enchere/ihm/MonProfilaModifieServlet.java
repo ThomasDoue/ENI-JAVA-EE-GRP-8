@@ -79,71 +79,10 @@ public class MonProfilaModifieServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		 // Création de l'attribut Action pour le JSP
-        String action = request.getParameter("action");
-		
 
-        // ?Action=Supprimer Dans le JSP
-        if ("supprimer".equals(action)) {
-//            doDelete(request, response);
-            return;
-        }
-
-        // ?Action=Modifier Dans le JSP
-        if ("modifier".equals(action)) {
-            doModifier(request, response);
-            return;
-        }
-        
-        
-		//*************************************
-		//POUR TEST 
-		Integer userID = 3;
-		//*************************************
 		
-		//creation d'une instance session vide 
-		HttpSession session = request.getSession();
-		
-		//***************************
-		//POUR TEST 
-		session.setAttribute("No_utlisateur",userID);
-		//***************************************
-		
-		//session.getAttribute recupére le No_utlisateur
-		//Integer userID=(int)session.getAttribute("No_utilisateur");
-		
-		// Récupération Paramètres Formulaire et insertion dans mon constructeur Utlisateur pour enregistement sur la base de donnée pour modification
-		Utilisateur usermodif = new Utilisateur(userID,
-												request.getParameter("pseudo"),
-											  	request.getParameter("nom"),
-											  	request.getParameter("prenom"),
-											  	request.getParameter("email"), 
-											  	request.getParameter("telephone"),
-											  	request.getParameter("rue"),
-											  	request.getParameter("codePostal"),
-											  	request.getParameter("ville"),
-											  	request.getParameter("motDePasse"),
-											  	creditUser,
-											  	false);
-		
-		System.out.println(usermodif);
-												
-		//envoie de l'utilisateur à la modification a SQL 
-		try {
-			utilisateurManager.UpdateUser(usermodif);
-			//a peut étre afficher 
-			System.out.println("mise a jour faite de l'utlisateur");
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		response.sendRedirect(request.getContextPath() + "/ProfilUtilisateurModification");
-	
 	}
-		
-		
-		
-		
+			
 	}
 
 
