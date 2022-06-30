@@ -41,5 +41,17 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 			}
 		return user;
 	}
+	
+	
+	public void UpdateUser(Utilisateur user) throws BLLException{
+		try {
+			utilisateurDao.UpdateUser(user);			
+		}catch (DALException e) {
+			throw new BLLException ("Erreur la remonter des informations de l'utilisateur : " + user.toString(), e);
+		}
+		
+		
+		
+	}
 
 }

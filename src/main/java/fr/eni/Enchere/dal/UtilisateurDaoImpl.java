@@ -14,7 +14,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
-	private static final String UPDATE ="INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES(??????????";
+	private static final String UPDATE_USER ="UPDATE UTILISATEURS SET pseudo= ? , nom= ? ,prenom= ? ,email= ? ,telephone = ?,rue= ? ,code_postal= ? ,ville= ? ,mot_de_passe= ? WHERE no_utilisateur = ?";
+	 
+	
 	
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
@@ -120,6 +122,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		}
 	}
 	
+	
+	
+	/**
+	 *selectUser ce'st uen fonctio qui vas récupere toutes les informations de l'utlisateur
+	 */
 	public Utilisateur selectUser(Integer no_utlisateur) throws DALException{
 		//creation d'un utilistateur vide 
 		Utilisateur user=null;
@@ -133,7 +140,18 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			
 			ResultSet rs = stmtSelectUser.executeQuery();;
 			if (rs.next()) {
-				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),rs.getInt("credit"));
+				user= new Utilisateur(rs.getString("pseudo"),
+									  rs.getString("nom"),
+									  rs.getString("prenom"),
+									  rs.getString("email"), 
+									  rs.getString("telephone"),
+									  rs.getString("rue"),
+									  rs.getString("code_postal"),
+									  rs.getString("ville"),
+									  rs.getString("mot_de_passe"),
+									  rs.getInt("credit"),
+									  rs.getBoolean("administrateur"));
+				
 				System.out.println("chargement profil utilisateur OK");
 			}
 			
@@ -147,8 +165,35 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;	
 	}
 	
-	public void Update (Utilisateur modifUser) {
-		
+	
+	
+	/**
+	 *mise a jour des information de l'utilsateur
+	 */
+	public void UpdateUser (Utilisateur modifUser) throws DALException {
+		//connection et envoi dela requette SQL
+		try (Connection conn = ConnectionProvider.getConnection();){
+			PreparedStatement stmtCheckUserUpdate = conn.prepareStatement(UPDATE_USER);
+			//incrémentation de la requête
+			stmtCheckUserUpdate.setString(1, modifUser.getPseudo());
+			stmtCheckUserUpdate.setString(2, modifUser.getNom());
+			stmtCheckUserUpdate.setString(3, modifUser.getPrenom());
+			stmtCheckUserUpdate.setString(4, modifUser.getEmail());
+			stmtCheckUserUpdate.setString(5, modifUser.getTelephone());
+			stmtCheckUserUpdate.setString(6, modifUser.getRue());
+			stmtCheckUserUpdate.setString(7, modifUser.getCodePostal());
+			stmtCheckUserUpdate.setString(8, modifUser.getVille());
+			stmtCheckUserUpdate.setString(9, modifUser.getMotDePasse());
+			stmtCheckUserUpdate.setInt(10, modifUser.getNoUtilisateur());
+			System.out.println(stmtCheckUserUpdate);
+			//envoie de la requette 
+			stmtCheckUserUpdate.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DALException("Erreur UpdateUser " + e);
+		}
 		
 		
 	}
