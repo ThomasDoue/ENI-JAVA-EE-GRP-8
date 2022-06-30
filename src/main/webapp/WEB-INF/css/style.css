@@ -16,11 +16,14 @@ header {
 	border-width: 1px;
 	border-style: solid;
 	border-color: grey;
-	margin: 10px
+	margin: 10px;
+	padding: 25px;
 }
 
 body {
 	background: #c8e1cc;
+	color: green;
+	
 }
 
 .headerposition {
@@ -33,14 +36,17 @@ body {
 }
 
 .button {
+	font-family: 'Lobster', cursive;
 	background-color: #c8e1cc;
 	color: green;
-	border: 2px solid #4CAF50;
+	border: 1px solid #4CAF50;
+	padding: 15px;
+	border-radius: 50px;
 }
 
 .button:hover {
 	background-color: #4CAF50;
-	color: white;
+	color:#c8e1cc;
 }
 
 .logoposition {
@@ -52,5 +58,43 @@ body {
 .flex{
 	display: flex;
 	justify-content: space-around;
-	margin: 50%
+}
+.bodyAccueil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	}
+	
+.inputAccueil {
+  max-width: 190px;
+  height: 30px;
+  border: 2px solid transparent;
+  outline: none;
+  border-bottom: 2px solid green;
+  caret-color: grey;
+  background-color: #c8e1cc;
+  padding: 5px;
+  transition: .5s linear;
+  font-family: 'Lobster', cursive;
+  letter-spacing: 1px;
+}
+
+.inputAcuueil:focus {
+  border: 2px solid black;
+  caret-color: grey;
+  color: #4CAF50;
+  box-shadow: 4px 4px 10px #4CAF50;
+}
+
+.inputAccueil:focus::placeholder {
+  color: #4CAF50;
+}
+
+select{
+	background-color: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	color: green;
+	border: 1px solid #4CAF50;
+	border-radius: 50px;
+	margin-top: 10px;
+	padding: 10px;
 }
