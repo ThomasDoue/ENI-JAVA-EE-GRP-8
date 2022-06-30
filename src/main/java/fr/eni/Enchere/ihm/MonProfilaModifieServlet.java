@@ -79,8 +79,23 @@ public class MonProfilaModifieServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//		//envoie a la BDD du numéro utlisateur
+		 // Création de l'attribut Action pour le JSP
+        String action = request.getParameter("action");
 		
+
+        // ?Action=Supprimer Dans le JSP
+        if ("supprimer".equals(action)) {
+//            doDelete(request, response);
+            return;
+        }
+
+        // ?Action=Modifier Dans le JSP
+        if ("modifier".equals(action)) {
+            doModifier(request, response);
+            return;
+        }
+        
+        
 		//*************************************
 		//POUR TEST 
 		Integer userID = 3;

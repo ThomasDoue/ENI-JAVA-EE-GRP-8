@@ -61,8 +61,9 @@
  
  <a>Credit : ${credit} </a><br/>
  
-  <button type="Enregistrer" class="btn btn-primary">Enregistrer</button>
-  <button type="Supprimer" class="btn btn-primary">Supprimer mon compte</button>
+ 
+  <button type="Enregistrer" action=enregistrer class="btn btn-primary">Enregistrer</button>
+  <button type="Supprimer" action=supprimer class="btn btn-primary">Supprimer mon compte</button>
 </form>
 
 
