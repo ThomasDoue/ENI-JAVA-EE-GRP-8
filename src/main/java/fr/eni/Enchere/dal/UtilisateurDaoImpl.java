@@ -154,10 +154,12 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	 *mise a jour des information de l'utilsateur
 	 */
 	public void UpdateUser (Utilisateur modifUser) throws DALException {
+	
 		//connection et envoi dela requette SQL
 		try (Connection conn = ConnectionProvider.getConnection();){
 			PreparedStatement stmtCheckUserUpdate = conn.prepareStatement(UPDATE_USER);
 			//incrémentation de la requête
+			System.out.println(modifUser);
 			stmtCheckUserUpdate.setString(1, modifUser.getPseudo());
 			stmtCheckUserUpdate.setString(2, modifUser.getNom());
 			stmtCheckUserUpdate.setString(3, modifUser.getPrenom());

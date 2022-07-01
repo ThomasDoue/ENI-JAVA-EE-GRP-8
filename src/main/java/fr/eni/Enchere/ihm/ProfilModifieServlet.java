@@ -53,15 +53,7 @@ public class ProfilModifieServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// Récupération Paramètres Formulaire et insertion dans mon constructeur Utlisateur pour enregistement sur la base de donnée 
-		Utilisateur usermodif = new Utilisateur(request.getParameter("pseudo"),
-											  	request.getParameter("nom"),
-											  	request.getParameter("prenom"),
-											  	request.getParameter("email"), 
-											  	request.getParameter("telephone"),
-											  	request.getParameter("rue"),
-											  	request.getParameter("codePostal"),
-											  	request.getParameter("ville"));
+		
 		
 
 	
