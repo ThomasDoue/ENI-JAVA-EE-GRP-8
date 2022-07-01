@@ -78,20 +78,34 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Récupération des attributs de session idUtilisateur
+		HttpSession session = request.getSession();
+		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+		
+		
 		// Création de l'attribut Action pour le JSP
         String action = request.getParameter("actionUtilisateur");
         
-        System.out.println("je suis dans le post   :" +  action);
-        // ?Action=Supprimer Dans le JSP
+        /*
+         *  ?Action=Supprimer Dans le JSP
+         *  Suppresion du compte, suppresion des attributs de session, suppression de la session
+         */
         if ("supprimer".equals(action)) {
-        	System.out.println("supprimer");
-            return;
+        	try {
+				utilisateurManager.supprimerUtilisateur(idUtilisateur);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	session.invalidate();
+			request.logout();
+			
+			response.sendRedirect("/WEB-INF/pages/accueil.jsp");
         }
 
         // ?Action=Modifier Dans le JSP
         if ("enregister".equals(action)) {
-           System.out.println("enregister");
-            return;
+        	
         }
 		
 	}
