@@ -18,7 +18,7 @@ import fr.eni.Enchere.bo.Categorie;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
 
 @WebServlet("/accueil")
-public class AccueilServLet extends HttpServlet {
+public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CategorieManager categorieMger;
 	private EnchereManager enchereMger;
