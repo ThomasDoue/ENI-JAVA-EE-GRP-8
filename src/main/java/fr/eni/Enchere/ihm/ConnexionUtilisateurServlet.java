@@ -60,12 +60,13 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 				return;
 			} else {
 				HttpSession session = req.getSession();
-				session.setAttribute( "idUtilisateur", idUtilisateur);
+				session.setAttribute("idUtilisateur", idUtilisateur);
 				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}	catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

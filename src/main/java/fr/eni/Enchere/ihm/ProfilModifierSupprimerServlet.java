@@ -17,8 +17,12 @@ import fr.eni.Enchere.bo.Utilisateur;
 @WebServlet("/ProfilModifierSupprimerServlet")
 public class ProfilModifierSupprimerServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UtilisateurManager  utilisateurManager;
-	private Integer creditUser ;
+//	private Integer creditUser ;
 	
 	public void init() {
 		utilisateurManager = BLLFactory.getUtilisateurManager();
@@ -39,7 +43,7 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 		//creation d'une instance session vide 
 		HttpSession session = request.getSession();
 		//mise an place de id 3 a l'utlisateur
-		session.setAttribute("No_utlisateur",userID);
+		session.setAttribute("No_utilisateur",userID);
 		//***************************************
 		
 		//creation d'une instance session vide 
@@ -77,11 +81,11 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		//Récupération des attributs de session idUtilisateur
 		HttpSession session = request.getSession();
-		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
-		
+		int idUtilisateur = (int) session.getAttribute("idUtilisateur");System.out.println("hello");
+		System.out.println(idUtilisateur);
 		
 		// Création de l'attribut Action pour le JSP
         String action = request.getParameter("actionUtilisateur");
@@ -93,14 +97,15 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
         if ("supprimer".equals(action)) {
         	try {
 				utilisateurManager.supprimerUtilisateur(idUtilisateur);
+				session.invalidate();
+				request.logout();
+				
+				response.sendRedirect("accueil");
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	session.invalidate();
-			request.logout();
-			
-			response.sendRedirect("/WEB-INF/pages/accueil.jsp");
+        	
         }
 
         // ?Action=Modifier Dans le JSP
