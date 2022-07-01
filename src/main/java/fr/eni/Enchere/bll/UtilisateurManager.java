@@ -9,4 +9,8 @@ public interface UtilisateurManager {
 	Utilisateur selectUser(Integer no_utlisateur) throws BLLException;
 
 	void InscriptionUtilisateur(Utilisateur usr) throws BLLException;
+	
+	void miseAjourUtilisateur (Utilisateur modifUser) throws BLLException;
+	
+	void supprimerUtilisateur(int id) throws BLLException;
 }

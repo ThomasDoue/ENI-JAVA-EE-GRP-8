@@ -15,7 +15,7 @@ import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet({"/RetourFormulaire"})
-public class MonProfilServlet extends HttpServlet {
+public class ProfilServlet extends HttpServlet {
 	private UtilisateurManager utilisateurMger;
 	
 	public void init() throws ServletException {
@@ -59,7 +59,7 @@ public class MonProfilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INF/pages/ProfilUtilisateur.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/profil.jsp").forward(request, response);
 	}
 
 	@Override

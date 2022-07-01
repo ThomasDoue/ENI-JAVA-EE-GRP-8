@@ -14,8 +14,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String INSERT_USER = "INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur) VALUES(?,?,?,?,?,?,?,?,?,0,0)";
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
-	private static final String UPDATE ="INSERT INTO UTILISATEURS (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit) VALUES(??????????";
-	
+	private static final String UPDATE_USER ="UPDATE UTILISATEURS SET pseudo= ? , nom= ? ,prenom= ? ,email= ? ,telephone = ?,rue= ? ,code_postal= ? ,ville= ? ,mot_de_passe= ? WHERE no_utilisateur = ?";
+	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
 	 * @values(String) : password contient le mot de passe associé à l'identifieur de l'utilisateur.
@@ -149,13 +150,52 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;	
 	}
 	
-	public void Update (Utilisateur modifUser) {
-		
-		
-		
+	/**
+	 *mise a jour des information de l'utilsateur
+	 */
+	public void UpdateUser (Utilisateur modifUser) throws DALException {
+	
+		//connection et envoi dela requette SQL
+		try (Connection conn = ConnectionProvider.getConnection();){
+			PreparedStatement stmtCheckUserUpdate = conn.prepareStatement(UPDATE_USER);
+			//incrémentation de la requête
+			System.out.println(modifUser);
+			stmtCheckUserUpdate.setString(1, modifUser.getPseudo());
+			stmtCheckUserUpdate.setString(2, modifUser.getNom());
+			stmtCheckUserUpdate.setString(3, modifUser.getPrenom());
+			stmtCheckUserUpdate.setString(4, modifUser.getEmail());
+			stmtCheckUserUpdate.setString(5, modifUser.getTelephone());
+			stmtCheckUserUpdate.setString(6, modifUser.getRue());
+			stmtCheckUserUpdate.setString(7, modifUser.getCodePostal());
+			stmtCheckUserUpdate.setString(8, modifUser.getVille());
+			stmtCheckUserUpdate.setString(9, modifUser.getMotDePasse());
+			stmtCheckUserUpdate.setInt(10, modifUser.getNoUtilisateur());
+			System.out.println(stmtCheckUserUpdate);
+			//envoie de la requette 
+			stmtCheckUserUpdate.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DALException("Erreur UpdateUser " + e);
+		}
+	
+	}
+
+	
+	
+	public void Delete (int id) throws DALException{
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(DELETE);
+			stmt.setInt(1,  id);
+			
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new DALException("Delete utilisateur failed - id : "+id, e);
+		}
 	}
 	
-	
+
 }
 			
 		
