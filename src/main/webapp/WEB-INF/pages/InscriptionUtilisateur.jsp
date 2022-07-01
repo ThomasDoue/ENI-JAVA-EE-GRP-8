@@ -31,7 +31,7 @@
 	<input type="text" id="CodePostal" name="CodePostal" required minlength="4" maxlength="10">
 	<br>
 	<label for="name">Mot de passe</label>
-	<input type="text" id="MotDePasse" name="MotDePasse" required minlength="1" maxlength="30">
+	<input type="password" id="MotDePasse" name="MotDePasse" required minlength="1" maxlength="30">
 	</div>
 	<br>
 	<label for="name">Nom</label>
@@ -47,7 +47,7 @@
 	<input type="text" id="Ville" name="Ville" required minlength="1" maxlength="50">
 	<br>
 	<label for="name">Confirmation</label>
-	<input type="text" id="Confirmation" name="Confirmation" required minlength="1" maxlength="30">
+	<input type="password" id="Confirmation" name="Confirmation" required minlength="1" maxlength="30">
 	<br>
 	<label for="name">125 crédits sont offerts à la création d'un nouveau compte !</label>
 	<br>

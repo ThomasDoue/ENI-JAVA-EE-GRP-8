@@ -1,17 +1,17 @@
 @charset "UTF-8";
 
 .forminscription {
-	font-family: 'Lobster', cursive;
 	display: table-row-group;
 	
 }
 
 .formpagestart {
-	font-family: 'Lobster', cursive;
+	padding: 15px;
+	align-self: flex-end;
+	padding-right: 60%;
 }
 
 header {
-	font-family: 'Lobster', cursive;
 	background-color: #b8d8be;
 	border-width: 1px;
 	border-style: solid;
@@ -21,7 +21,6 @@ header {
 }
 
 body {
-	font-family: 'Lobster', cursive;
 	background: #c8e1cc;
 	color: green;
 	
@@ -33,29 +32,47 @@ body {
 }
 
 .formpageend {
-	display: flex;
-	padding-left: 60%
+	padding: 15px;
 }
 
-button {
+.button {
 	font-family: 'Lobster', cursive;
 	background-color: #c8e1cc;
 	color: green;
 	border: 1px solid #4CAF50;
 	padding: 15px;
 	border-radius: 50px;
-	overflow: visible;
-	transition: all 0.2s;
-	font-size: 20px
 }
 
-button:hover, .button:active {
+.button:hover {
 	background-color: #4CAF50;
-	color: white;
-	 -webkit-transform: translate(0px,5px);
-	 -ms-transform: translate(0px,5px);
-	 transform: translate(0px,5px);
-	 border-bottom: 1px solid #2ecc71;
+	color:#c8e1cc;
+}
+
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
+
+}
+
+.logoposition {
+	display: flex;
+}
+.titre{
+	text-align: center;
+}
+.flex{
+	display: flex;
+	justify-content: space-around;
+	margin: 50%
 }
 
 .logoposition {
@@ -68,28 +85,28 @@ button:hover, .button:active {
 	display: flex;
 	justify-content: space-around;
 }
-.flexheader{
-	display: flex;
-	justify-content: space-between;
-}
-input {
+.bodyAccueil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	}
+	
+.inputAccueil {
   max-width: 190px;
   height: 30px;
   border: 2px solid transparent;
   outline: none;
   border-bottom: 2px solid green;
-  caret-color: green;
+  caret-color: grey;
   background-color: #c8e1cc;
   padding: 5px;
   transition: .5s linear;
-  font-size: 15px;
   font-family: 'Lobster', cursive;
   letter-spacing: 1px;
 }
 
 .inputAcuueil:focus {
   border: 2px solid black;
-  caret-color: green;
+  caret-color: grey;
   color: #4CAF50;
   box-shadow: 4px 4px 10px #4CAF50;
 }
@@ -106,16 +123,15 @@ select{
 	border-radius: 50px;
 	margin-top: 10px;
 	padding: 10px;
-	font-size: 15px;
 }
-
-option {
-	background-color: #c8e1cc;
-	font-family: 'Lobster', cursive;
-	color: green;
-	border: 1px solid #4CAF50;
-	border-radius: 50px;
-	margin-top: 10px;
-	padding: 10px;
-	font-size: 15px;
+.btn-link {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    color: #0000EE;
+    padding: 0;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
 }
