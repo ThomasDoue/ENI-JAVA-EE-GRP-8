@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("header")
+@WebServlet("/header")
 public class HeaderServlet extends HttpServlet{
 
 	/**
@@ -16,6 +16,13 @@ public class HeaderServlet extends HttpServlet{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	}
@@ -23,21 +30,11 @@ public class HeaderServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-  String action = req.getParameter("actionUtilisateur");
-		  
-		  if ("encheres".equals(action))
-			  resp.sendRedirect("accueil");
-		  
-		  if("monProfil".equals(action))
-			  resp.sendRedirect("RetourFormulaire");
+	  String action = req.getParameter("actionUtilisateur");
+	  String actionSelect = req.getParameter("actionUtilisateurSelect");
+	  System.out.println(actionSelect);
+	  if ("encheres".equals(action))
+		  resp.sendRedirect("accueil");
 	}
-
-	@Override
-	public void init() throws ServletException {
-		// TODO Auto-generated method stub
-		super.init();
-	}
-	
-	
 
 }
