@@ -23,7 +23,7 @@
 	
 	
 	<form >
-		<button type="submit name="actionUtilisateur" value="encheres">Enchères</button>
+		<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
 		<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
 		<button type="submit" name="actionUtilisateur" value="monProfil">Mon profil</button>
 		<button type="submit" name= "actionUtilisateur" value="deconnection"> Déconnexion</button>
