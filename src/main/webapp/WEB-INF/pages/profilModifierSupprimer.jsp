@@ -60,8 +60,12 @@
  </div>
  
  <a>Credit : ${credit} </a><br/>
+ 
+ <input type="submit" name="enregistrer" value="enregister">
+ 
+ <input type="submit" name="enregistrer" value="supprimer">
  </form>
- <input type="button" name="enregistrer" value="Bouton cliquer">
+ 
  
  
  
