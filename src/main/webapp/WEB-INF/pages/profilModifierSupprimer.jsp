@@ -61,9 +61,10 @@
  
  <a>Credit : ${credit} </a><br/>
  
- <input type="submit" name="enregistrer" value="enregister">
+ <!-- Button prend la propriéter button et type submit permet de capter l'action name est recupperer dans la servlet  -->
+ <Button type="submit" name="actionUtilisateur" value="enregister">Enregister</Button>
  
- <input type="submit" name="enregistrer" value="supprimer">
+ <Button type="submit" name="actionUtilisateur" value="supprimer">Supprimer mon Compte</Button>
  </form>
  
  

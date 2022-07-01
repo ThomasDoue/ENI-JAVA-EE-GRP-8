@@ -79,7 +79,7 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Création de l'attribut Action pour le JSP
-        String action = request.getParameter("enregistrer");
+        String action = request.getParameter("actionUtilisateur");
         
         System.out.println("je suis dans le post   :" +  action);
         // ?Action=Supprimer Dans le JSP
@@ -89,8 +89,8 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
         }
 
         // ?Action=Modifier Dans le JSP
-        if ("enregistrer".equals(action)) {
-           System.out.println("enregistrer");
+        if ("enregister".equals(action)) {
+           System.out.println("enregister");
             return;
         }
 		
