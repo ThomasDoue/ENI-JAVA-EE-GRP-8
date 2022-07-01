@@ -14,7 +14,7 @@
 
   <h1>Mon Profil</h1>
 
-<form  action="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet"  method="post">
+<form  action="<%=request.getContextPath()%>/ProfilModifierSupprimerServlet"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
 	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}">
@@ -63,12 +63,6 @@
  </form>
  <input type="button" name="enregistrer" value="Bouton cliquer">
  
-  <button type="Enregistrer" name="enregistrer" class="btn btn-primary">Enregistrer</button>
-  <button type="supprimer" name="supprimer" class="btn btn-primary">Supprimer</button>
-  
-  <!-- recuperation de laction du bouton par action -->
-  <a href="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet?action=supprimer"><button class="btn btn-danger" type="button">Enregister</button></a>
-  <a href="<%=request.getContextPath()%>/MonProfilBouttonModifieServlet?action=tutu"><button class="btn btn-warning" type="button">Supprimer mon compte</button></a>
  
  
   

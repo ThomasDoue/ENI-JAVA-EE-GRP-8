@@ -15,7 +15,7 @@ import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet("/MonProfilBouttonModifieServlet")
-public class MonProfilaModifieServlet extends HttpServlet {
+public class ProfilModifierSupprimerServlet extends HttpServlet {
 
 	private UtilisateurManager  utilisateurManager;
 	private Integer creditUser ;
