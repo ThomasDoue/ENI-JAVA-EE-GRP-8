@@ -15,6 +15,8 @@
 	<div>
 		<label for="article">Article :</label> 
 		<input type="text" id="article" name="article" class="form-control" value="${article}" required minlenght="1" maxlength="4" > 
+		
+		
 		<label for="article">Description :</label> 
 		<textarea id="story" name="description" rows="5" cols="33" value="${description}">description du produit </textarea>
 	</div>
