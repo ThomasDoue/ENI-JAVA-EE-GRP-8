@@ -14,7 +14,7 @@ import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Utilisateur;
 
-@WebServlet("/MonProfilBouttonModifieServlet")
+@WebServlet("/ProfilModifierSupprimerServlet")
 public class ProfilModifierSupprimerServlet extends HttpServlet {
 
 	private UtilisateurManager  utilisateurManager;
@@ -65,7 +65,7 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INF/pages/PageProfilmodif.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/profilModifierSupprimer.jsp").forward(request, response);
 		
 	}
 
