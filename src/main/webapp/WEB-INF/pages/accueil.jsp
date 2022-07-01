@@ -8,8 +8,6 @@
 	<title>Accueil</title>
 	<style><%@include file="/WEB-INF/css/style.css"%></style>
 	<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
-<meta charset="UTF-8">
-<title>Accueil</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
@@ -17,11 +15,11 @@
 <body>
 <h1 class="titre">Liste des enchères</h1>
 <div class="flex">
-<form action="<%=request.getContextPath()%>/accueil" method="post">>
+<form action="<%=request.getContextPath()%>/accueil" method="post">
 	<label for="name">FILTRES :</label>
-	<br>
+	<br/>
 	<input type="text" id="NomArticle" name="NomArticle" placeholder="Le nom de l'article contient" maxlength="30">
-	<br>
+	<br/>
 <label for="name">Catégorie : </label>
 <select name="Categorie" id="categ-select">
 <option value="0">--Choisissez une catégorie--</option>
@@ -37,15 +35,15 @@
 
 <c:forEach items="${ListEncheres}" var="Encheres">
     <label>${Encheres.nomArticle}</label>
-    	<br>
+    	<br/>
     <label>Prix : ${Encheres.prixVente}</label>
-    	<br>
+    	<br/>
     <label>Fin de l'enchère ${Encheres.dateFinEncheres}</label>
-    	<br>
+    	<br/>
     <label>Vendeur : ${Encheres.pseudo}</label>
-    	<br>
-    	<br>
-    	<br>
+    	<br/>
+    	<br/>
+    	<br/>
 </c:forEach>
 </body>
 	</body>

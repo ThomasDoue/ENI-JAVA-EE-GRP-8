@@ -15,7 +15,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String CHECK_USER_EXIST = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	private static final String UPDATE_USER ="UPDATE UTILISATEURS SET pseudo= ? , nom= ? ,prenom= ? ,email= ? ,telephone = ?,rue= ? ,code_postal= ? ,ville= ? ,mot_de_passe= ? WHERE no_utilisateur = ?";
-	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE id=?";
+	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
 <style><%@include file="/WEB-INF/css/style.css"%></style>
 <style>@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');</style>
 </head>
@@ -22,12 +22,16 @@
 	<div class="formepageend">
 	
 	
-	<form >
-		<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
-		<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
-		<button type="submit" name="actionUtilisateur" value="monProfil">Mon profil</button>
-		<button type="submit" name= "actionUtilisateur" value="deconnection"> Déconnexion</button>
-	</form>
+		<form action="header" method="post">
+			<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
+			<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
+			<select name="actionUtilisateurSelect" onchange="location = this.value;">
+				<option selected>Mon profil</option>
+			    <option value="RetourFormulaire">Afficher mon profil</option>
+			    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
+			</select>
+			<button type="submit" name="actionUtilisateur" value="deconnexion">deconnexion</button>
+		</form>
 	</div>
 	
 </div>
