@@ -78,10 +78,6 @@ public class AccueilServLet extends HttpServlet {
 		req.setAttribute("ListEncheres", listEncheresFiltered);
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);}
 	
-	public void searchByCategorie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	
-	}
 }
 	
 

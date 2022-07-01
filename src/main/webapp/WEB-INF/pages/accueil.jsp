@@ -30,7 +30,9 @@
 <button>Rechercher</button>
 </form>
 <c:forEach items="${ListEncheres}" var="Encheres">
-    <label>${Encheres.nomArticle}</label>
+<form action="<%=request.getContextPath()%>/DetailsEncheres" method="get">
+    <button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noEnchere}">${Encheres.nomArticle}</button>
+    </form>
     	<br>
     <label>Prix : ${Encheres.prixVente}</label>
     	<br>
