@@ -52,9 +52,11 @@
  	<input type="text" id="credit" name="credit" class="form-control" value="${credit}"><br/>
  </div>
   
-  <button type="modifier" class="btn btn-primary">Modifier</button>
+  <button type=submit class="btn btn-primary">Modifier</button>
+  
+  
   <a href="MonProfilBouttonModifieServlet?action=delete">
-	<input class="btn btn-secondary" type="button" value="Sign in">
+	<input type="button"  class="btn btn-secondary" value="Sign in">
   </a>
 </form>
 
