@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.CategorieManager;
 import fr.eni.Enchere.bll.EnchereManager;
+import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Categorie;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
 
@@ -22,22 +23,16 @@ public class AccueilServlet extends HttpServlet {
 	private CategorieManager categorieMger;
 	private EnchereManager enchereMger;
 	
-	
-	
 	@Override
 	public void init() throws ServletException {
 		categorieMger = BLLFactory.getCategorieManager();
 		enchereMger = BLLFactory.getEnchereManager();		
 	}
-	
-	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<Categorie> listCategorie = new ArrayList<Categorie>();
 		List<DtoEnchereComplete> listEncheres = new ArrayList<DtoEnchereComplete>();
-		
 		try {
 			listCategorie = categorieMger.SelectAllCategorie();
 			listEncheres = enchereMger.SelectAllEnchere();
@@ -45,25 +40,18 @@ public class AccueilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		System.out.println("Retour des catégories dans la servlet : " + listCategorie.toString());
 		System.out.println("Retour des enchères dans la servlet : " + listEncheres.toString());
-		
 		req.setAttribute("ListCategorie", listCategorie);
 		req.setAttribute("ListEncheres", listEncheres);
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 	}
-	
-	
-	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<Categorie> listCategorie = new ArrayList<Categorie>();
 		List<DtoEnchereComplete> listEncheresFiltered = new ArrayList<DtoEnchereComplete>();
-		
 		System.out.println("test filtre " + req.getParameter("NomArticle"));
-		
 		try {
 			listCategorie = categorieMger.SelectAllCategorie();
 			if(Integer.parseInt(req.getParameter("Categorie")) != 0 && req.getParameter("NomArticle").equals("")) {
@@ -80,22 +68,16 @@ public class AccueilServlet extends HttpServlet {
 				System.out.println("Pas de filtre");
 				listEncheresFiltered = enchereMger.SelectAllEnchere();
 			}
-		} catch (Exception e) {
+			} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+			}
 		System.out.println("Retour des catégories dans la servlet : " + listCategorie.toString());
 		System.out.println("Retour des enchères filtré dans la servlet : " + listEncheresFiltered.toString());
-		
 		req.setAttribute("ListCategorie", listCategorie);
 		req.setAttribute("ListEncheres", listEncheresFiltered);
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);}
 	
-	public void searchByCategorie(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	
-	}
 }
 	
 

@@ -55,4 +55,15 @@ private EncheresDao enchereDao;
 		}
 		return listRetour;
 	}
+	
+	public DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException, BLLException{
+		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
+		try {
+			ObjetRetour = enchereDao.SelectEnchereById(noArticle);
+		}catch(Exception e) {
+			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
+		}
+		return ObjetRetour;
+		
+	}
 }

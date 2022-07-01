@@ -1,6 +1,8 @@
 package fr.eni.Enchere.ihm;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
+import fr.eni.Enchere.bll.CategorieManager;
 import fr.eni.Enchere.bll.UtilisateurManager;
+import fr.eni.Enchere.bo.Categorie;
 import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet("/Inscription")
@@ -48,7 +52,7 @@ public class InscriptionUtilisateurServlet extends HttpServlet {
 				idUtilisateur = utilisateurMger.verifConnect(user.getPseudo(),user.getMotDePasse());
 				HttpSession session = req.getSession();
 				session.setAttribute( "idUtilisateur", idUtilisateur);
-				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
+				resp.sendRedirect("accueil");
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
