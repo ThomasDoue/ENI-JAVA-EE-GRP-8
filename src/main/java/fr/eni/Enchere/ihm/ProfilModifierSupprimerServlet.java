@@ -33,7 +33,7 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 		
 		//*************************************
 		//POUR TEST 
-		Integer userID = 1;
+		Integer userID = 12;
 		
 		
 		//creation d'une instance session vide 
@@ -82,8 +82,8 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 		
 		//Récupération des attributs de session idUtilisateur
 		HttpSession session = request.getSession();
-		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
-		
+//		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+		int idUtilisateur = 12;
 	
 		// Création de l'attribut Action pour le JSP
         String action = request.getParameter("actionUtilisateur");
