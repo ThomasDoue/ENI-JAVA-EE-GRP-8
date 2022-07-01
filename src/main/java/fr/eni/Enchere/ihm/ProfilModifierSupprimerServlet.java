@@ -31,21 +31,21 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//envoie a la BDD du numéro utlisateur
 		
-		//*************************************
-		//POUR TEST 
-		Integer userID = 12;
-		
+//		//*************************************
+//		//POUR TEST 
+//		Integer userID = 12;
+//		
+//		
+//		//creation d'une instance session vide 
+//		HttpSession session = request.getSession();
+//		//mise an place de id 3 a l'utlisateur
+//		session.setAttribute("No_utlisateur",userID);
+//		//***************************************
 		
 		//creation d'une instance session vide 
 		HttpSession session = request.getSession();
-		//mise an place de id 3 a l'utlisateur
-		session.setAttribute("No_utlisateur",userID);
-		//***************************************
-		
-		//creation d'une instance session vide 
-		//HttpSession session = request.getSession();
 		//**session.getAttribute recupére le No_utlisateur;
-		//Integer userID=(int)session.getAttribute("No_utilisateur");
+		Integer userID=(int)session.getAttribute("No_utilisateur");
 		
 		try {
 			Utilisateur UserAffichage = utilisateurManager.selectUser(userID);
@@ -82,8 +82,8 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 		
 		//Récupération des attributs de session idUtilisateur
 		HttpSession session = request.getSession();
-//		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
-		int idUtilisateur = 12;
+		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+		
 	
 		// Création de l'attribut Action pour le JSP
         String action = request.getParameter("actionUtilisateur");
