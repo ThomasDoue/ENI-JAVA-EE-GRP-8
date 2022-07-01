@@ -9,11 +9,16 @@ public interface UtilisateurDao {
 	
 	
 	//appelle de la fonction inscription
-	void inscription (Utilisateur user) throws DALException;
+	void inscription (Utilisateur user) throws DALException,Exception;
 	
 	//appelle de la fonction selectUser
 	Utilisateur selectUser(Integer no_utlisateur) throws DALException;
 	
+	//appelle de la fonction delette
 	void Delete(int id) throws DALException;
+	
+	//appelle de la fonction mise a jours
+	void UpdateUser (Utilisateur modifUser) throws DALException;
+	
 	
 }
