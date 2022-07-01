@@ -15,7 +15,9 @@
 </style>
 
 <body>
-<form action="<%=request.getContextPath()%>/accueil" method="post">
+<h1 class="titre">Liste des enchères</h1>
+<div class="flex">
+<form action="<%=request.getContextPath()%>/accueil" method="post">>
 	<label for="name">FILTRES :</label>
 	<br>
 	<input type="text" id="NomArticle" name="NomArticle" placeholder="Le nom de l'article contient" maxlength="30">
@@ -27,8 +29,12 @@
     <option value="${categ.noCategorie}" id = "Categorie">${categ.libelle}</option>
 </c:forEach>
 </select>
-<button>Rechercher</button>
 </form>
+<button class = "button">Rechercher</button>
+</div>
+
+
+
 <c:forEach items="${ListEncheres}" var="Encheres">
     <label>${Encheres.nomArticle}</label>
     	<br>
@@ -42,11 +48,5 @@
     	<br>
 </c:forEach>
 </body>
-<footer>
-<form>
-	 <input type="button" value="Rafraichir." onClick="refresh">
-	 <input type="button" value="Précedent." onclick="history.back()">
-</form>
-</footer>
 	</body>
 </html>
