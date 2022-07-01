@@ -44,7 +44,7 @@ public class ProfilModifieServlet extends HttpServlet{
 		}
 		
 		
-		request.getRequestDispatcher("/WEB-INF/pages/ProfilUtilisateurModification.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/profilBouton.jsp").forward(request, response);
 		
 		
 		

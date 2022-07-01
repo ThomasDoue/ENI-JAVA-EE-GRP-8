@@ -10,5 +10,7 @@ public interface UtilisateurManager {
 
 	void InscriptionUtilisateur(Utilisateur usr) throws BLLException;
 	
+	void miseAjourUtilisateur (Utilisateur modifUser) throws BLLException;
+	
 	void supprimerUtilisateur(int id) throws BLLException;
 }

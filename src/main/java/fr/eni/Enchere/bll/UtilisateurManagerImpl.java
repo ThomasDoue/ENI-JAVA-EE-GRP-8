@@ -45,6 +45,19 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		return user;
 	}
 
+	
+	public void miseAjourUtilisateur (Utilisateur modifUser) throws BLLException {
+		try {
+			utilisateurDao.UpdateUser(modifUser);
+		} catch(DALException e) {
+			throw new BLLException ("Erreur mise à jour profil :"+ modifUser.toString() , e);
+		}
+		
+	}
+	
+	
+	
+	
 	@Override
 	public void supprimerUtilisateur(int id) throws BLLException {
 		try {
@@ -55,4 +68,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		
 	}
 
+	
+	
 }

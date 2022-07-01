@@ -14,7 +14,7 @@
 
   <h1>Retour Formulaire</h1>
 
-<form class="forminscription" action="RetourFormulaire"  method="post">
+<form class="forminscription" action="ProfilModifierSupprimerServlet"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
 	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}"><br/>
@@ -52,11 +52,10 @@
  	<input type="text" id="credit" name="credit" class="form-control" value="${credit}"><br/>
  </div>
   
-  <button type=submit class="btn btn-primary">Modifier</button>
-  
-  
-  <a href="MonProfilBouttonModifieServlet?action=delete">
-	<input type="button"  class="btn btn-secondary" value="Sign in">
+ 
+ 
+  <a href="ProfilModifierSupprimerServlet?action=delete">
+	<input class="btn btn-secondary" type="button" value="Modifier">
   </a>
 </form>
 

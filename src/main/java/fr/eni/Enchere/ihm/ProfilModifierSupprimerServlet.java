@@ -14,8 +14,8 @@ import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Utilisateur;
 
-@WebServlet("/MonProfilBouttonModifieServlet")
-public class MonProfilaModifieServlet extends HttpServlet {
+@WebServlet("/ProfilModifierSupprimerServlet")
+public class ProfilModifierSupprimerServlet extends HttpServlet {
 
 	private UtilisateurManager  utilisateurManager;
 	private Integer creditUser ;
@@ -29,7 +29,6 @@ public class MonProfilaModifieServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		//envoie a la BDD du numéro utlisateur
 		
 		//*************************************
@@ -42,8 +41,6 @@ public class MonProfilaModifieServlet extends HttpServlet {
 		//mise an place de id 3 a l'utlisateur
 		session.setAttribute("No_utlisateur",userID);
 		//***************************************
-		
-		
 		
 		//creation d'une instance session vide 
 		//HttpSession session = request.getSession();
@@ -68,30 +65,7 @@ public class MonProfilaModifieServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		// ?Action=Supprimer Dans le JSP
-		
-		String action = request.getParameter("action");
-		HttpSession session2 = request.getSession();
-		int numId = (int) session2.getAttribute("No_utilisateur");
-		
-	    if ("supprimer".equals(action)) {
-	    	try {
-				utilisateurManager.supprimerUtilisateur(numId);
-			} catch (BLLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	request.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(request, response);
-	    	session.invalidate();
-
-	    }
-	    
-	    
-	    
-		request.getRequestDispatcher("/WEB-INF/pages/PageProfilmodif.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/profilModifierSupprimer.jsp").forward(request, response);
 		
 	}
 
@@ -99,7 +73,7 @@ public class MonProfilaModifieServlet extends HttpServlet {
 	
 
 	/**
-	 *enregistement dans la base de données ou suppression du profil
+	 *enregistement dans la base de donner ou suppertion du profil
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -108,7 +82,11 @@ public class MonProfilaModifieServlet extends HttpServlet {
         String action = request.getParameter("enregistrer");
         
         System.out.println("je suis dans le post   :" +  action);
-        
+        // ?Action=Supprimer Dans le JSP
+        if ("supprimer".equals(action)) {
+        	System.out.println("supprimer");
+            return;
+        }
 
         // ?Action=Modifier Dans le JSP
         if ("enregistrer".equals(action)) {
