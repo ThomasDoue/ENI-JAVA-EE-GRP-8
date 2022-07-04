@@ -16,6 +16,10 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet ({"/ProfilUtilisateurModification"})
 public class ProfilModifieServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UtilisateurManager  utilisateurManager;
 	
 	public void init() {

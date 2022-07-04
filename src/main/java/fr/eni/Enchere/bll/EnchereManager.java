@@ -13,5 +13,6 @@ public interface EnchereManager {
 	List<DtoEnchereComplete> SelectEncheresByCategorie(int noCategorie) throws DALException, SQLException,Exception; 
 	List<DtoEnchereComplete> SelectEnchereByNomArticle(String nomArticle) throws SQLException,BLLException;
 	List<DtoEnchereComplete> SelectEnchereByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
-	 DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException, BLLException;
+	DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException, BLLException;
+	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException;
 }

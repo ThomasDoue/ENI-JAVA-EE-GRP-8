@@ -14,6 +14,10 @@
 </head>
 <body>
 <br>
+<form class = "forminscription" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
+
+<c:out value="Numéro de l'article :  ${Enchere.noArticle}"/>
+<br>
 <c:out value="Nom de l'article : ${Enchere.nomArticle}" />
 <br>
 <c:out value="Description : ${Enchere.description}" />
@@ -31,5 +35,6 @@
 <input type="number" id="offre" min = "${Enchere.prixVente}" value= "${Enchere.prixVente}">
 <br>
 <button>Enchérir</button>
+</form>
 </body>
 </html>

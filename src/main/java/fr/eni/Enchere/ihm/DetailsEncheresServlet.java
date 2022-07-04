@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.EnchereManager;
@@ -43,8 +44,14 @@ public class DetailsEncheresServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		System.out.println("Id de la session utilisateur : " + session.getAttribute( "idUtilisateur"));
+		try {
+			//enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),session.getAttribute( "idUtilisateur"));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }
