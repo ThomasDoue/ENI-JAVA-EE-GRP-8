@@ -3,8 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Vous remportez la vente</title>
+	<style><%@include file="/WEB-INF/css/style.css"%></style>
+	<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 	<h1>Vous avez remporté la vente</h1>
@@ -19,7 +21,9 @@
 		<li>Tel : ${telephoneVendeur}</li>
 	</ul>
 	
-	<button type="button" name="back">Back</button>
-
+	<form method="post">
+		<button type="button" name="back">Back</button>
+	</form>
+	
 </body>
 </html>
