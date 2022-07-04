@@ -13,7 +13,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
 <body>
-<p>${DtoEnchereComplete.pseudo} a remporté l'enchere</p>
+<p>${DtoEnchereComplete.pseudo} a remporté l'enchère</p>
 <p>Nom de l'article : ${DtoEnchereComplete.nomArticle}</p>
 <p>Description : ${DtoEnchereComplete.description}</p>
 <p>Meilleure offre : ${DtoEnchereComplete.PrixVente}</p>
