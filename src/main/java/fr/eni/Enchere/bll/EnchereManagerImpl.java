@@ -66,4 +66,12 @@ private EncheresDao enchereDao;
 		return ObjetRetour;
 		
 	}
+	
+	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException{
+		try {
+			enchereDao.updatePrixVenteEnchere(noArticle, montantEnchere, noUtilisateur);
+		}catch(Exception e) {
+			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
+		}
+	}
 }

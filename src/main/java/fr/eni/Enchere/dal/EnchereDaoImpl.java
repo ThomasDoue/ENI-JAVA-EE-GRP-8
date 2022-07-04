@@ -17,6 +17,8 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ?";
 	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE_AND_CATEG = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ? and no_categorie = ?";
 	private static final String SELECT_ENCHERE_BY_ARTICLE_ID = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article,description,libelle,AV.prix_initial,R.code_postal,R.rue,R.ville from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie INNER JOIN RETRAITS R on AV.no_article = R.no_article  where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and E.no_enchere = ?";
+	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES VALUES(GETDATE(),?,?,?)";
+	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException {
 		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
@@ -122,8 +124,30 @@ public class EnchereDaoImpl implements EncheresDao{
 			throw new SQLException("Erreur CRITIQUE lors de la récupération de l'enchere par id : " + e);
 		}
 			return ObjetRetour;
+	}
+	
+	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException{
+		System.out.println("Details vente ID de d'enchère " + noArticle);
+		try(Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement InsertEnchere = conn.prepareStatement(INSERT_ENCHERES);
+			InsertEnchere.setInt(1, montantEnchere);
+			InsertEnchere.setInt(2, noArticle);
+			InsertEnchere.setInt(3, noUtilisateur);
+			InsertEnchere.executeUpdate();
+			
+			PreparedStatement UpdateArticle = conn.prepareStatement(UPDATE_ARTICLES_VENDUS);
+			UpdateArticle.setInt(1, montantEnchere);
+			UpdateArticle.setInt(2, noArticle);
+			UpdateArticle.executeUpdate();
+			
+			System.out.println("Fin de la création de l'enchère");
+		} catch (SQLException e) {
+			throw new SQLException("Erreur SQL lors de la mise à jour du prix de l'article par id : " + e);
+		}catch(Exception e) {
+			throw new SQLException("Erreur CRITIQUE lors de la mise à jour du prix de l'article par id : " + e);
 		}
 	}
+}
 
 	
 

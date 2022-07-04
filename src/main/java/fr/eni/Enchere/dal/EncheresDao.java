@@ -12,4 +12,5 @@ public interface EncheresDao {
 	 List<DtoEnchereComplete> SelectEnchereByNomArticle(String nomArticle) throws SQLException;
 	 List<DtoEnchereComplete> SelectEnchereByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
 	 DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException;
+	 void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException;
 }

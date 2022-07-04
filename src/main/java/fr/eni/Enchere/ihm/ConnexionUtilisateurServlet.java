@@ -61,7 +61,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			} else {
 				HttpSession session = req.getSession();
 				session.setAttribute("idUtilisateur", idUtilisateur);
-				req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
+				resp.sendRedirect("accueil");
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();
