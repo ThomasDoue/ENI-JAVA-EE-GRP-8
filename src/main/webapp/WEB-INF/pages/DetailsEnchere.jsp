@@ -15,8 +15,7 @@
 <body>
 <br>
 <form class = "forminscription" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
-
-<c:out value="Numéro de l'article :  ${Enchere.noArticle}"/>
+<input type="hidden" value="${Enchere.noArticle}" name="noArticle" />
 <br>
 <c:out value="Nom de l'article : ${Enchere.nomArticle}" />
 <br>
@@ -26,13 +25,15 @@
 <br>
 <c:out value="Meilleur offre : ${Enchere.prixVente}" />
 <br>
-<c:out value="Prix : ${Enchere.dateFinEncheres}" />
+<c:out value="Mise a Prix : ${Enchere.prixInitial}" />
+<br>
+<c:out value="Date fin enchère : ${Enchere.dateFinEncheres}" />
 <br>
 <c:out value="Retrait : ${Enchere.rueRetrait} ${Enchere.villeRetrait} ${Enchere.codePostalRetrait}" />
 <br>
 <c:out value="Vendeur : ${Enchere.pseudo}" />
 <br>
-<input type="number" id="offre" min = "${Enchere.prixVente}" value= "${Enchere.prixVente}">
+<input type="number" name="offre" min = "${Enchere.prixVente}" value= "${Enchere.prixVente}">
 <br>
 <button>Enchérir</button>
 </form>
