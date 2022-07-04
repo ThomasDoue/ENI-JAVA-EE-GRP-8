@@ -42,7 +42,7 @@ public class DtoEnchereComplete {
 		this.setNoArticle(noArticle);
 	}
 	
-	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noEnchere,int noArticle,String libelleCateg,int montantEnchere ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
+	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noEnchere,int noArticle,String libelleCateg,int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
 		super();
 		this.setNomArticle(nomArticle);
 		this.setPrixVente(prixVente);
@@ -54,6 +54,8 @@ public class DtoEnchereComplete {
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);
 		this.setDescription(description);
+		this.setPrixInitial(prixInitial);
+		this.setNoArticle(noArticle);
 	}
 
 	public DtoEnchereComplete() {
@@ -162,6 +164,14 @@ public class DtoEnchereComplete {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getPrixInitial() {
+		return prixInitial;
+	}
+
+	public void setPrixInitial(int prixInitial) {
+		this.prixInitial = prixInitial;
 	}
 	
 	
