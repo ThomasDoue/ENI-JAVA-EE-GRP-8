@@ -59,6 +59,7 @@ public class DtoEnchereComplete {
 	public DtoEnchereComplete() {
 		
 	}
+
 	//to string 
 	@Override
 	public String toString() {
