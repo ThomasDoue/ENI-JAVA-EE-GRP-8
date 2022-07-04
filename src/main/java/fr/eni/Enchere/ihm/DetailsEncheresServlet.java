@@ -46,9 +46,10 @@ public class DetailsEncheresServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		System.out.println("Id de la session utilisateur : " + session.getAttribute( "idUtilisateur"));
+		System.out.println("offre de l'utilisateur : " + request.getParameter( "offre"));
+		System.out.println("Numéro de l'article : " + request.getParameter("noArticle"));
 		try {
-			//enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),session.getAttribute( "idUtilisateur"));
-			
+			enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
 		}catch(Exception e){
 			e.printStackTrace();
 		}
