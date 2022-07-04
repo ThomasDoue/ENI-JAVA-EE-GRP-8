@@ -19,22 +19,21 @@
 		<button value="Précedent." onClick="history.back()">Précedent</button>
 	</form>
 	</div>
+	
+	
 	<div class="formepageend">
+		<form action="header" method="post">
 	
-	
-	<form action="header" method="post">
-
-		<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
-		<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
-		<select name="actionUtilisateurSelect" onchange="location = this.value;">
-			<option selected>Mon profil</option>
-		    <option value="RetourFormulaire">Afficher mon profil</option>
-		    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
-		</select>
-		<button type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
-	
-	</form>
-	</div>
+			<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
+			<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
+			<select name="actionUtilisateurSelect" onchange="location = this.value;">
+			    <option value="RetourFormulaire">Afficher mon profil</option>
+			    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
+			</select>
+			<button type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
+		
+		</form>
+		</div>
 	
 </div>
 </header>

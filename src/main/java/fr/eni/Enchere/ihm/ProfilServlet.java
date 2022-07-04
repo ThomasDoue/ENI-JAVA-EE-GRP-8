@@ -16,6 +16,10 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet({"/RetourFormulaire"})
 public class ProfilServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UtilisateurManager utilisateurMger;
 	
 	public void init() throws ServletException {
@@ -30,7 +34,7 @@ public class ProfilServlet extends HttpServlet {
 		//recuperation du numéro de l'utilisateur de la page de connection par la session 
 		Integer utilisateur = 3;
 		HttpSession session = request.getSession();
-		session.setAttribute("No_utlisateur",utilisateur);
+		session.setAttribute("idUtilisateur",utilisateur);
 		
 		try {
 			//appel de la fonction manageur avec le selectUtilisateur 
