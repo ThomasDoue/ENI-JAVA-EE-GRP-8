@@ -152,8 +152,7 @@ public class EnchereDaoImpl implements EncheresDao{
 	}
 
 
-public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu)
-		throws DALException, SQLException {
+public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu)throws DALException, SQLException {
 	Connection cnx = ConnectionProvider.getConnection();
 	DtoEnchereComplete result = new DtoEnchereComplete();
 	try {
@@ -162,7 +161,7 @@ public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu artic
 		stmt.execute();
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
-			result = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("prixVente") ,rs.getDate("localDate"),rs.getString("pseudo"),rs.getInt("noEnchere"),rs.getInt("noArticle") ,rs.getString("libelleCateg"),rs.getInt("montantEnchere"),rs.getString("rueRetrait"),rs.getString("codePostalRetrait"),rs.getString("villeRetrait"),rs.getString("description"));
+			result = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("prixVente") ,rs.getDate("DateFinEnchere"),rs.getString("pseudo") ,rs.getInt("montantEnchere"), rs.getString("rueRetrait"), rs.getString("codePostalRetrait"),rs.getString("villeRetrait"),rs.getString("description"));
 			
 		}
 		

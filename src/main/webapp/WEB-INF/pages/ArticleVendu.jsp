@@ -13,13 +13,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
 <body>
-<p>Pseudo a remporté l'enchere</p>
+<p>${DtoEnchereComplete.pseudo} a remporté l'enchere</p>
 <p>Nom de l'article : ${DtoEnchereComplete.nomArticle}</p>
 <p>Description : ${DtoEnchereComplete.description}</p>
 <p>Meilleure offre : ${DtoEnchereComplete.PrixVente}</p>
 <p>Mise à prix : ${DtoEnchereComplete.PrixInitial}</p>
-<p>Fin de l'enchère :</p> 
-<p>Retrait :</p>
+<p>Fin de l'enchère :${DtoEnchereComplete.DateFinEnchere}</p> 
+<p>Retrait : ${DtoEnchereComplete.rueRetrait, codePostalRetrait, villeRetrait}</p>
+
 <p>Vendeur :</p>
 
 

@@ -1,6 +1,7 @@
 package fr.eni.Enchere.ihm;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 

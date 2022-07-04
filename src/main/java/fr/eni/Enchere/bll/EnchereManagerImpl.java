@@ -77,7 +77,7 @@ private EncheresDao enchereDao;
 		}
 	}
 	
-	public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu) throws SQLException {
+	public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu) {
 		return getMontantEtPseudoDeLaMeilleurOffre(articleVendu);
 		
 		
