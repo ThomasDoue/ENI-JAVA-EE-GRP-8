@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
@@ -27,9 +28,14 @@ public class ProfilModifieServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer no_utilisateur = 1;
+		//Récupération des attributs de session idUtilisateur
+			HttpSession session = request.getSession();
+			int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+			//pour test***********************************
+			 idUtilisateur =1;
+		    //**********************************************
 		try {
-			Utilisateur UserModif = utilisateurManager.selectUser(no_utilisateur);
+			Utilisateur UserModif = utilisateurManager.selectUser(idUtilisateur);
 			request.setAttribute( "pseudo", UserModif.getPseudo()); 
 			request.setAttribute( "nom", UserModif.getNom());
 			request.setAttribute("prenom", UserModif);

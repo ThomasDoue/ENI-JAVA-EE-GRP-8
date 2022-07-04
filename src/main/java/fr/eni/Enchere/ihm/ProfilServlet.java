@@ -27,15 +27,17 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//recuperation du numéro de l'utilisateur de la page de connection par la session 
-		Integer utilisateur = 3;
+		//Récupération des attributs de session idUtilisateur
 		HttpSession session = request.getSession();
-		session.setAttribute("No_utlisateur",utilisateur);
+		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+		//pour test***********************************
+		 idUtilisateur =3;
+	    //**********************************************
 		
 		try {
 			//appel de la fonction manageur avec le selectUtilisateur 
 			
-			Utilisateur RetourProfil =utilisateurMger.selectUser(utilisateur);
+			Utilisateur RetourProfil =utilisateurMger.selectUser(idUtilisateur);
 			//insertion du pseudo recuperer de la base vers la page html. 
 			request.setAttribute("pseudo",RetourProfil.getPseudo());
 			//insertion du nom recuperer de la base vers la page html. 
