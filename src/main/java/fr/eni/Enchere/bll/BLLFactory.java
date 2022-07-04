@@ -11,5 +11,10 @@ public class BLLFactory {
 	public static EnchereManager getEnchereManager() {
 		return new EnchereManagerImpl();
 	}
+	
+	//appel de mon interface pour retourner mon articleAVendreMangerImpl
+	public static ArticleAVendreManager getArticleAVendre() {
+		return new ArticleAVendreManagerImpl();
+	}
 
 }
