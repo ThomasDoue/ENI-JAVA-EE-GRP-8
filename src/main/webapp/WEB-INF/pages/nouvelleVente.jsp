@@ -16,21 +16,20 @@
 
 	<div>
 		<label for="article">Article :</label> 
-		<input type="text" id="article" name="article" class="form-control" value="article" required minlenght="1" maxlength="4" maxlength="30"> 
+		<input type="text" id="article" name="article" class="form-control" value="" required minlenght="1"  maxlength="30"> 
 		
 		
 		<label for="article">Description :</label> 
 		<textarea id="story" name="description" rows="5" cols="33" maxlength="300" value="description">description du produit </textarea>
 	</div>
 	<div>
-		<label for="categorie">Categorie :</label>
-		<select name="categorieMenu" id="categorieMenu">
-		    <option value="">--Selectionner un menu--</option>
-		    <option value="parrot">Parrot</option>
-		    <option value="spider">Spider</option>
-		    <option value="goldfish">Goldfish</option>
-		</select>
-	</div>	 
+	<label for="name">Catégorie : </label>
+		<select name="Categorie" id="categ-select">
+			<option value="0">--Choisissez une catégorie--</option>
+		<c:forEach items="${ListCategorie}" var="categ">
+		    <option value="${categ.noCategorie}" id = "Categorie">${categ.libelle}</option>
+		</c:forEach>
+	</select>
 	<div>
 		<label for="photoArticle">Photo de l'article</label>
 		<input type="submit" name="uploader" value="uploader">
