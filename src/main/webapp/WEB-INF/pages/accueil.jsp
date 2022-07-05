@@ -27,8 +27,49 @@
     <option value="${categ.noCategorie}" id = "Categorie">${categ.libelle}</option>
 </c:forEach>
 </select>
+<br>
+<br>
+<br>
+<div class ="mainListeEnchere">
+	<div class="RadioButtonFiltre">
+		<input type="radio" id="achats" name="choixfiltre" value="achats">
+		<label >Achats</label>
+	</div>
+	<div class="BlockFiltreVente">
+		<input type="radio" id="vente" name="choixfiltre" value="vente">
+		<label>Mes Ventes</label>
+	</div>
+	<div class="RadioButtonFiltre">
+		<input type="checkbox" id="EnchereOuvert" name="EnchereOuvert">
+		<label>enchères ouvertes</label>
+	</div>
+	<div class="BlockFiltreVente" >
+		<input type="checkbox" id="MesVentesEnCours" name="MesVentesEnCours">
+		<label>mes ventes en cours</label>
+	</div>
+	<div class="RadioButtonFiltre">
+		<input type="checkbox" id="MesEnchères" name="MesEnchères">
+		<label>mes enchères</label>
+	</div>
+	<div class="BlockFiltreVente" >
+		<input type="checkbox" id="MesVentesNonDébutées" name="MesVentesNonDébutées">
+		<label>mes ventes non débutées</label>
+	</div>
+	<div class="RadioButtonFiltre">
+		<input type="checkbox" id="MesEnchèresNonRemportés" name="MesEnchèresNonRemportés">
+		<label>mes enchères remportées</label>
+	</div>
+	<div class="BlockFiltreVente" >
+		<input  type="checkbox" id="scales" name="scales">
+		<label>ventes terminées</label>
+	</div>
+</div>
+<br>
+<br>
+<br>
 <button>Rechercher</button>
 </form>
+
 <c:forEach items="${ListEncheres}" var="Encheres">
 <form action="<%=request.getContextPath()%>/DetailsEncheres" method="get">
     <button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noEnchere}">${Encheres.nomArticle}</button>
@@ -38,7 +79,10 @@
     	<br>
     <label>Fin de l'enchère ${Encheres.dateFinEncheres}</label>
     	<br>
+   	<form action="<%=request.getContextPath()%>/RetourFormulaire" method="post">
     <label>Vendeur : ${Encheres.pseudo}</label>
+    <button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noEnchere}">Vendeur : ${Encheres.pseudo}</button>
+    </form>
     	<br>
     	<br>
     	<br>

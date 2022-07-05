@@ -67,6 +67,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager{
 		}
 		
 	}
+	
+	public int SelectIdVendeurByIdEnchere(int id)throws BLLException {
+		int Iduser=0;
+		try {
+			Iduser = utilisateurDao.SelectIdVendeurByIdEnchere(id);
+		} catch(DALException e) {
+			throw new BLLException ("Erreur supprimerUtilisateur - id = :"+id, e);
+		}
+		return Iduser;
+	}
 
 	
 	

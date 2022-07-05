@@ -20,5 +20,8 @@ public interface UtilisateurDao {
 	//appelle de la fonction mise a jours
 	void UpdateUser (Utilisateur modifUser) throws DALException;
 	
+	//Permet de récupérer l'id du vendeur à partir 
+	public int SelectIdVendeurByIdEnchere(int idEnchere) throws DALException;
+	
 	
 }

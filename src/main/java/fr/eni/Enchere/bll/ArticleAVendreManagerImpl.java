@@ -15,7 +15,7 @@ public class ArticleAVendreManagerImpl implements ArticleAVendreManager{
 	}
 	
 	
-	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws BLLException,Exception{
+	public int NouvelleArticle (ArticleVendu nouvelleArticle )throws BLLException,Exception{
 		try {
 			return articleAvendreDao.nouvelleArticle(nouvelleArticle);
 		} catch (DALException e) {
@@ -23,9 +23,12 @@ public class ArticleAVendreManagerImpl implements ArticleAVendreManager{
 		}
 	}
 	
-	
-
-	
-	
+	public boolean FinDEnchere (int noArticle) throws BLLException {
+		try {
+			return articleAvendreDao.FinEnchere(noArticle);
+		} catch (DALException e) {
+			throw new BLLException("Erreur Fin d'enchère, no_Article = "+noArticle, e);
+		}
+	}
 	
 }

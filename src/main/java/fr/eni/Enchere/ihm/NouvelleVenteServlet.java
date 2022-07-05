@@ -31,12 +31,16 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet ({"/nouvelleVente"})
 public class NouvelleVenteServlet  extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArticleAVendreManager  articleAVendreManager;
 	private UtilisateurManager utilisateurManager;
 	private CategorieManager categorieManager;
 	private int idUtilisateur=3;
 	public void init() {
-		articleAVendreManager = BLLFactory.getArticleAVendre();
+		articleAVendreManager = BLLFactory.getArticleAVendreManager();
 		utilisateurManager = BLLFactory.getUtilisateurManager();
 		categorieManager = BLLFactory.getCategorieManager();
 				}
