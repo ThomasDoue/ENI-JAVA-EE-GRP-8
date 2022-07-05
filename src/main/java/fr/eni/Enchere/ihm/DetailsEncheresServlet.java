@@ -1,6 +1,7 @@
 package fr.eni.Enchere.ihm;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.Enchere.bll.ArticleAVendreManager;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.EnchereManager;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
@@ -18,10 +20,11 @@ import fr.eni.Enchere.bo.DtoEnchereComplete;
 @WebServlet("/DetailsEncheres")
 public class DetailsEncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ArticleAVendreManager articleMger;
 	private EnchereManager enchereMger;
-	
 	public void init() throws ServletException {
-		enchereMger = BLLFactory.getEnchereManager();		
+		articleMger = BLLFactory.getArticleAVendreManager();	
+		enchereMger = BLLFactory.getEnchereManager();
 	}
 
 	/**
@@ -33,6 +36,11 @@ public class DetailsEncheresServlet extends HttpServlet {
 		try {
 			ObjetRetour = enchereMger.SelectEnchereById(Integer.parseInt(request.getParameter("IdEnchere")));
 			request.setAttribute("Enchere", ObjetRetour);
+			
+			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("noArticle"))))
+				request.setAttribute("estFini", "true");
+			else
+				request.setAttribute("estFini", "false");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

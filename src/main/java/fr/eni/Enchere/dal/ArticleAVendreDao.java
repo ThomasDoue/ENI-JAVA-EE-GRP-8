@@ -4,7 +4,7 @@ import fr.eni.Enchere.bo.ArticleVendu;
 
 public interface ArticleAVendreDao {
 
-	
 	int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException,Exception;
-	
+
+	public boolean FinEnchere(int noArticle)throws DALException;
 }

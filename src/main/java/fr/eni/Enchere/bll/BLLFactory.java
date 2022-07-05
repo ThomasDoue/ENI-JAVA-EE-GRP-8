@@ -13,7 +13,7 @@ public class BLLFactory {
 	}
 	
 	//appel de mon interface pour retourner mon articleAVendreMangerImpl
-	public static ArticleAVendreManager getArticleAVendre() {
+	public static ArticleAVendreManager getArticleAVendreManager() {
 		return new ArticleAVendreManagerImpl();
 	}
 
