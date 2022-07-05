@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.CategorieManager;
 import fr.eni.Enchere.bll.EnchereManager;
-import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Categorie;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
 
@@ -41,8 +40,6 @@ public class AccueilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Retour des catégories dans la servlet : " + listCategorie.toString());
-		System.out.println("Retour des enchères dans la servlet : " + listEncheres.toString());
 		req.setAttribute("ListCategorie", listCategorie);
 		req.setAttribute("ListEncheres", listEncheres);
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
@@ -52,14 +49,12 @@ public class AccueilServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		List<Categorie> listCategorie = new ArrayList<Categorie>();
 		List<DtoEnchereComplete> listEncheresFiltered = new ArrayList<DtoEnchereComplete>();
-		System.out.println("test filtre " + req.getParameter("NomArticle"));
 		try {
 			listCategorie = categorieMger.SelectAllCategorie();
 			if(Integer.parseInt(req.getParameter("Categorie")) != 0 && req.getParameter("NomArticle").equals("")) {
 				System.out.println("Que la catégorie en filtre");
 				listEncheresFiltered = enchereMger.selectVenteByCateg(Integer.parseInt(req.getParameter("Categorie")));
-			}else if(Integer.parseInt(req.getParameter("Categorie")) == 0 && !req.getParameter("NomArticle").equals("")) 
-			{
+			}else if(Integer.parseInt(req.getParameter("Categorie")) == 0 && !req.getParameter("NomArticle").equals("")) {
 				System.out.println("Que le nom article en filtre");
 				listEncheresFiltered = enchereMger.selectVenteByNomArticle(req.getParameter("NomArticle"));
 			}else if(Integer.parseInt(req.getParameter("Categorie")) != 0 && !req.getParameter("NomArticle").equals("")){
@@ -73,8 +68,6 @@ public class AccueilServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
-		System.out.println("Retour des catégories dans la servlet : " + listCategorie.toString());
-		System.out.println("Retour des enchères filtré dans la servlet : " + listEncheresFiltered.toString());
 		req.setAttribute("ListCategorie", listCategorie);
 		req.setAttribute("ListEncheres", listEncheresFiltered);
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);}

@@ -198,8 +198,14 @@ public class EnchereDaoImpl implements EncheresDao{
 			
 			if (rsDateFinEnchere.next() && rsDateNow.next()) {
 				System.out.println("il y a des lignes");
-				if((rsDateNow.getDate(1)).after(rsDateFinEnchere.getDate(1)))
+				if((rsDateNow.getDate(1)).after(rsDateFinEnchere.getDate(1))) {
+					System.out.println("dateNow : "+rsDateNow.getDate(1));
+					System.out.println("dateEnchere : "+rsDateFinEnchere.getDate(1));
 					return true;
+				} else {
+					System.out.println("dateNow : "+rsDateNow.getDate(1));
+					System.out.println("dateEnchere : "+rsDateFinEnchere.getDate(1));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
