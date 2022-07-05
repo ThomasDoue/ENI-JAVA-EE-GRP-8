@@ -137,10 +137,9 @@ public class NouvelleVenteServlet  extends HttpServlet{
 	
 		
 		if ("annuler".equals(action)) {
-			
 			//retour la page AccueilServlet
 			response.sendRedirect("accueil");
-//			response.sendRedirect("ProfilModifierSupprimerServlet");
+			
 		}
 		
 	}
