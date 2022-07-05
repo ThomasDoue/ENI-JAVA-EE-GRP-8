@@ -36,6 +36,17 @@ public class HeaderServlet extends HttpServlet{
 	  System.out.println(actionSelect);
 	  if ("encheres".equals(action))
 		  resp.sendRedirect("accueil");
+	  if ("vendreArticle".equals(action))
+		  resp.sendRedirect("nouvelleVente");
+	  if ("afficherProfil".equals(action))
+		  resp.sendRedirect("RetourFormulaire");
+	  if ("profilModifierSupprimer".equals(action))
+		  resp.sendRedirect("ProfilModifierSupprimerServlet");
+	  if("deconnexion".equals(action)) {
+		  HttpSession session = req.getSession();
+		  session.invalidate();
+		  resp.sendRedirect("accueil");
+	  }
 	}
 
 }

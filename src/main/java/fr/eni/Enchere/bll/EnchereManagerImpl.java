@@ -2,8 +2,10 @@ package fr.eni.Enchere.bll;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import fr.eni.Enchere.bo.ArticleVendu;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
 import fr.eni.Enchere.dal.CategorieDao;
 import fr.eni.Enchere.dal.DALException;
@@ -73,5 +75,11 @@ private EncheresDao enchereDao;
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
 		}
+	}
+	
+	public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu) {
+		return getMontantEtPseudoDeLaMeilleurOffre(articleVendu);
+		
+		
 	}
 }

@@ -20,6 +20,10 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 @WebServlet({"/RetourFormulaire"})
 public class ProfilServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UtilisateurManager utilisateurMger;
 	
 	public void init() throws ServletException {
@@ -40,7 +44,7 @@ public class ProfilServlet extends HttpServlet {
 				try {
 			//appel de la fonction manageur avec le selectUtilisateur 
 			
-			Utilisateur RetourProfil =utilisateurMger.selectUser(idUtilisateur);
+			Utilisateur RetourProfil = utilisateurMger.selectUser(idUtilisateur);
 			//insertion du pseudo recuperer de la base vers la page html. 
 			request.setAttribute("pseudo",RetourProfil.getPseudo());
 			//insertion du nom recuperer de la base vers la page html. 

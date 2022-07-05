@@ -16,11 +16,11 @@
 
 	<div>
 		<label for="article">Article :</label> 
-		<input type="text" id="article" name="article" class="form-control" value="article" required minlenght="1" maxlength="4" > 
+		<input type="text" id="article" name="article" class="form-control" value="article" required minlenght="1" maxlength="4" maxlength="30"> 
 		
 		
 		<label for="article">Description :</label> 
-		<textarea id="story" name="description" rows="5" cols="33" value="description">description du produit </textarea>
+		<textarea id="story" name="description" rows="5" cols="33" maxlength="300" value="description">description du produit </textarea>
 	</div>
 	<div>
 		<label for="categorie">Categorie :</label>
@@ -37,7 +37,7 @@
 	</div>
 	<div>
 		<label for="miseaPrix">Mise à prix :</label>
-		<input type="number" step="1" value="0" min="0" max="10000">
+		<input type="number" name="miseaPrix" step="1" value="0" min="0" max="10000">
 	</div>
 	
 	<div>
