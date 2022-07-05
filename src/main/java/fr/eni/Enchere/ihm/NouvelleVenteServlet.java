@@ -114,7 +114,7 @@ public class NouvelleVenteServlet  extends HttpServlet{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		}       
+		      
 			//enregistrement de tous les champs sur le serveur SQL
 			ArticleVendu nouvelleArticle = new ArticleVendu(request.getParameter("article"),
 															request.getParameter("description"),
@@ -127,20 +127,20 @@ public class NouvelleVenteServlet  extends HttpServlet{
 			
 			System.out.println("nouvelle article :"+nouvelleArticle);
 			try {
-				articleAVendreManager.nouvelleArticle(nouvelleArticle);
+				articleAVendreManager.NouvelleArticle(nouvelleArticle);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				
 			}
-			
+		}
 	
 		
 		if ("annuler".equals(action)) {
-			//retour pages vide 
-			//retour liste Enrchére connecter servlet a faire 
-			response.sendRedirect("......................");
-		
+			
+			//retour la page AccueilServlet
+			response.sendRedirect("accueil");
+//			response.sendRedirect("ProfilModifierSupprimerServlet");
 		}
 		
 	}

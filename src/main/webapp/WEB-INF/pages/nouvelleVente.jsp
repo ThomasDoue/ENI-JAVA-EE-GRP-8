@@ -16,7 +16,7 @@
 
 	<div>
 		<label for="article">Article :</label> 
-		<input type="text" id="article" name="article" class="form-control" value="" required minlenght="1"  maxlength="30"> 
+		<input type="text" id="article" name="article" class="form-control" value="" required  maxlength="30"> 
 		
 		
 		<label for="article">Description :</label> 
