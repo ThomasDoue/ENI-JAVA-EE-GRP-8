@@ -32,11 +32,11 @@
 <br>
 <div class ="mainListeEnchere">
 	<div class="RadioButtonFiltre">
-		<input type="radio" id="achats" name="choixfiltre" value="achats">
+		<input type="radio" id="achats" name="choixfiltre" value="achats" onclick="displayType()">
 		<label >Achats</label>
 	</div>
 	<div class="BlockFiltreVente">
-		<input type="radio" id="vente" name="choixfiltre" value="vente">
+		<input type="radio" id="vente" name="choixfiltre" value="vente" onclick="displayType()">
 		<label>Mes Ventes</label>
 	</div>
 	<div class="RadioButtonFiltre">
@@ -60,7 +60,7 @@
 		<label>mes enchères remportées</label>
 	</div>
 	<div class="BlockFiltreVente" >
-		<input  type="checkbox" id="scales" name="scales">
+		<input  type="checkbox" id="VentesTerminées" name="VentesTerminées">
 		<label>ventes terminées</label>
 	</div>
 </div>
@@ -95,4 +95,34 @@
 </form>
 </footer>
 	</body>
+<script>
+
+window.displayType = function () {
+	document.getElementById('EnchereOuvert').checked = false;
+    document.getElementById('MesEnchères').checked = false;
+    document.getElementById('MesEnchèresNonRemportés').checked = false;
+    document.getElementById('VentesTerminées').checked = false;
+    document.getElementById('MesVentesEnCours').checked = false;
+    document.getElementById('MesVentesNonDébutées').checked = false;
+	if(document.getElementById('achats').checked) {
+        document.getElementById('EnchereOuvert').disabled = false;
+        document.getElementById('MesEnchères').disabled = false;
+        document.getElementById('MesEnchèresNonRemportés').disabled = false;
+        document.getElementById('VentesTerminées').disabled = true;
+        document.getElementById('MesVentesEnCours').disabled = true;
+        document.getElementById('MesVentesNonDébutées').disabled = true;
+    }
+    else {
+    	document.getElementById('EnchereOuvert').disabled = true;
+        document.getElementById('MesEnchères').disabled = true;
+        document.getElementById('MesEnchèresNonRemportés').disabled =true;
+        document.getElementById('VentesTerminées').disabled = false;
+        document.getElementById('MesVentesEnCours').disabled = false;
+        document.getElementById('MesVentesNonDébutées').disabled = false;
+  
+    }
+}
+
+</script>
 </html>
+
