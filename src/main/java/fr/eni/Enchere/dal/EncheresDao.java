@@ -1,7 +1,6 @@
 package fr.eni.Enchere.dal;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 
 import fr.eni.Enchere.bll.BLLException;
@@ -16,4 +15,5 @@ public interface EncheresDao {
 	 DtoEnchereComplete selectVenteById(int noArticle) throws SQLException;
 	 void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException;
 	 DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre (ArticleVendu articleVendu) throws DALException, SQLException;
+	 boolean FinEnchere(int noArticle)throws DALException;
 }
