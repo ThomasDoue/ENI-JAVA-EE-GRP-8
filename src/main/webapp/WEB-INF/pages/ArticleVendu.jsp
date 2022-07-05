@@ -16,9 +16,12 @@
 <p>${DtoEnchereComplete.pseudo} a remporté l'enchère</p>
 <p>Nom de l'article : ${DtoEnchereComplete.nomArticle}</p>
 <p>Description : ${DtoEnchereComplete.description}</p>
-<p>Meilleure offre : ${DtoEnchereComplete.PrixVente}</p>
-<p>Mise à prix : ${DtoEnchereComplete.PrixInitial}</p>
+<p>Meilleure offre : ${DtoEnchereComplete.PrixVente} points par ${DtoEnchereComplete.pseudo}</p>
+<p>Mise à prix : ${DtoEnchereComplete.PrixInitial} points</p>
 <p>Fin de l'enchère :${DtoEnchereComplete.DateFinEnchere}</p> 
+
+
+<a href="<%=request.getContextPath()%>/accueil"><button>Retrait effectué</button></a> 
 
 
 </body>
