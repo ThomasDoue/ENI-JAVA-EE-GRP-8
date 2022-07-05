@@ -35,19 +35,16 @@
 		<br/>
 		<c:out value="Vendeur : ${Enchere.pseudo}" />
 		<br/>
-		<% if("false".equals(request.getAttribute("estFini"))) {%>
+		//<% if("false".equals(request.getAttribute("estFini"))) {%>
 			<input type="number" name="offre" min = "${Enchere.prixVente}" value= "${Enchere.prixVente}">
 			<br/>
 			<button>Enchérir</button>
-		<%} else {%>
+	<%} else {%>
 			<c:out value="Tel : ${Enchere.telephone}"/>
 			<br/>
 			<button type="button" name="back">back</button>
 		<%}%>
 		<br/>
-		
-		
-		
 	</form>
 </body>
 </html>

@@ -39,29 +39,28 @@
 		<input type="radio" id="vente" name="choixfiltre" value="vente">
 		<label>Mes Ventes</label>
 	</div>
-	
 	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="scales" name="scales" checked>
+		<input type="checkbox" id="EnchereOuvert" name="EnchereOuvert">
 		<label>enchères ouvertes</label>
 	</div>
 	<div class="BlockFiltreVente" >
-		<input type="checkbox" id="scales" name="scales" checked>
+		<input type="checkbox" id="MesVentesEnCours" name="MesVentesEnCours">
 		<label>mes ventes en cours</label>
 	</div>
 	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="scales" name="scales" checked>
+		<input type="checkbox" id="MesEnchères" name="MesEnchères">
 		<label>mes enchères</label>
 	</div>
 	<div class="BlockFiltreVente" >
-		<input type="checkbox" id="scales" name="scales" checked>
+		<input type="checkbox" id="MesVentesNonDébutées" name="MesVentesNonDébutées">
 		<label>mes ventes non débutées</label>
 	</div>
 	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="scales" name="scales" checked>
+		<input type="checkbox" id="MesEnchèresNonRemportés" name="MesEnchèresNonRemportés">
 		<label>mes enchères remportées</label>
 	</div>
 	<div class="BlockFiltreVente" >
-		<input  type="checkbox" id="scales" name="scales" checked>
+		<input  type="checkbox" id="scales" name="scales">
 		<label>ventes terminées</label>
 	</div>
 </div>
