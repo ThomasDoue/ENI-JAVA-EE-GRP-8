@@ -27,39 +27,39 @@ private EncheresDao enchereDao;
 		}
 		return listRetour;
 	}
-	public List<DtoEnchereComplete> SelectEncheresByCategorie(int noCategorie) throws DALException, SQLException,Exception {
+	public List<DtoEnchereComplete> selectVenteByCateg(int noCategorie) throws DALException, SQLException,Exception {
 		List<DtoEnchereComplete> listRetour = new ArrayList<DtoEnchereComplete>();
 		try {
-			listRetour = enchereDao.SelectEnchereByCategorie(noCategorie);
+			listRetour = enchereDao.SelectVenteByCategorie(noCategorie);
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par catégories dans la bll : " +  e);
 		}
 		return listRetour;
 	}
-	public  List<DtoEnchereComplete> SelectEnchereByNomArticle(String nomArticle) throws SQLException, BLLException{
+	public  List<DtoEnchereComplete> selectVenteByNomArticle(String nomArticle) throws SQLException, BLLException{
 		List<DtoEnchereComplete> listRetour = new ArrayList<DtoEnchereComplete>();
 		try {
 			System.out.println("Nom d'article passer en paramètres : " + nomArticle);
-			listRetour = enchereDao.SelectEnchereByNomArticle(nomArticle);
+			listRetour = enchereDao.selectVenteByNomArticle(nomArticle);
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par nom d'article dans la bll : " +  e);
 		}
 		return listRetour;
 	}
-	public List<DtoEnchereComplete> SelectEnchereByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException, BLLException{
+	public List<DtoEnchereComplete> selectVenteByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException, BLLException{
 		List<DtoEnchereComplete> listRetour = new ArrayList<DtoEnchereComplete>();
 		try {
-			listRetour = enchereDao.SelectEnchereByNomArticleAndCateg(noCategorie,nomArticle);
+			listRetour = enchereDao.selectVenteByNomArticleAndCateg(noCategorie,nomArticle);
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par nom d'article et par catégories dans la bll : " +  e);
 		}
 		return listRetour;
 	}
 	
-	public DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException, BLLException{
+	public DtoEnchereComplete selectVenteById(int noArticle) throws SQLException, BLLException{
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
 		try {
-			ObjetRetour = enchereDao.SelectEnchereById(noArticle);
+			ObjetRetour = enchereDao.selectVenteById(noArticle);
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
 		}

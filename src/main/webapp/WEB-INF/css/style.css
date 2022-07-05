@@ -135,3 +135,19 @@ select{
     font-family: inherit;
     font-size: inherit;
 }
+
+.RadioButtonFiltre{
+	display : block;
+	margin-right: 200px;
+}
+
+.BlockFiltreVente{
+	display : block;
+	margin-left: 300px;
+}
+
+
+#mainListeEnchere { 
+    width: 800px;
+    margin: 0 auto;
+}

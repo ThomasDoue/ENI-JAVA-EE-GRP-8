@@ -13,4 +13,7 @@ public interface UtilisateurManager {
 	void miseAjourUtilisateur (Utilisateur modifUser) throws BLLException;
 	
 	void supprimerUtilisateur(int id) throws BLLException;
+	
+	int SelectIdVendeurByIdEnchere(int id)throws BLLException;
+
 }

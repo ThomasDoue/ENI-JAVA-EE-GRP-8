@@ -31,7 +31,7 @@ public class DetailsEncheresServlet extends HttpServlet {
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
 		System.out.println(("valeur id enchere" + request.getParameter("IdEnchere")));
 		try {
-			ObjetRetour = enchereMger.SelectEnchereById(Integer.parseInt(request.getParameter("IdEnchere")));
+			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdEnchere")));
 			request.setAttribute("Enchere", ObjetRetour);
 		}catch(Exception e){
 			e.printStackTrace();

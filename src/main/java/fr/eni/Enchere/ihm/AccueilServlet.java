@@ -56,14 +56,14 @@ public class AccueilServlet extends HttpServlet {
 			listCategorie = categorieMger.SelectAllCategorie();
 			if(Integer.parseInt(req.getParameter("Categorie")) != 0 && req.getParameter("NomArticle").equals("")) {
 				System.out.println("Que la catégorie en filtre");
-				listEncheresFiltered = enchereMger.SelectEncheresByCategorie(Integer.parseInt(req.getParameter("Categorie")));
+				listEncheresFiltered = enchereMger.selectVenteByCateg(Integer.parseInt(req.getParameter("Categorie")));
 			}else if(Integer.parseInt(req.getParameter("Categorie")) == 0 && !req.getParameter("NomArticle").equals("")) 
 			{
 				System.out.println("Que le nom article en filtre");
-				listEncheresFiltered = enchereMger.SelectEnchereByNomArticle(req.getParameter("NomArticle"));
+				listEncheresFiltered = enchereMger.selectVenteByNomArticle(req.getParameter("NomArticle"));
 			}else if(Integer.parseInt(req.getParameter("Categorie")) != 0 && !req.getParameter("NomArticle").equals("")){
 				System.out.println("Filtre sur la catégorie et sur le nom d'article");
-				listEncheresFiltered = enchereMger.SelectEnchereByNomArticleAndCateg(Integer.parseInt(req.getParameter("Categorie")),req.getParameter("NomArticle"));
+				listEncheresFiltered = enchereMger.selectVenteByNomArticleAndCateg(Integer.parseInt(req.getParameter("Categorie")),req.getParameter("NomArticle"));
 			}else {
 				System.out.println("Pas de filtre");
 				listEncheresFiltered = enchereMger.SelectAllEnchere();

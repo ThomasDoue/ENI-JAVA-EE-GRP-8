@@ -8,9 +8,9 @@ import fr.eni.Enchere.bo.DtoEnchereComplete;
 
 public interface EncheresDao {
 	 List<DtoEnchereComplete> SelectAllEnchere() throws SQLException;
-	 List<DtoEnchereComplete> SelectEnchereByCategorie(int noCateg) throws SQLException;
-	 List<DtoEnchereComplete> SelectEnchereByNomArticle(String nomArticle) throws SQLException;
-	 List<DtoEnchereComplete> SelectEnchereByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
-	 DtoEnchereComplete SelectEnchereById(int noArticle) throws SQLException;
+	 List<DtoEnchereComplete> SelectVenteByCategorie(int noCateg) throws SQLException;
+	 List<DtoEnchereComplete> selectVenteByNomArticle(String nomArticle) throws SQLException;
+	 List<DtoEnchereComplete> selectVenteByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
+	 DtoEnchereComplete selectVenteById(int noArticle) throws SQLException;
 	 void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException;
 }

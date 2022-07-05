@@ -16,6 +16,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	private static final String UPDATE_USER ="UPDATE UTILISATEURS SET pseudo= ? , nom= ? ,prenom= ? ,email= ? ,telephone = ?,rue= ? ,code_postal= ? ,ville= ? ,mot_de_passe= ? WHERE no_utilisateur = ?";
 	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+	private static final String SELECT_USER_ID_BY_ENCHERE_ID = "select AV.no_utilisateur from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where no_enchere = ?"; 
 
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur
@@ -134,7 +135,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 			stmtSelectUser.setInt(1, no_utlisateur);
 		
 			
-			ResultSet rs = stmtSelectUser.executeQuery();;
+			ResultSet rs = stmtSelectUser.executeQuery();
 			if (rs.next()) {
 				user= new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"),rs.getInt("credit"));
 				System.out.println("chargement profil utilisateur OK");
@@ -193,6 +194,23 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		} catch (SQLException e) {
 			throw new DALException("Delete utilisateur failed - id : "+id, e);
 		}
+	}
+	
+	public int SelectIdVendeurByIdEnchere(int idEnchere) throws DALException{
+		int idUtilisateur = 0;
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_USER_ID_BY_ENCHERE_ID);
+			stmt.setInt(1, idEnchere);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				idUtilisateur = rs.getInt("no_utilisateur");
+			}else {
+				throw new DALException("Immpossible de récupérer l'utilisateur à partir de l'id d'enchere : "+ idEnchere);
+			}
+		} catch (SQLException e) {
+			throw new DALException("Immpossible de récupérer l'utilisateur à partir de l'id d'enchere : "+ idEnchere, e);
+		}
+		return idUtilisateur;
 	}
 	
 
