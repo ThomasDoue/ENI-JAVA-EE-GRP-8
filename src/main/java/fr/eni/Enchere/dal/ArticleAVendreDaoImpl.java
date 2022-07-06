@@ -16,10 +16,12 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 	private static final String ARTICLE_VENTE = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String DATE_ACTUELLE = "SELECT DATE(NOW)";
 	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT date_fin_encheres FROM ARTICLES_VENDUS WHERE no_article=?";
+	private static final String SELECT_USER_BY_ID = "Select rue,code_postal,ville from utilisateurs where no_utilisateur = ?";
+	private static final String INSERT_RETRAITS_INFO = "INSERT INTO RETRAITS VALUES(?,?,?,?)";
 	
 	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException,Exception{
 		int id_NouvelleArticle=0;
-		
+		Utilisateur user = new Utilisateur();		
 		try (Connection conn = ConnectionProvider.getConnection()){
 			//envoie de la requette en preparedStatement et recupération de la clée
 			PreparedStatement stmtnew_vente = conn.prepareStatement(NEW_VENTE,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -39,7 +41,18 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 			if (rs.next()) {
 				id_NouvelleArticle= rs.getInt(1);
 			}
-			
+			PreparedStatement stmtUser = conn.prepareStatement(SELECT_USER_BY_ID);
+			ResultSet rsUser = stmtUser.executeQuery();
+			while(rs.next()) {
+				user = new Utilisateur(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"));
+			}
+			PreparedStatement stmtInsertRetrait = conn.prepareStatement(INSERT_RETRAITS_INFO);
+			stmtInsertRetrait.setInt(1, id_NouvelleArticle);
+			stmtInsertRetrait.setString(2, user.getRue());
+			stmtInsertRetrait.setString(3, user.getCodePostal());
+			stmtInsertRetrait.setString(4, user.getVille());
+			stmtInsertRetrait.executeUpdate();
+			System.out.println("Enregistrement dans la dal réussi");
 		} catch (Exception e) {
 			throw new DALException("erreur insert nouvelleArticle : ", e);
 		}

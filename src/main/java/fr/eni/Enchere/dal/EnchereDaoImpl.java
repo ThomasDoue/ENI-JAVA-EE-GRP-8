@@ -197,6 +197,7 @@ public List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)thr
 	}
 	return result;
 }
+//test
 /**
  * @noArticle : numero d'article mis en vente.
  * Je créé deux statement, un pour réupérer la date actuelle, un autre pour récupérer la date de fin d'enchères

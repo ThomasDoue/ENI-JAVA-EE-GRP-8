@@ -31,6 +31,13 @@ public class Utilisateur {
 		this.ville = ville;
 	}
 	
+	
+	public Utilisateur(String rue, String codePostal, String ville) {
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+	
 	//constructeur pseudo nom pernom email,telephone rue codepostal ville credit
 	
 	public Utilisateur( String pseudo, String nom, String prenom, String email, String telephone,
@@ -97,6 +104,10 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+	}
+	
+	public Utilisateur() {
+		
 	}
 
 	// get et set 
