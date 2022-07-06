@@ -32,11 +32,8 @@ public class ArticleVenduServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DtoEnchereComplete ArticleVendu = new DtoEnchereComplete();
-		
-		int IdEnchere = (int) req.getAttribute("IdEnchere");
-		System.out.println(IdEnchere);
 		try {
-			ArticleVendu = enchereMger.selectVenteById(IdEnchere);
+			ArticleVendu = enchereMger.selectVenteById(Integer.parseInt(req.getParameter("IdEnchere")));
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -48,9 +45,6 @@ public class ArticleVenduServlet extends HttpServlet {
 			req.setAttribute("DtoEnchereComplete", ArticleVendu); 
 	}catch (Exception e) {
 		e.printStackTrace();
-		
-		
-		
 		}
 		req.getRequestDispatcher("/WEB-INF/pages/ArticleVendu.jsp").forward(req, resp);
 	}
