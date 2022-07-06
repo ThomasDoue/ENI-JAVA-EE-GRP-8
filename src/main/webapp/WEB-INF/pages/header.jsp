@@ -15,8 +15,8 @@
 
 	<form class="formPageStart">
 		<a href="<%=request.getContextPath()%>/accueil"><img alt="LogoEni" src="ressources/LogoEni.png"></a>
-		<button class = "button" value="Rafraichir." onClick="refresh">Rafraichir</button>
-		<button class=  "button" value="Précedent." onClick="history.back()">Précedent</button>
+		<button value="Rafraichir." onClick="refresh">Rafraichir</button>
+		<button value="Précedent." onClick="history.back()">Précedent</button>
 	</form>
 	</div>
 	
@@ -24,13 +24,13 @@
 	<div class="formepageend">
 		<form action="header" method="post">
 	
-			<button class="button" type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
-			<button class="button" type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
+			<button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
+			<button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
 			<select name="actionUtilisateurSelect" onchange="location = this.value;">
 			    <option value="RetourFormulaire">Afficher mon profil</option>
 			    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
 			</select>
-			<button class="button" type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
+			<button type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
 		
 		</form>
 		</div>

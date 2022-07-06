@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style><%@include file="/WEB-INF/css/style.css"%></style>
-<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/nouvelleVente" method="post">

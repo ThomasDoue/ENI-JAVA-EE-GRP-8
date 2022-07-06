@@ -81,9 +81,9 @@ body {
 .titre{
 	text-align: center;
 }
-.flexheader{
+.flex{
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 .bodyAccueil{
 	background: #c8e1cc;

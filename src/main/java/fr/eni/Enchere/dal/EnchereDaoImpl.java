@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	private static final String GET_UTILISATEUR_AND_MEILLEURE_OFFRE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
 	private static final String GET_VENTE_BY_USER_ID = "select nom_article nomArticle,prix_vente prixVente,date_fin_encheres DateFinEnchere,pseudo,no_article from ARTICLES_VENDUS av INNER JOIN UTILISATEURS U on  av.no_utilisateur = u.no_utilisateur where AV.no_utilisateur = ?";
+	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT AV.date_fin_encheres FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article WHERE E.no_enchere=?";
+	private static final String DATE_ACTUELLE = "SELECT CONVERT(date, getdate())";
 	
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException {
 		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
@@ -193,6 +196,38 @@ public List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)thr
 		throw dalException;
 	}
 	return result;
+}
+/**
+ * @noArticle : numero d'article mis en vente.
+ * Je créé deux statement, un pour réupérer la date actuelle, un autre pour récupérer la date de fin d'enchères
+ * Dans le cas où la date de fin d'enchères est plus grande que la date actuelle je retourne true pour signaler la fin de l'enchère
+ * sinon false.	 *
+ */
+public boolean FinEnchere(int noArticle)throws DALException {
+	try(Connection conn = ConnectionProvider.getConnection()) {
+		PreparedStatement stmt = conn.prepareStatement(SELECT_DATE_FIN_ENCHERES_BY_ID);
+		stmt.setInt(1, noArticle);
+		ResultSet rsDateFinEnchere = stmt.executeQuery();
+		
+		Statement stmt2 = conn.createStatement();
+		ResultSet rsDateNow = stmt2.executeQuery(DATE_ACTUELLE);
+		
+		if (rsDateFinEnchere.next() && rsDateNow.next()) {
+			System.out.println("il y a des lignes");
+			if((rsDateNow.getDate(1)).after(rsDateFinEnchere.getDate(1))) {
+				System.out.println("dateNow : "+rsDateNow.getDate(1));
+				System.out.println("dateEnchere : "+rsDateFinEnchere.getDate(1));
+				return true;
+			} else {
+				System.out.println("dateNow : "+rsDateNow.getDate(1));
+				System.out.println("dateEnchere : "+rsDateFinEnchere.getDate(1));
+			}
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return false;
+	
 }
 
 

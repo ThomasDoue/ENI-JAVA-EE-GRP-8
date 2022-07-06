@@ -12,12 +12,6 @@
 	</head>
 <body>
 	<br>
-	
-	<% if("false".equals(request.getAttribute("estFini"))) {%>
-		<h1>Vente en cours</h1>
-	<%} else {%>
-		<h1>Vente terminée</h1>
-	<%}%>
 	<form class = "forminscription" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
 		<input type="hidden" value="${Enchere.noArticle}" name="noArticle" />
 		<br/>
@@ -41,11 +35,11 @@
 		<br/>
 		<c:out value="Vendeur : ${Enchere.pseudo}" />
 		<br/>
-		<% if("false".equals(request.getAttribute("estFini"))) {%>
+		//<% if("false".equals(request.getAttribute("estFini"))) {%>
 			<input type="number" name="offre" min = "${Enchere.prixVente}" value= "${Enchere.prixVente}">
 			<br/>
 			<button>Enchérir</button>
-		<%} else {%>
+	<%} else {%>
 			<c:out value="Tel : ${Enchere.telephone}"/>
 			<br/>
 			<button type="button" name="back">back</button>

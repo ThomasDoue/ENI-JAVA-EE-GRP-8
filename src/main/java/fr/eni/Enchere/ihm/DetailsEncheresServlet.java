@@ -37,10 +37,10 @@ public class DetailsEncheresServlet extends HttpServlet {
 			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdEnchere")));
 			request.setAttribute("Enchere", ObjetRetour);
 			
-//			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("noArticle"))))
-//				request.setAttribute("estFini", "true");
-//			else
-//				request.setAttribute("estFini", "false");
+			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("noArticle"))))
+				request.setAttribute("estFini", "true");
+			else
+				request.setAttribute("estFini", "false");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

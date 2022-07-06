@@ -48,8 +48,17 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 	}
 	
-	//get et set
 	
+
+	public ArticleVendu() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	//get et set
+
+
+
 	public Integer getNoArticle() {
 		return noArticle;
 	}

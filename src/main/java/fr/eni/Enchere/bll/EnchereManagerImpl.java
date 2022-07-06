@@ -2,10 +2,12 @@ package fr.eni.Enchere.bll;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import fr.eni.Enchere.bo.ArticleVendu;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
+import fr.eni.Enchere.dal.CategorieDao;
 import fr.eni.Enchere.dal.DALException;
 import fr.eni.Enchere.dal.EncheresDao;
 import fr.eni.Enchere.dao.DaoFactory;
@@ -76,15 +78,9 @@ private EncheresDao enchereDao;
 	}
 	
 	public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu) {
-		return getMontantEtPseudoDeLaMeilleurOffre(articleVendu);	
-	}
-	
-	public boolean FinDEnchere (int noArticle) throws BLLException {
-		try {
-			return enchereDao.FinEnchere(noArticle);
-		} catch (DALException e) {
-			throw new BLLException("Erreur Fin d'enchère, no_Article = "+noArticle, e);
-		}
+		return getMontantEtPseudoDeLaMeilleurOffre(articleVendu);
+		
+		
 	}
 	
 	public List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws SQLException, BLLException{

@@ -14,6 +14,8 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 
 	private static final String NEW_VENTE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie) VALUES (?,?,?,?,?,?,?)";
 	private static final String ARTICLE_VENTE = "SELECT * FROM ARTICLES_VENDUS";
+	private static final String DATE_ACTUELLE = "SELECT DATE(NOW)";
+	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT date_fin_encheres FROM ARTICLES_VENDUS WHERE no_article=?";
 	
 	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException,Exception{
 		int id_NouvelleArticle=0;
@@ -44,7 +46,31 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 		return id_NouvelleArticle;
 	}
 	
-	
+	/**
+	 * @noArticle : numero d'article mis en vente.
+	 * Je créé deux statement, un pour réupérer la date actuelle, un autre pour récupérer la date de fin d'enchères
+	 * Dans le cas où la date de fin d'enchères est plus grande que la date actuelle je retourne true pour signaler la fin de l'enchère
+	 * sinon false.	 *
+	 */
+	public boolean FinEnchere(int noArticle)throws DALException {
+		try(Connection conn = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = conn.prepareStatement(SELECT_DATE_FIN_ENCHERES_BY_ID);
+			stmt.setInt(1, noArticle);
+			ResultSet rsDateFinEnchere = stmt.executeQuery();
+			
+			Statement stmt2 = conn.createStatement();
+			ResultSet rsDateNow = stmt2.executeQuery(DATE_ACTUELLE);
+			
+			if (rsDateFinEnchere.next() && rsDateNow.next()) {
+				if(rsDateFinEnchere.getInt(1) > rsDateNow.getInt(1))
+					return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
 	
 }
 
