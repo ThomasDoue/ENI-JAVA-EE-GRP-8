@@ -69,12 +69,14 @@ private EncheresDao enchereDao;
 		
 	}
 	
-	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException{
+	public boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException{
+		boolean resultat=false;
 		try {
 			enchereDao.updatePrixVenteEnchere(noArticle, montantEnchere, noUtilisateur);
 		}catch(Exception e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
 		}
+		return resultat;
 	}
 	
 	public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu) {

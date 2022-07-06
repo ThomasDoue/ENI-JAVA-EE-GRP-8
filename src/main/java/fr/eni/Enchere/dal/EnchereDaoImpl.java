@@ -23,6 +23,11 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	private static final String GET_UTILISATEUR_AND_MEILLEURE_OFFRE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
 	private static final String GET_VENTE_BY_USER_ID = "select * from ARTICLES_VENDUS where no_utilisateur = ?";
+	private static final String BALANCE_CHECK = "SELECT credit from UTILISATEURS where no_utilisateur= ? ";
+	private static final String NUMBER_OLD_USER_AND_CREDIT_BEST_WINNER ="select no_utilisateur, montant_enchere  from ENCHERES where montant_enchere=(select max(montant_enchere) from ENCHERES where no_article= ? ) and no_article= ? ";
+	private static final String UPDATE_CREDIT_NOT_WIN_USER="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";
+	private static final String RETURN_CREDIT_USER ="SELECT credit FROM UTILISATEURS WHERE no_utilisateur = ? ";
+	private static final String UPDATE_CREDIT_USER_WIN ="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";	
 	
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException {
 		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
@@ -131,19 +136,107 @@ public class EnchereDaoImpl implements EncheresDao{
 			return ObjetRetour;
 	}
 	
-	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException{
-		System.out.println("Details vente ID de d'enchère " + noArticle);
+	
+	/**
+	 *
+	 */
+	public boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException{
+		boolean resulat=false;
+		int soldeEncherisseur=0;
+		int creditacrediter=0;
+		int no_utilisateuracrediter=0;
+		int utilisateursolde =0;
+		int newSoldeEncherisseur = 0;
 		try(Connection conn = ConnectionProvider.getConnection()) {
-			PreparedStatement InsertEnchere = conn.prepareStatement(INSERT_ENCHERES);
-			InsertEnchere.setInt(1, montantEnchere);
-			InsertEnchere.setInt(2, noArticle);
-			InsertEnchere.setInt(3, noUtilisateur);
-			InsertEnchere.executeUpdate();
 			
-			PreparedStatement UpdateArticle = conn.prepareStatement(UPDATE_ARTICLES_VENDUS);
-			UpdateArticle.setInt(1, montantEnchere);
-			UpdateArticle.setInt(2, noArticle);
-			UpdateArticle.executeUpdate();
+			//teste pour vérifier si l'encherisseur peux acheter le produit
+			PreparedStatement VerificationSoldeEncherisseur = conn.prepareStatement(BALANCE_CHECK );
+			VerificationSoldeEncherisseur.setInt(1,noUtilisateur);
+			ResultSet rsSoldeEncherisseur = VerificationSoldeEncherisseur.executeQuery();
+			//permet de rentre dans le tableau et d'afficher le credit
+			if ( rsSoldeEncherisseur.next()) {
+				soldeEncherisseur=rsSoldeEncherisseur.getInt("credit");
+			}
+			//**************************************************************************
+			System.out.println("solde de la personne qui enchérie "+soldeEncherisseur);
+			//**************************************************************************
+
+			/**
+			 *fonction qui va veriffier si l'acheteur à assez de crédit  .
+			 *recréditer l'ancien encherisseur 
+			 *debiter le winner de l'enchére de l'argent 
+			 */
+			if (soldeEncherisseur>= montantEnchere) {
+				//retour de l'ancien encherisseur pour le recréditer
+				PreparedStatement retour_noUser_solde = conn.prepareStatement(NUMBER_OLD_USER_AND_CREDIT_BEST_WINNER);
+				retour_noUser_solde.setInt(1,noArticle);
+				retour_noUser_solde.setInt(2,noArticle);
+				ResultSet rsretour_noUser_solde = retour_noUser_solde.executeQuery();
+				//permet de rentre dans le tableau et d'afficher le credit
+				if ( rsretour_noUser_solde.next()) {
+					creditacrediter =rsretour_noUser_solde.getInt("montant_enchere");
+					no_utilisateuracrediter =rsretour_noUser_solde.getInt("no_utilisateur");
+				}
+					PreparedStatement soldedeutilisateur = conn.prepareStatement(RETURN_CREDIT_USER);
+					soldedeutilisateur.setInt(1,no_utilisateuracrediter);
+					ResultSet rssoldedeutilisateur = soldedeutilisateur.executeQuery();
+					//permet de recupére le solde à recrediter dans le tableau
+					if ( rssoldedeutilisateur.next() ) {
+						utilisateursolde = rssoldedeutilisateur.getInt("credit");
+					}
+					creditacrediter = creditacrediter+ utilisateursolde;
+					//requet pour recréditer le compte de non winner de l'enchére 
+					PreparedStatement update_credit =conn.prepareStatement(UPDATE_CREDIT_NOT_WIN_USER);
+					update_credit.setInt(1,creditacrediter);
+					update_credit.setInt(2,no_utilisateuracrediter);
+					update_credit.executeUpdate();
+					System.out.println("retour credit de " + no_utilisateuracrediter +"de ="+ creditacrediter );
+					
+					//debiter le winner de l'enchére de l'argent
+					newSoldeEncherisseur =soldeEncherisseur-montantEnchere;
+					PreparedStatement upadateCreditUserWin = conn.prepareStatement(UPDATE_CREDIT_USER_WIN);
+					upadateCreditUserWin.setInt(1, newSoldeEncherisseur);
+					upadateCreditUserWin.setInt(2, noUtilisateur);
+					upadateCreditUserWin.execute();
+					System.out.println(" vous avez "+ newSoldeEncherisseur + "le solde olde " +soldeEncherisseur+" le ontant de l'enchére est de   "+ montantEnchere);
+					
+					// insert le montant de l'enchre dans la base de donnée table enchére
+					PreparedStatement InsertEnchere = conn.prepareStatement(INSERT_ENCHERES);
+					InsertEnchere.setInt(1, montantEnchere);
+					InsertEnchere.setInt(2, noArticle);
+					InsertEnchere.setInt(3, noUtilisateur);
+					InsertEnchere.executeUpdate();
+					
+					// mise a jours  le montant de l'enchére dans la base de donnée article Vendu
+					PreparedStatement UpdateArticle = conn.prepareStatement(UPDATE_ARTICLES_VENDUS);
+					UpdateArticle.setInt(1, montantEnchere);
+					UpdateArticle.setInt(2, noArticle);
+					UpdateArticle.executeUpdate();
+					System.out.println("tu peux encherire renvoie dans du résultat true");
+					resulat=true;
+					
+			}else {
+				resulat=false;
+				System.out.println("tu n'as pas asser de crédit ");
+			}
+		
+			
+			
+			
+			
+			 
+				
+
+			
+			
+			
+			
+			
+			
+			
+		
+			
+			
 			
 			System.out.println("Fin de la création de l'enchère");
 		} catch (SQLException e) {
@@ -151,6 +244,7 @@ public class EnchereDaoImpl implements EncheresDao{
 		}catch(Exception e) {
 			throw new SQLException("Erreur CRITIQUE lors de la mise à jour du prix de l'article par id : " + e);
 		}
+		return resulat;
 	}
 
 
@@ -192,6 +286,8 @@ public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu artic
 //		throw dalException;
 //	}
 //}
+
+
 
 
 }
