@@ -16,7 +16,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	private static final String SELECT_USER = "select * from UTILISATEURS where no_utilisateur= ?";
 	private static final String UPDATE_USER ="UPDATE UTILISATEURS SET pseudo= ? , nom= ? ,prenom= ? ,email= ? ,telephone = ?,rue= ? ,code_postal= ? ,ville= ? ,mot_de_passe= ? WHERE no_utilisateur = ?";
 	private static final String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
-	private static final String SELECT_USER_ID_BY_ENCHERE_ID = "select AV.no_utilisateur from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where no_enchere = ?"; 
+	private static final String SELECT_USER_ID_BY_ENCHERE_ID = "select AV.no_utilisateur from  ARTICLES_VENDUS AV  where no_article = ?"; 
 
 	/**
 	 * @values(String) : identifier contient l'identifieur de l'utilisateur

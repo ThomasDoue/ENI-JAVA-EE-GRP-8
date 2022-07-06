@@ -16,5 +16,6 @@ public interface EnchereManager {
 	DtoEnchereComplete selectVenteById(int noArticle) throws SQLException, BLLException;
 	boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException;
 	DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu);
+	List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws SQLException, BLLException;
 
 }

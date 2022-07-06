@@ -42,6 +42,15 @@ public class DtoEnchereComplete {
 		this.setNoArticle(noArticle);
 	}
 	
+	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noArticle) {
+		super();
+		this.setNomArticle(nomArticle);
+		this.setPrixVente(prixVente);
+		this.setDateFinEncheres(localDate);
+		this.setPseudo(pseudo);
+		this.setNoArticle(noArticle);
+	}
+	
 	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noEnchere,int noArticle,String libelleCateg,int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
 		super();
 		this.setNomArticle(nomArticle);
@@ -49,6 +58,21 @@ public class DtoEnchereComplete {
 		this.setDateFinEncheres(localDate);
 		this.setPseudo(pseudo);
 		this.setNoEnchere(noEnchere);
+		this.setLibelleCateg(libelleCateg);
+		this.setRueRetrait(rueRetrait);
+		this.setCodePostalRetrait(codePostalRetrait);
+		this.setVilleRetrait(villeRetrait);
+		this.setDescription(description);
+		this.setPrixInitial(prixInitial);
+		this.setNoArticle(noArticle);
+	}
+	
+	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noArticle,String libelleCateg,int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
+		super();
+		this.setNomArticle(nomArticle);
+		this.setPrixVente(prixVente);
+		this.setDateFinEncheres(localDate);
+		this.setPseudo(pseudo);
 		this.setLibelleCateg(libelleCateg);
 		this.setRueRetrait(rueRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);

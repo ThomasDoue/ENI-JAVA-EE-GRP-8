@@ -136,7 +136,7 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
         		response.sendRedirect("ProfilModifierSupprimerServlet");
         			}
         
-        }catch (Exception e) {
+        }catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

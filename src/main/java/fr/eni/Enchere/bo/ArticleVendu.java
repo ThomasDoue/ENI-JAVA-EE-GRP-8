@@ -1,6 +1,6 @@
 package fr.eni.Enchere.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 //attribue
 public class ArticleVendu {
@@ -48,8 +48,17 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 	}
 	
-	//get et set
 	
+
+	public ArticleVendu() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	//get et set
+
+
+
 	public Integer getNoArticle() {
 		return noArticle;
 	}

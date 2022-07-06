@@ -16,4 +16,6 @@ public interface EncheresDao {
 	 DtoEnchereComplete selectVenteById(int noArticle) throws SQLException;
 	 boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException;
 	 DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre (ArticleVendu articleVendu) throws DALException, SQLException;
+	 List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws DALException, SQLException;
+	 boolean FinEnchere(int noArticle)throws DALException;
 }

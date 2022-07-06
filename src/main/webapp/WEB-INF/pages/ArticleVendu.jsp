@@ -12,14 +12,18 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
-<body>
+<body class = "bodyArticleVendu">
 <p>${DtoEnchereComplete.pseudo} a remporté l'enchère</p>
 <p>Nom de l'article : ${DtoEnchereComplete.nomArticle}</p>
 <p>Description : ${DtoEnchereComplete.description}</p>
-<p>Meilleure offre : ${DtoEnchereComplete.PrixVente}</p>
-<p>Mise à prix : ${DtoEnchereComplete.PrixInitial}</p>
-<p>Fin de l'enchère :${DtoEnchereComplete.DateFinEnchere}</p> 
+<p>Meilleure offre : ${DtoEnchereComplete.prixVente} pts par ${DtoEnchereComplete.pseudo}</p>
+<p>Mise à prix : ${DtoEnchereComplete.prixInitial}</p>
+<p>Fin de l'enchère :${DtoEnchereComplete.dateFinEncheres}</p> 
+<p>Retrait : ${DtoEnchereComplete.rueRetrait}</p>
+<p>${DtoEnchereComplete.codePostalRetrait} ${DtoEnchereComplete.villeRetrait}</p>
 
+
+<a href="<%=request.getContextPath()%>/accueil"><button class = "button">Retrait effectué</button></a>
 
 </body>
 </html>

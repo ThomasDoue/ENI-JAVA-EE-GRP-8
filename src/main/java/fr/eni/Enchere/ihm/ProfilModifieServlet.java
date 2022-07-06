@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.Enchere.bll.BLLException;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.Utilisateur;
@@ -47,7 +48,7 @@ public class ProfilModifieServlet extends HttpServlet{
 			
 			
 			
-		} catch (Exception e) {
+		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
