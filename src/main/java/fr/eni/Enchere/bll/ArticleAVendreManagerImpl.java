@@ -23,12 +23,6 @@ public class ArticleAVendreManagerImpl implements ArticleAVendreManager{
 		}
 	}
 	
-	public boolean FinDEnchere (int noArticle) throws BLLException {
-		try {
-			return articleAvendreDao.FinEnchere(noArticle);
-		} catch (DALException e) {
-			throw new BLLException("Erreur Fin d'enchère, no_Article = "+noArticle, e);
-		}
-	}
+	
 	
 }

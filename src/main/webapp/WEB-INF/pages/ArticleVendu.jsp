@@ -19,6 +19,9 @@
 <p>Meilleure offre : ${DtoEnchereComplete.PrixVente}</p>
 <p>Mise à prix : ${DtoEnchereComplete.PrixInitial}</p>
 <p>Fin de l'enchère :${DtoEnchereComplete.DateFinEnchere}</p> 
+<p>Retrait : ${DtoEnchereComplete.rueRetrait, codePostalRetrait, villeRetrait}</p>
+
+<p>Vendeur :</p>
 
 
 </body>

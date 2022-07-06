@@ -64,7 +64,7 @@ public class ProfilServlet extends HttpServlet {
 			//insertion du credit recuperer de la base vers la page html. 
 			request.setAttribute("credit", RetourProfil.getCredit());
 			
-		} catch (Exception e) {
+		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
