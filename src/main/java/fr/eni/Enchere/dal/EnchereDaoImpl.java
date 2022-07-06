@@ -18,11 +18,11 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String SELECT_ENCHERE_BY_CATEG = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and no_categorie = ?";
 	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ?";
 	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE_AND_CATEG = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ? and no_categorie = ?";
-	private static final String SELECT_ENCHERE_BY_ARTICLE_ID = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article,description,libelle,AV.prix_initial,R.code_postal,R.rue,R.ville from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie INNER JOIN RETRAITS R on AV.no_article = R.no_article  where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and E.no_enchere = ?";
+	private static final String SELECT_ENCHERE_BY_ARTICLE_ID = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article,description,libelle,AV.prix_initial,R.code_postal,R.rue,R.ville from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie INNER JOIN RETRAITS R on AV.no_article = R.no_article  where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and E.no_article = ?";
 	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES VALUES(GETDATE(),?,?,?)";
 	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	private static final String GET_UTILISATEUR_AND_MEILLEURE_OFFRE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
-	private static final String GET_VENTE_BY_USER_ID = "select * from ARTICLES_VENDUS where no_utilisateur = ?";
+	private static final String GET_VENTE_BY_USER_ID = "select nom_article nomArticle,prix_vente prixVente,date_fin_encheres DateFinEnchere,pseudo,no_article from ARTICLES_VENDUS av INNER JOIN UTILISATEURS U on  av.no_utilisateur = u.no_utilisateur where AV.no_utilisateur = ?";
 	
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException {
 		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
@@ -176,22 +176,24 @@ public DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu artic
 	return result;
 }
 
-//public List<DtoEnchereComplete> selectArticleOfUser(int noUtilisateur)throws DALException, SQLException {
-//	Connection cnx = ConnectionProvider.getConnection();
-//	List<DtoEnchereComplete> result = new ArrayList<DtoEnchereComplete>();
-//	try {
-//		PreparedStatement stmt = cnx.prepareStatement(GET_VENTE_BY_USER_ID);
-//		stmt.setInt(1, noUtilisateur);
-//		ResultSet rs = stmt.executeQuery();
-//		while(rs.next()) {
-//			var ObjetRetour  = new DtoEnchereComplete(rs)
-//		}
-//	} catch (SQLException e) {
-//		e.printStackTrace();
-//		DALException dalException = new DALException();
-//		throw dalException;
-//	}
-//}
+public List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws DALException, SQLException {
+	Connection cnx = ConnectionProvider.getConnection();
+	List<DtoEnchereComplete> result = new ArrayList<DtoEnchereComplete>();
+	try {
+		PreparedStatement stmt = cnx.prepareStatement(GET_VENTE_BY_USER_ID);
+		stmt.setInt(1, noUtilisateur);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			var ObjetRetour  = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"));	
+			result.add(ObjetRetour);
+			}
+	} catch (SQLException e) {
+		e.printStackTrace();
+		DALException dalException = new DALException();
+		throw dalException;
+	}
+	return result;
+}
 
 
 }

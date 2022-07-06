@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.CategorieManager;
@@ -57,9 +58,11 @@ public class AccueilServlet extends HttpServlet {
 		System.out.println("valeur du bouton MesVentesEnCours " + req.getParameter("MesVentesEnCours"));
 		System.out.println("valeur du radioButton ventes " + req.getParameter("choixfiltre"));
 		System.out.println("valeur du radioButton achats " + req.getParameter("achats"));
-		try {
-			if(req.getParameter("choixfiltre") != null) {
-				listCategorie = categorieMger.SelectAllCategorie();
+		HttpSession session = req.getSession();
+				try {
+					listCategorie = categorieMger.SelectAllCategorie();
+			if(req.getParameter("choixfiltre") == null) {
+				
 				if(Integer.parseInt(req.getParameter("Categorie")) != 0 && req.getParameter("NomArticle").equals("")) {
 					System.out.println("Que la catégorie en filtre");
 					listEncheresFiltered = enchereMger.selectVenteByCateg(Integer.parseInt(req.getParameter("Categorie")));
@@ -75,8 +78,9 @@ public class AccueilServlet extends HttpServlet {
 					listEncheresFiltered = enchereMger.SelectAllEnchere();
 				}
 			}else if(req.getParameter("choixfiltre").equals("vente")) {
-				
+				listEncheresFiltered = enchereMger.selectArticleEnVenteOfUser((int)session.getAttribute( "idUtilisateur"));
 			}else if(req.getParameter("choixfiltre").equals("achats")) {
+				listEncheresFiltered = enchereMger.SelectAllEnchere();
 			}
 			} catch (Exception e) {
 			// TODO Auto-generated catch block

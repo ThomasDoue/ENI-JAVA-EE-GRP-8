@@ -73,7 +73,7 @@ private EncheresDao enchereDao;
 		try {
 			enchereDao.updatePrixVenteEnchere(noArticle, montantEnchere, noUtilisateur);
 		}catch(Exception e) {
-			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
+			throw new BLLException ("Erreur lors de la mise à jour du prix de vente d'un article suite à une enchère dans la BLL : " +  e);
 		}
 	}
 	
@@ -81,5 +81,15 @@ private EncheresDao enchereDao;
 		return getMontantEtPseudoDeLaMeilleurOffre(articleVendu);
 		
 		
+	}
+	
+	public List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws SQLException, BLLException{
+		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
+		try {
+			ListeRetour = enchereDao.selectArticleEnVenteOfUser(noUtilisateur);
+		}catch(Exception e) {
+			throw new BLLException ("Erreur lors de la mise à jour du prix de vente d'un article suite à une enchère dans la BLL : " +  e);
+		}
+		return ListeRetour;
 	}
 }
