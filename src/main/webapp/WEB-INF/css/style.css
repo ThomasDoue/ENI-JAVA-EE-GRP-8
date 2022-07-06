@@ -114,6 +114,14 @@ select{
 	margin-top: 10px;
 	padding: 10px;
 }
+select:hover {
+	background-color: #4CAF50;
+	color:#c8e1cc;
+}
+
+option{
+	background-color: #4CAF50;
+}
 .btn-link {
     border: none;
     outline: none;
