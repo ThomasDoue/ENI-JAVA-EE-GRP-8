@@ -23,7 +23,7 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES VALUES(GETDATE(),?,?,?)";
 	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	private static final String GET_UTILISATEUR_AND_MEILLEURE_OFFRE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
-	private static final String GET_VENTE_BY_USER_ID = "select * from ARTICLES_VENDUS where no_utilisateur = ?";
+	private static final String GET_VENTE_BY_USER_ID = "select nom_article nomArticle,prix_vente PrixVente,date_fin_encheres DateFinEnchere,pseudo,av.no_article from ARTICLES_VENDUS av INNER JOIN UTILISATEURS U on av.no_utilisateur = u.no_utilisateur where av.no_utilisateur = ?";
 	private static final String BALANCE_CHECK = "SELECT credit from UTILISATEURS where no_utilisateur= ? ";
 	private static final String NUMBER_OLD_USER_AND_CREDIT_BEST_WINNER ="select no_utilisateur, montant_enchere  from ENCHERES where montant_enchere=(select max(montant_enchere) from ENCHERES where no_article= ? ) and no_article= ? ";
 	private static final String UPDATE_CREDIT_NOT_WIN_USER="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";
