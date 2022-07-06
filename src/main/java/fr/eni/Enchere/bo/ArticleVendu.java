@@ -1,6 +1,6 @@
 package fr.eni.Enchere.bo;
 
-import java.sql.Date;
+import java.util.Date;
 
 //attribue
 public class ArticleVendu {

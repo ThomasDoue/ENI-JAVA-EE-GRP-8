@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Date;
 
 import fr.eni.Enchere.bo.ArticleVendu;
 import fr.eni.Enchere.bo.Utilisateur;
@@ -21,14 +22,26 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 	
 	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException,Exception{
 		int id_NouvelleArticle=0;
+		Date DebutEncheres=nouvelleArticle.getDateDebutEncheres();
+		Date FinEncheres=nouvelleArticle.getDateFinEncheres();
+		//convertir une date java en dateJavaSQL
+
+	 	long DebutEncherestimeInMilliSeconds = DebutEncheres.getTime();
+        java.sql.Date SQLDebutEnchere = new java.sql.Date(DebutEncherestimeInMilliSeconds);
+
+        long FinEncherestimeInMilliSeconds = FinEncheres.getTime();
+        java.sql.Date SQLFinEncheres = new java.sql.Date(FinEncherestimeInMilliSeconds);
+
+
+
 		Utilisateur user = new Utilisateur();		
 		try (Connection conn = ConnectionProvider.getConnection()){
 			//envoie de la requette en preparedStatement et recupération de la clée
 			PreparedStatement stmtnew_vente = conn.prepareStatement(NEW_VENTE,PreparedStatement.RETURN_GENERATED_KEYS);
 			stmtnew_vente.setString(1, nouvelleArticle.getNomArticle());
 			stmtnew_vente.setString(2, nouvelleArticle.getDescription());
-			stmtnew_vente.setDate(3, nouvelleArticle.getDateDebutEncheres());
-			stmtnew_vente.setDate(4, nouvelleArticle.getDateFinEncheres());
+			stmtnew_vente.setDate(3, SQLDebutEnchere);
+			stmtnew_vente.setDate(4, SQLFinEncheres);
 			stmtnew_vente.setInt(5, nouvelleArticle.getPrixInitial());
 			stmtnew_vente.setInt(6, nouvelleArticle.getNoUtilisateur());
 			stmtnew_vente.setInt(7, nouvelleArticle.getNoCategorie());
@@ -41,6 +54,8 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 			if (rs.next()) {
 				id_NouvelleArticle= rs.getInt(1);
 			}
+			
+			// insertion de donner dans retrait
 			PreparedStatement stmtUser = conn.prepareStatement(SELECT_USER_BY_ID);
 			ResultSet rsUser = stmtUser.executeQuery();
 			while(rs.next()) {
@@ -53,7 +68,8 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 			stmtInsertRetrait.setString(4, user.getVille());
 			stmtInsertRetrait.executeUpdate();
 			System.out.println("Enregistrement dans la dal réussi");
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			
 			throw new DALException("erreur insert nouvelleArticle : ", e);
 		}
 		return id_NouvelleArticle;

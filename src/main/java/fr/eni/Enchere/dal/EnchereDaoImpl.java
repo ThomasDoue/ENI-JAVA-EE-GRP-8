@@ -167,9 +167,9 @@ public class EnchereDaoImpl implements EncheresDao{
 			//**************************************************************************
 
 			/**
-			 *fonction qui va veriffier si l'acheteur à assez de crédit  .
+			 *fonction qui va verifier si l'acheteur à assez de crédit  .
 			 *recréditer l'ancien encherisseur 
-			 *debiter le winner de l'enchére de l'argent 
+			 *debiter le winner de l'encherisseur de l'argent 
 			 */
 			if (soldeEncherisseur>= montantEnchere) {
 				//retour de l'ancien encherisseur pour le recréditer
