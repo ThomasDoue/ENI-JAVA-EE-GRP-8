@@ -56,12 +56,6 @@ body {
 .titre{
 	text-align: center;
 }
-.flex{
-	display: flex;
-	justify-content: space-around;
-	margin: 50%
-
-}
 
 .logoposition {
 	display: flex;
@@ -71,8 +65,7 @@ body {
 }
 .flex{
 	display: flex;
-	justify-content: space-around;
-	margin: 50%
+	justify-content: space-between;
 }
 
 .logoposition {
@@ -81,10 +74,7 @@ body {
 .titre{
 	text-align: center;
 }
-.flex{
-	display: flex;
-	justify-content: space-around;
-}
+
 .bodyAccueil{
 	background: #c8e1cc;
 	font-family: 'Lobster', cursive;
@@ -146,6 +136,9 @@ select{
 	margin-left: 300px;
 }
 
+.bodyArticleVendu{
+	text-align: center;
+}
 
 #mainListeEnchere { 
     width: 800px;
