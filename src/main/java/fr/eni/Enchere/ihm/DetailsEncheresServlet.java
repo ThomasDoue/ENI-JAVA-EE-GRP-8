@@ -32,9 +32,9 @@ public class DetailsEncheresServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
-		System.out.println(("valeur id enchere" + request.getParameter("IdEnchere")));
+		System.out.println(("valeur id enchere" + request.getParameter("IdArticle")));
 		try {
-			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdEnchere")));
+			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdArticle")));
 			request.setAttribute("Enchere", ObjetRetour);
 			
 			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("noArticle"))))

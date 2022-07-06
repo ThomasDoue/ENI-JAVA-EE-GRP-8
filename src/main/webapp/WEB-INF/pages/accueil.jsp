@@ -31,7 +31,6 @@
 <br>
 <br>
 <c:set var = "idUser" value ="${sessionScope.idUtilisateur}"/>
-<label> test ${sessionScope.idUtilisateur}</label>
 <c:if test="${idUser != null}">
 <div class ="mainListeEnchere">
 	<div class="RadioButtonFiltre">
@@ -76,7 +75,12 @@
 
 <c:forEach items="${ListEncheres}" var="Encheres">
 <form action="<%=request.getContextPath()%>/DetailsEncheres" method="get">
-    <button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noArticle}">${Encheres.nomArticle}</button>
+	<c:if test="${idUser != null}">
+    	<button type="submit" class="btn-link" id="IdArticle" name="IdArticle" value ="${Encheres.noArticle}">${Encheres.nomArticle}</button>
+    </c:if>
+    <c:if test="${idUser == null}">
+    	<label>Vendeur : ${Encheres.nomArticle}</label>
+    </c:if>
     </form>
     	<br>
     <label>Prix : ${Encheres.prixVente}</label>
@@ -84,8 +88,14 @@
     <label>Fin de l'enchère ${Encheres.dateFinEncheres}</label>
     	<br>
    	<form action="<%=request.getContextPath()%>/RetourFormulaire" method="post">
-    <label>Vendeur : ${Encheres.pseudo}</label>
-    <button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noArticle}">Vendeur : ${Encheres.pseudo}</button>
+    
+    <c:set var = "idUser" value ="${sessionScope.idUtilisateur}"/>
+	<c:if test="${idUser != null}">
+    	<button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noArticle}">Vendeur : ${Encheres.pseudo}</button>
+    </c:if>
+    <c:if test="${idUser == null}">
+    	<label>Vendeur : ${Encheres.pseudo}</label>
+    </c:if>
     </form>
     	<br>
     	<br>
