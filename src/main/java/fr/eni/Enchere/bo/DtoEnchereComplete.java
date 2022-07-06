@@ -66,6 +66,21 @@ public class DtoEnchereComplete {
 		this.setPrixInitial(prixInitial);
 		this.setNoArticle(noArticle);
 	}
+	
+	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noArticle,String libelleCateg,int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
+		super();
+		this.setNomArticle(nomArticle);
+		this.setPrixVente(prixVente);
+		this.setDateFinEncheres(localDate);
+		this.setPseudo(pseudo);
+		this.setLibelleCateg(libelleCateg);
+		this.setRueRetrait(rueRetrait);
+		this.setCodePostalRetrait(codePostalRetrait);
+		this.setVilleRetrait(villeRetrait);
+		this.setDescription(description);
+		this.setPrixInitial(prixInitial);
+		this.setNoArticle(noArticle);
+	}
 
 	public DtoEnchereComplete() {
 		
