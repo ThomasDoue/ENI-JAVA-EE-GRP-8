@@ -12,7 +12,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
-<body>
+<body class = "bodyArticleVendu">
 <p>${DtoEnchereComplete.pseudo} a remporté l'enchère</p>
 <p>Nom de l'article : ${DtoEnchereComplete.nomArticle}</p>
 <p>Description : ${DtoEnchereComplete.description}</p>

@@ -56,6 +56,14 @@ public class DetailsEncheresServlet extends HttpServlet {
 		System.out.println("Id de la session utilisateur : " + session.getAttribute( "idUtilisateur"));
 		System.out.println("offre de l'utilisateur : " + request.getParameter( "offre"));
 		System.out.println("Numéro de l'article : " + request.getParameter("noArticle"));
+		//creation de la fonction qui verifie le solde retour bouléan 
+		//********************************************************************************
+		// retourne un booléen updatePrixVenteEnchere
+		
+		
+		
+		
+		//********************************************************************************
 		try {
 			enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
 		}catch(Exception e){

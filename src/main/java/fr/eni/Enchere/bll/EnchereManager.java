@@ -14,7 +14,7 @@ public interface EnchereManager {
 	List<DtoEnchereComplete> selectVenteByNomArticle(String nomArticle) throws SQLException,BLLException;
 	List<DtoEnchereComplete> selectVenteByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
 	DtoEnchereComplete selectVenteById(int noArticle) throws SQLException, BLLException;
-	public void updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException;
+	boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, BLLException;
 	DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre(ArticleVendu articleVendu);
 	List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws SQLException, BLLException;
 
