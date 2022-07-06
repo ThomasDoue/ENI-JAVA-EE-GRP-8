@@ -69,8 +69,8 @@
 <br>
 <br>
 <br>
-<button>Rechercher</button>
 </c:if>
+<button>Rechercher</button>
 </form>
 
 <c:forEach items="${ListEncheres}" var="Encheres">

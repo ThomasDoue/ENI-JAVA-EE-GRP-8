@@ -15,15 +15,15 @@ import fr.eni.Enchere.bo.DtoEnchereComplete;
 
 public class EnchereDaoImpl implements EncheresDao{
 
-	private static final String SELECT_ALL = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
-	private static final String SELECT_ENCHERE_BY_CATEG = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and no_categorie = ?";
-	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ?";
-	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE_AND_CATEG = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and nom_article like ? and no_categorie = ?";
-	private static final String SELECT_ENCHERE_BY_ARTICLE_ID = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article,description,libelle,AV.prix_initial,R.code_postal,R.rue,R.ville from ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie INNER JOIN RETRAITS R on AV.no_article = R.no_article  where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article) and E.no_enchere = ?";
+	private static final String SELECT_ALL = "select AV.nom_article nomArticle,prix_vente PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, AV.no_article from  ARTICLES_VENDUS AV  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur";
+	private static final String SELECT_ENCHERE_BY_CATEG = "select AV.nom_article nomArticle,prix_vente PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, AV.no_article from ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where no_categorie = ?";
+	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE = "select AV.nom_article nomArticle,prix_vente PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, AV.no_article from  ARTICLES_VENDUS AV  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur where nom_article like ?";
+	private static final String SELECT_ENCHERE_BY_NOM_ARTICLE_AND_CATEG = "select AV.nom_article nomArticle,prix_vente PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, AV.no_article from  ARTICLES_VENDUS AV  INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur and nom_article like ? and no_categorie = ?";
+	private static final String SELECT_ENCHERE_BY_ARTICLE_ID = "select AV.nom_article nomArticle,prix_vente PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, AV.no_article,description,libelle,AV.prix_initial,R.code_postal,R.rue,R.ville from ARTICLES_VENDUS AV INNER JOIN UTILISATEURS U ON AV.no_utilisateur = U.no_utilisateur INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie INNER JOIN RETRAITS R on AV.no_article = R.no_article and AV.no_article = ?";
 	private static final String INSERT_ENCHERES = "INSERT INTO ENCHERES VALUES(GETDATE(),?,?,?)";
 	private static final String UPDATE_ARTICLES_VENDUS = "update ARTICLES_VENDUS set prix_vente = ? where no_article = ?";
 	private static final String GET_UTILISATEUR_AND_MEILLEURE_OFFRE = "select AV.nom_article nomArticle,montant_enchere PrixVente,AV.date_fin_encheres DateFinEnchere,U.pseudo, E.no_enchere, AV.no_article from ENCHERES E INNER JOIN UTILISATEURS U ON E.no_utilisateur = U.no_utilisateur INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article where montant_enchere = (select MAX(montant_enchere) from ENCHERES where no_article = AV.no_article)";
-	private static final String GET_VENTE_BY_USER_ID = "select * from ARTICLES_VENDUS where no_utilisateur = ?";
+	private static final String GET_VENTE_BY_USER_ID = "select nom_article nomArticle,prix_vente PrixVente,date_fin_encheres DateFinEnchere,pseudo,av.no_article from ARTICLES_VENDUS av INNER JOIN UTILISATEURS U on av.no_utilisateur = u.no_utilisateur where av.no_utilisateur = ?";
 	private static final String BALANCE_CHECK = "SELECT credit from UTILISATEURS where no_utilisateur= ? ";
 	private static final String NUMBER_OLD_USER_AND_CREDIT_BEST_WINNER ="select no_utilisateur, montant_enchere  from ENCHERES where montant_enchere=(select max(montant_enchere) from ENCHERES where no_article= ? ) and no_article= ? ";
 	private static final String UPDATE_CREDIT_NOT_WIN_USER="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";
@@ -40,7 +40,7 @@ public class EnchereDaoImpl implements EncheresDao{
 			PreparedStatement stmtSelectAll = conn.prepareStatement(SELECT_ALL);
 			ResultSet rs = stmtSelectAll.executeQuery();
 			while(rs.next()) {
-				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_enchere"),rs.getInt("no_article"));
+				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"));
 				ListeRetour.add(Enchere);
 				System.out.println(Enchere.toString());
 			}
@@ -58,8 +58,8 @@ public class EnchereDaoImpl implements EncheresDao{
 			stmtSelectByCateg.setInt(1, noCateg);
 			ResultSet rs = stmtSelectByCateg.executeQuery();
 			while(rs.next()) {
-				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_enchere"),rs.getInt("no_article"));
-				
+				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"));
+
 				ListeRetour.add(Enchere);
 				System.out.println(Enchere.toString());
 			}
@@ -78,7 +78,7 @@ public class EnchereDaoImpl implements EncheresDao{
 			System.out.println("Requete chercher par article : " + stmtSelectByNomArticle.toString());
 			ResultSet rs = stmtSelectByNomArticle.executeQuery();
 			while(rs.next()) {
-				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_enchere"),rs.getInt("no_article"));
+				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"));
 				ListeRetour.add(Enchere);
 				System.out.println("Enchere pas nom d'aticle : " + Enchere.toString());
 			}
@@ -100,7 +100,7 @@ public class EnchereDaoImpl implements EncheresDao{
 			stmtSelectByNomArticleAndCateg.setInt(2, noCategorie);
 			ResultSet rs = stmtSelectByNomArticleAndCateg.executeQuery();
 			while(rs.next()) {
-				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_enchere"),rs.getInt("no_article"));
+				DtoEnchereComplete Enchere = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"));
 				ListeRetour.add(Enchere);
 				System.out.println(Enchere.toString());
 			}
@@ -130,7 +130,7 @@ public class EnchereDaoImpl implements EncheresDao{
 			stmtSelectByIdArticle.setInt(1, noArticle);
 			ResultSet rs = stmtSelectByIdArticle.executeQuery();	
 			while(rs.next()) {
-				ObjetRetour = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_enchere"),rs.getInt("no_article"),rs.getString("libelle"),rs.getInt("prix_initial"),rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("description"));
+				ObjetRetour = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"),rs.getString("libelle"),rs.getInt("prix_initial"),rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("description"));
 				System.out.println(ObjetRetour.toString());
 			}
 		} catch (SQLException e) {
