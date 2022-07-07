@@ -9,13 +9,14 @@ import fr.eni.Enchere.bo.ArticleVendu;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
 
 public interface EncheresDao {
-	 List<DtoEnchereComplete> SelectAllEnchere() throws SQLException;
-	 List<DtoEnchereComplete> SelectVenteByCategorie(int noCateg) throws SQLException;
-	 List<DtoEnchereComplete> selectVenteByNomArticle(String nomArticle) throws SQLException;
-	 List<DtoEnchereComplete> selectVenteByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException,BLLException;
-	 DtoEnchereComplete selectVenteById(int noArticle) throws SQLException;
-	 boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException;
+	 List<DtoEnchereComplete> SelectAllEnchere() throws SQLException, DALException;
+	 List<DtoEnchereComplete> SelectVenteByCategorie(int noCateg) throws SQLException, DALException;
+	 List<DtoEnchereComplete> selectVenteByNomArticle(String nomArticle) throws SQLException, DALException;
+	 List<DtoEnchereComplete> selectVenteByNomArticleAndCateg(int noCategorie,String nomArticle) throws SQLException, DALException;
+	 DtoEnchereComplete selectVenteById(int noArticle) throws DALException, SQLException;
+	 boolean updatePrixVenteEnchere(int noArticle,int montantEnchere,int noUtilisateur) throws SQLException, DALException;
 	 DtoEnchereComplete getMontantEtPseudoDeLaMeilleurOffre (ArticleVendu articleVendu) throws DALException, SQLException;
 	 List<DtoEnchereComplete> selectArticleEnVenteOfUser(int noUtilisateur)throws DALException, SQLException;
 	 boolean FinEnchere(int noArticle)throws DALException;
+	 
 }

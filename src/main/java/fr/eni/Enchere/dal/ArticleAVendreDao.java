@@ -6,8 +6,6 @@ import fr.eni.Enchere.bo.Retrait;
 public interface ArticleAVendreDao {
 
 	int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException;
-
-	public boolean FinEnchere(int noArticle)throws DALException;
 	
 	void insertionDonnerRetrait (Retrait adresseRetrait ) throws DALException;
 }
