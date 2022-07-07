@@ -22,6 +22,8 @@ public class DetailsEncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleAVendreManager articleMger;
 	private EnchereManager enchereMger;
+	private int IdArticle = 0;
+	private boolean boolErreur = false;
 	public void init() throws ServletException {
 		articleMger = BLLFactory.getArticleAVendreManager();	
 		enchereMger = BLLFactory.getEnchereManager();
@@ -33,9 +35,15 @@ public class DetailsEncheresServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
 		System.out.println(("valeur id enchere" + request.getParameter("IdArticle")));
+		System.out.println("bool erreur" + boolErreur);
 		try {
+			if(request.getParameter("IdArticle") != null) {
 			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdArticle")));
+			}else {
+				ObjetRetour = enchereMger.selectVenteById(IdArticle);
+			}
 			request.setAttribute("Enchere", ObjetRetour);
+			request.setAttribute("Erreurs", boolErreur);
 			
 //			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("IdArticle"))))
 //				request.setAttribute("estFini", "true");
@@ -44,6 +52,7 @@ public class DetailsEncheresServlet extends HttpServlet {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		boolErreur = false;
 		System.out.println("Retour details vente dans servlet : " + ObjetRetour.toString());
 		request.getRequestDispatcher("/WEB-INF/pages/DetailsEnchere.jsp").forward(request, response);
 	}
@@ -53,9 +62,6 @@ public class DetailsEncheresServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		System.out.println("Id de la session utilisateur : " + session.getAttribute( "idUtilisateur"));
-		System.out.println("offre de l'utilisateur : " + request.getParameter( "offre"));
-		System.out.println("Numéro de l'article : " + request.getParameter("noArticle"));
 		//creation de la fonction qui verifie le solde retour bouléan 
 		//********************************************************************************
 		// retourne un booléen updatePrixVenteEnchere
@@ -65,9 +71,16 @@ public class DetailsEncheresServlet extends HttpServlet {
 		
 		//********************************************************************************
 		try {
-			enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
+			boolean test = enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
+			if(!test) {
+				boolErreur = true;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+		finally {
+			IdArticle = Integer.parseInt(request.getParameter("noArticle"));
+			response.sendRedirect("DetailsEncheres");
 		}
 	}
 

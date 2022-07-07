@@ -10,6 +10,9 @@
 	<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 	<style>@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');</style>
 	</head>
+<c:if test="${Erreurs == true}">	
+	<p>Vous n'avez pas assez de crédit pour enchérir.</p>	
+</c:if>
 <body class = "bodyDetailEnchere">
 	<br>
 	<form class = "DetailsEncheres" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">

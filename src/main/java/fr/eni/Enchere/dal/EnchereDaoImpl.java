@@ -32,8 +32,6 @@ public class EnchereDaoImpl implements EncheresDao{
     private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT AV.date_fin_encheres FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article WHERE E.no_enchere=?";
     private static final String DATE_ACTUELLE = "SELECT CONVERT(date, getdate())";
 	
-	
-	
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException {
 		List<DtoEnchereComplete> ListeRetour = new ArrayList<DtoEnchereComplete>();
 		try(Connection conn = ConnectionProvider.getConnection()) {
@@ -219,7 +217,6 @@ public class EnchereDaoImpl implements EncheresDao{
 					UpdateArticle.executeUpdate();
 					System.out.println("tu peux encherire renvoie dans du résultat true");
 					resulat=true;
-					
 			}else {
 				resulat=false;
 				System.out.println("tu n'as pas asser de crédit ");
