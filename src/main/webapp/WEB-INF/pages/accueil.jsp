@@ -20,7 +20,7 @@
 
 	<label for="name">FILTRES :</label>
 	<br>
-	<input type="text" id="NomArticle" name="NomArticle" placeholder="Le nom de l'article contient" maxlength="30">
+	<input class = "inputAccueil"type="text" id="NomArticle" name="NomArticle" placeholder="Le nom de l'article" maxlength="30">
 	<br>
 <label for="name">Catégorie : </label>
 <select name="Categorie" id="categ-select">
