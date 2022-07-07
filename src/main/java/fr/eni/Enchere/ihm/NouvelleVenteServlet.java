@@ -36,6 +36,7 @@ public class NouvelleVenteServlet  extends HttpServlet{
 	private UtilisateurManager utilisateurManager;
 	private CategorieManager categorieManager;
 	private int idUtilisateur=3;
+	int id_NouvelleArticle=0;
 	public void init() {
 		articleAVendreManager = BLLFactory.getArticleAVendreManager();
 		utilisateurManager = BLLFactory.getUtilisateurManager();
@@ -127,9 +128,10 @@ public class NouvelleVenteServlet  extends HttpServlet{
 
 				System.out.println("nouvelle article :"+nouvelleArticle);
 				
+				
 				try {
 					//enregistrement d'un nouvelle article et recuperation de id_NouvelleArticle 
-					int id_NouvelleArticle = articleAVendreManager.NouvelleArticle(nouvelleArticle);
+					id_NouvelleArticle = articleAVendreManager.NouvelleArticle(nouvelleArticle);
 					
 					System.out.println(" numéro ID utilisateur :" +id_NouvelleArticle);
 					
@@ -138,6 +140,7 @@ public class NouvelleVenteServlet  extends HttpServlet{
 														  request.getParameter("rue"),
 														  request.getParameter("codePostal"),
 														  request.getParameter("ville"));
+					System.out.println(adresseRetrait);
 							articleAVendreManager.insertionDonnerRetrait(adresseRetrait);
 				
 				} catch (Exception e) {
