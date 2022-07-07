@@ -20,7 +20,7 @@ public class CategorieDaoImpl implements CategorieDao {
 			while(rs.next()) {
 				Categorie cat = new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"));
 				ListeRetour.add(cat);
-				System.out.println(cat.toString());
+				
 			}
 		}catch(SQLException e){
 			throw new Exception("Erreur sql lors de la récupération des données avec la méthode SelectAll de CatégorieDaoImpl : " + e);

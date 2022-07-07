@@ -14,7 +14,7 @@ import fr.eni.Enchere.bo.Utilisateur;
 
 public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 
-	private static final String NEW_VENTE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie) VALUES (?,?,?,?,?,?,?)";
+	private static final String NEW_VENTE = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie) VALUES (?,?,?,?,?,?,? ,?)";
 	private static final String ARTICLE_VENTE = "SELECT * FROM ARTICLES_VENDUS";
 	private static final String DATE_ACTUELLE = "SELECT DATE(NOW)";
 	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT date_fin_encheres FROM ARTICLES_VENDUS WHERE no_article=?";
@@ -44,8 +44,9 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 			stmtnew_vente.setDate(3, SQLDebutEnchere);
 			stmtnew_vente.setDate(4, SQLFinEncheres);
 			stmtnew_vente.setInt(5, nouvelleArticle.getPrixInitial());
-			stmtnew_vente.setInt(6, nouvelleArticle.getNoUtilisateur());
-			stmtnew_vente.setInt(7, nouvelleArticle.getNoCategorie());
+			stmtnew_vente.setInt(6, nouvelleArticle.getPrixVente());
+			stmtnew_vente.setInt(7, nouvelleArticle.getNoUtilisateur());
+			stmtnew_vente.setInt(8, nouvelleArticle.getNoCategorie());
 			//execution de la requette 
 			stmtnew_vente.executeUpdate();
 			
@@ -56,14 +57,7 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 				id_NouvelleArticle= rs.getInt(1);
 			}
 			
-			// insertion de donner dans retrait
-			PreparedStatement stmtInsertRetrait = conn.prepareStatement(INSERT_RETRAITS_INFO);
-			stmtInsertRetrait.setInt(1, id_NouvelleArticle);
-			stmtInsertRetrait.setString(2, user.getRue());
-			stmtInsertRetrait.setString(3, user.getCodePostal());
-			stmtInsertRetrait.setString(4, user.getVille());
-			stmtInsertRetrait.executeUpdate();
-			System.out.println("Enregistrement dans la dal réussi");
+			
 		} catch (SQLException e) {
 			
 			throw new DALException("erreur insert nouvelleArticle : ", e);
