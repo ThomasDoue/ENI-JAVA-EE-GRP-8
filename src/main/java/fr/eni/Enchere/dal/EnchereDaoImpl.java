@@ -27,7 +27,7 @@ public class EnchereDaoImpl implements EncheresDao{
 	private static final String UPDATE_CREDIT_NOT_WIN_USER="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";
 	private static final String RETURN_CREDIT_USER ="SELECT credit FROM UTILISATEURS WHERE no_utilisateur = ? ";
 	private static final String UPDATE_CREDIT_USER_WIN ="UPDATE UTILISATEURS SET credit = ? WHERE no_utilisateur= ? ";	
-	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT AV.date_fin_encheres FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article WHERE E.no_enchere=?";
+	private static final String SELECT_DATE_FIN_ENCHERES_BY_ID = "SELECT AV.date_fin_encheres FROM ENCHERES E INNER JOIN ARTICLES_VENDUS AV ON E.no_article = AV.no_article WHERE E.no_article=?";
 	private static final String DATE_ACTUELLE = "SELECT CONVERT(date, getdate())";
 
 	public List<DtoEnchereComplete> SelectAllEnchere() throws SQLException, DALException {
@@ -126,7 +126,7 @@ public class EnchereDaoImpl implements EncheresDao{
 			stmtSelectByIdArticle.setInt(1, noArticle);
 			ResultSet rs = stmtSelectByIdArticle.executeQuery();	
 			while(rs.next()) {
-				ObjetRetour = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"),rs.getInt("no_article"),rs.getString("libelle"),rs.getInt("prix_initial"),rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("description"),rs.getDate("date_debut_encheres"));
+				ObjetRetour = new DtoEnchereComplete(rs.getString("nomArticle"),rs.getInt("PrixVente"),rs.getDate("DateFinEnchere"),rs.getString("pseudo"), rs.getString("telephone"), rs.getInt("no_article"),rs.getString("libelle"),rs.getInt("prix_initial"),rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"),rs.getString("description"),rs.getDate("date_debut_encheres"));
 				System.out.println(ObjetRetour.toString());
 			}
 		} catch (SQLException e) {
@@ -274,15 +274,16 @@ public boolean FinEnchere(int noArticle)throws DALException {
 		PreparedStatement stmt = conn.prepareStatement(SELECT_DATE_FIN_ENCHERES_BY_ID);
 		stmt.setInt(1, noArticle);
 		ResultSet rsDateFinEnchere = stmt.executeQuery();
-
+		
 		Statement stmt2 = conn.createStatement();
 		ResultSet rsDateNow = stmt2.executeQuery(DATE_ACTUELLE);
 
 		if (rsDateFinEnchere.next() && rsDateNow.next()) {
-			System.out.println("il y a des ligne");
+			System.out.println(".....................................................................................................");
+			System.out.println("il y a des ligne"+rsDateNow);
 			
-			if((rsDateNow.getDate(1)).after(rsDateFinEnchere.getDate(1))) {System.out.println("faux");
-				return true;}
+			if((rsDateNow.getDate(1)).after(rsDateFinEnchere.getDate(1)))
+				return true;
 		}
 	} catch (SQLException e) {
 		throw new DALException("erreur FinEnchere - noArticle:"+noArticle, e);
