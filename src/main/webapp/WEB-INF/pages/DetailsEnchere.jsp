@@ -33,7 +33,7 @@
 		<%}%>
 		<br>
 		<c:out value="Retrait : ${Enchere.rueRetrait} ${Enchere.villeRetrait} ${Enchere.codePostalRetrait}" />
-
+		<br>
 		<c:out value="Vendeur : ${Enchere.pseudo}" />
 		<br>
 			<c:out value="Tel : ${Enchere.telephone}"/>
