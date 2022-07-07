@@ -62,7 +62,7 @@ private EncheresDao enchereDao;
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
 		try {
 			ObjetRetour = enchereDao.selectVenteById(noArticle);
-		}catch(Exception e) {
+		}catch(DALException e) {
 			throw new BLLException ("Erreur lors de la récupération des encheres par Id dans la BLL : " +  e);
 		}
 		return ObjetRetour;
@@ -93,5 +93,13 @@ private EncheresDao enchereDao;
 			throw new BLLException ("Erreur lors de la mise à jour du prix de vente d'un article suite à une enchère dans la BLL : " +  e);
 		}
 		return ListeRetour;
+	}
+	
+	public boolean FinDEnchere (int noArticle) throws BLLException {
+		try {
+			return enchereDao.FinEnchere(noArticle);
+		} catch (DALException e) {
+			throw new BLLException("Erreur Fin d'enchère, no_Article = "+noArticle, e);
+		}
 	}
 }

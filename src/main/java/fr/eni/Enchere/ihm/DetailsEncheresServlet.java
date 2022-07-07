@@ -20,10 +20,8 @@ import fr.eni.Enchere.bo.DtoEnchereComplete;
 @WebServlet("/DetailsEncheres")
 public class DetailsEncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArticleAVendreManager articleMger;
 	private EnchereManager enchereMger;
-	public void init() throws ServletException {
-		articleMger = BLLFactory.getArticleAVendreManager();	
+	public void init() throws ServletException {	
 		enchereMger = BLLFactory.getEnchereManager();
 	}
 
@@ -37,10 +35,12 @@ public class DetailsEncheresServlet extends HttpServlet {
 			ObjetRetour = enchereMger.selectVenteById(Integer.parseInt(request.getParameter("IdArticle")));
 			request.setAttribute("Enchere", ObjetRetour);
 			
-//			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("IdArticle"))))
-//				request.setAttribute("estFini", "true");
-//			else
-//				request.setAttribute("estFini", "false");
+
+			if(enchereMger.FinDEnchere(Integer.parseInt(request.getParameter("IdArticle"))))
+				request.setAttribute("estFini", "true");
+			else
+				request.setAttribute("estFini", "false");
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

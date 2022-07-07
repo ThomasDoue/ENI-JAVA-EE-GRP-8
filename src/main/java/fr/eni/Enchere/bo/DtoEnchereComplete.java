@@ -51,7 +51,7 @@ public class DtoEnchereComplete {
 		this.setNoArticle(noArticle);
 	}
 	
-	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noEnchere,int noArticle,String libelleCateg,int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
+	public DtoEnchereComplete(String nomArticle,int prixVente,Date localDate,String pseudo,int noEnchere,int noArticle,String libelleCateg, String telephone, int prixInitial ,String rueRetrait,String codePostalRetrait,String villeRetrait,String  description) {
 		super();
 		this.setNomArticle(nomArticle);
 		this.setPrixVente(prixVente);
@@ -59,6 +59,7 @@ public class DtoEnchereComplete {
 		this.setPseudo(pseudo);
 		this.setNoEnchere(noEnchere);
 		this.setLibelleCateg(libelleCateg);
+		this.setTelephone(telephone);
 		this.setRueRetrait(rueRetrait);
 		this.setCodePostalRetrait(codePostalRetrait);
 		this.setVilleRetrait(villeRetrait);
@@ -95,7 +96,7 @@ public class DtoEnchereComplete {
 	//to string 
 	@Override
 	public String toString() {
-		return "Enchere [nomArticle=" + getNomArticle() + ", prixVente=" + getPrixVente() + ", dateFinEncheres=" + getDateFinEncheres() + ", pseudo : " + getPseudo() + "CodePostalRetrait : " + getCodePostalRetrait() + "Rue retrait : " + getRueRetrait() + "]" ;
+		return "Enchere [nomArticle=" + getNomArticle() + ", prixVente=" + getPrixVente() + ", dateFinEncheres=" + getDateFinEncheres() + ", pseudo : " + getPseudo() + ", telephone : " + getTelephone() + ", CodePostalRetrait : " + getCodePostalRetrait() + ", Rue retrait : " + getRueRetrait() + "]" ;
 	}
 
 
