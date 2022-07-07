@@ -12,7 +12,10 @@
 	</head>
 <body class = "bodyDetailEnchere">
 	<br>
-	<form class = "forminscription" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
+	
+	<form class = "DetailsEncheres" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
+		<input type="hidden" value="${Enchere.noArticle}" name="noArticle" />
+		<br>
 		<% if("false".equals(request.getAttribute("estFini"))) {%>
 			<h1>Détail Vente</h1>
 		<% } else {%>

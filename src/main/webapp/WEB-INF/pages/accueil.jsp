@@ -89,7 +89,7 @@
 <form action="<%=request.getContextPath()%>/DetailsEncheres" method="get">
 
 	<c:if test="${idUser != null}">
-    	<button type="submit" class="btn-link" id="IdArticle" name="IdArticle" value ="${Encheres.noArticle}">${Encheres.nomArticle}</button>
+    	<button class = "button" type="submit" class="btn-link" id="IdArticle" name="IdArticle" value ="${Encheres.noArticle}">${Encheres.nomArticle}</button>
     </c:if>
     <c:if test="${idUser == null}">
     	<label>Vendeur : ${Encheres.nomArticle}</label>
@@ -104,7 +104,7 @@
     
     <c:set var = "idUser" value ="${sessionScope.idUtilisateur}"/>
 	<c:if test="${idUser != null}">
-    	<button type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noArticle}">Vendeur : ${Encheres.pseudo}</button>
+    	<button class="button" type="submit" class="btn-link" id="IdEnchere" name="IdEnchere" value ="${Encheres.noArticle}">Vendeur : ${Encheres.pseudo}</button>
     </c:if>
     <c:if test="${idUser == null}">
     	<label>Vendeur : ${Encheres.pseudo}</label>
