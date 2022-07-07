@@ -14,8 +14,8 @@
 <c:if test="${verifmdp == false}">
 		<p>Le mot de passe et le mot de passe de confirmation n'est pas le même.</p>	
 	</c:if>
+	<div class = "titre"> Mon Profil</div>
 <form class = "forminscription" action="<%=request.getContextPath()%>/Inscription" method="post">
-	Mon Profil
 	<br>
 	<div class="form-group">
 	<label for="name">Pseudo (uniquement des lettres et des chiffres)</label>
