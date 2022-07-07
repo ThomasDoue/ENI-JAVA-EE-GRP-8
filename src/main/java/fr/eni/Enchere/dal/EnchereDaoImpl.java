@@ -121,7 +121,7 @@ public class EnchereDaoImpl implements EncheresDao{
 		return ListeRetour;
 	}
 	
-	
+	//méthode pour sélectionner une vente par id
 	public DtoEnchereComplete selectVenteById(int noArticle) throws SQLException{
 		System.out.println("Details vente ID de d'enchère " + noArticle);
 		DtoEnchereComplete ObjetRetour = new DtoEnchereComplete();
