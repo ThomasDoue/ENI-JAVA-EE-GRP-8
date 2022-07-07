@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import fr.eni.Enchere.bo.ArticleVendu;
+import fr.eni.Enchere.bo.Retrait;
 import fr.eni.Enchere.bo.Utilisateur;
 
 public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
@@ -20,7 +21,7 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 	private static final String SELECT_USER_BY_ID = "Select rue,code_postal,ville from utilisateurs where no_utilisateur = ?";
 	private static final String INSERT_RETRAITS_INFO = "INSERT INTO RETRAITS VALUES(?,?,?,?)";
 	
-	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException,Exception{
+	public int nouvelleArticle (ArticleVendu nouvelleArticle )throws DALException{
 		int id_NouvelleArticle=0;
 		Date DebutEncheres=nouvelleArticle.getDateDebutEncheres();
 		Date FinEncheres=nouvelleArticle.getDateFinEncheres();
@@ -95,6 +96,31 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 		return false;
 		
 	}
+	
+	/**
+	 * @param adresseRetrait : objet recuper sur la servlet rempli par utlisateur
+	 * @throws DALException
+	 */
+	public void insertionDonnerRetrait (Retrait adresseRetrait ) throws DALException {
+		
+		try (Connection conn = ConnectionProvider.getConnection()) {
+			// insertion de donner dans retrait
+			PreparedStatement stmtInsertRetrait = conn.prepareStatement(INSERT_RETRAITS_INFO);
+			stmtInsertRetrait.setInt(1,adresseRetrait.getNoArticle() );
+			stmtInsertRetrait.setString(2, adresseRetrait.getRue());
+			stmtInsertRetrait.setString(3, adresseRetrait.getCodePostal());
+			stmtInsertRetrait.setString(4, adresseRetrait.getVille());
+			stmtInsertRetrait.executeUpdate();
+			System.out.println("Enregistrement dans la dal réussi");
+			
+		} catch (SQLException e) {
+			throw new DALException("erreur insert insertionDonnerRetrait : ", e );
+		}
+		
+		
+
+	}
+	
 	
 }
 

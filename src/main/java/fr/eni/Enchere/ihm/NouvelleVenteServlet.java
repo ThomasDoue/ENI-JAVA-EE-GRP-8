@@ -24,6 +24,7 @@ import fr.eni.Enchere.bll.CategorieManager;
 import fr.eni.Enchere.bll.UtilisateurManager;
 import fr.eni.Enchere.bo.ArticleVendu;
 import fr.eni.Enchere.bo.Categorie;
+import fr.eni.Enchere.bo.Retrait;
 import fr.eni.Enchere.bo.Utilisateur;
 
 
@@ -118,13 +119,25 @@ public class NouvelleVenteServlet  extends HttpServlet{
 																debutEnchere, 
 																finEnchere,
 																Integer.parseInt(request.getParameter("miseaPrix")),
-																0,
+																Integer.parseInt(request.getParameter("miseaPrix")),
 																idUtilisateur,
 																Integer.parseInt((request.getParameter("Categorie"))));
 
 				System.out.println("nouvelle article :"+nouvelleArticle);
+				
 				try {
-					articleAVendreManager.NouvelleArticle(nouvelleArticle);
+					//enregistrement d'un nouvelle article et recuperation de id_NouvelleArticle 
+					int id_NouvelleArticle = articleAVendreManager.NouvelleArticle(nouvelleArticle);
+					
+					System.out.println(" numéro ID utilisateur :" +id_NouvelleArticle);
+					
+					//appel du constructeur retrait
+					Retrait adresseRetrait = new Retrait (id_NouvelleArticle,
+														  request.getParameter("rue"),
+														  request.getParameter("codePostal"),
+														  request.getParameter("ville"));
+							articleAVendreManager.insertionDonnerRetrait(adresseRetrait);
+				
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
