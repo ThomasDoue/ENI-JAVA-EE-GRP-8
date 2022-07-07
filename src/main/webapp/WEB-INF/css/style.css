@@ -231,3 +231,14 @@ input {
 	border: 1px solid #4CAF50;
 }
 
+.bodyProfil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	text-align:center;
+	justify-content: center;
+	}
+ul{
+	justify-content: center;
+}
+
