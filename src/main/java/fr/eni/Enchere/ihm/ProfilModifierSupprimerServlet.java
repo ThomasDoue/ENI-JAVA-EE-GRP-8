@@ -44,8 +44,8 @@ public class ProfilModifierSupprimerServlet extends HttpServlet {
 		
 		//creation d'une instance session vide 
 		HttpSession session = request.getSession();
-		//**session.getAttribute recupére le No_utlisateur;
-		Integer userID=(int)session.getAttribute("No_utilisateur");
+		//**session.getAttribute recupére le idUtilisateur présent dans la session;
+		Integer userID=(int)session.getAttribute("idUtilisateur");
 		
 		try {
 			Utilisateur UserAffichage = utilisateurManager.selectUser(userID);
