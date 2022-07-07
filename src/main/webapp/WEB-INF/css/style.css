@@ -157,6 +157,16 @@ option{
    
 }
 
+.inputAccueil{
+	max-width:none;
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+
 fieldset{
 	border-width: 1px;
 	border-style: solid;
@@ -204,4 +214,50 @@ input {
 
 .DetailsEncheres{
 		text-align: center;
+}
+
+.bodyInscription{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	}
+
+.inputInscription{
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+
+.bodyProfil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	text-align:center;
+	justify-content: center;
+	}
+ul{
+	justify-content: center;
+}
+.bodyModifierProfil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	text-align: center;
+	}
+
+.inputModifierProfil{
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+.form-group{
+	padding-bottom: 25px;
+	
+	
 }

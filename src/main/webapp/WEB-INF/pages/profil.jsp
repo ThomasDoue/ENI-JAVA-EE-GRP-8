@@ -10,11 +10,9 @@
 <style><%@include file="/WEB-INF/css/style.css"%></style>
 <style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
-<body>
+<body class="bodyProfil">
 
   <h1>Retour Formulaire</h1>
-
-<ul>
 			<li>
 				Pseudo : ${pseudo}
 			</li>
@@ -42,7 +40,6 @@
 			<li>
 				Credit : ${credit}
 			</li>
-		</ul>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
