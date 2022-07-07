@@ -12,7 +12,7 @@
 </head>
 <body class="bodyProfil">
 
-  <h1>Retour Formulaire</h1>
+  <h1>Mon profil</h1>
 			<li>
 				Pseudo : ${pseudo}
 			</li>
