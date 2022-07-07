@@ -157,6 +157,16 @@ option{
    
 }
 
+.inputAccueil{
+	max-width:none;
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+
 fieldset{
 	border-width: 1px;
 	border-style: solid;
@@ -219,5 +229,16 @@ input {
 	color: green;
 	border-radius: 25px;
 	border: 1px solid #4CAF50;
+}
+
+.bodyProfil{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	text-align:center;
+	justify-content: center;
+	}
+ul{
+	justify-content: center;
 }
 
