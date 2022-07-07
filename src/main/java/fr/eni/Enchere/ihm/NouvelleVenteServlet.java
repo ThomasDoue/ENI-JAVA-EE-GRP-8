@@ -45,10 +45,8 @@ public class NouvelleVenteServlet  extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Récupération des attributs de session idUtilisateur
 		HttpSession session = request.getSession();
-		//int idUtilisateur = (int) session.getAttribute("idUtilisateur");
-		//pour test***********************************
-		 int idUtilisateur =3;
-	    //**********************************************
+		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
+		
 		 List<Categorie> listCategorie = new ArrayList<Categorie>();
 
 			try {
