@@ -42,6 +42,8 @@ body {
 	border: 1px solid #4CAF50;
 	padding: 15px;
 	border-radius: 50px;
+	font-size: 25px;
+	box-shadow: 2px 2px 5px grey;
 }
 
 .button:hover {
@@ -78,6 +80,8 @@ body {
 .bodyAccueil{
 	background: #c8e1cc;
 	font-family: 'Lobster', cursive;
+	text-align: center;
+	font-size: 25px;
 	}
 	
 .inputAccueil {
@@ -94,7 +98,7 @@ body {
   letter-spacing: 1px;
 }
 
-.inputAcuueil:focus {
+.inputAccueil:focus {
   border: 2px solid black;
   caret-color: grey;
   color: #4CAF50;
@@ -113,6 +117,8 @@ select{
 	border-radius: 50px;
 	margin-top: 10px;
 	padding: 10px;
+	font-size: 25px;
+	box-shadow: 2px 2px 5px grey;
 }
 select:hover {
 	background-color: #4CAF50;
@@ -145,10 +151,39 @@ option{
 }
 
 .bodyArticleVendu{
-	text-align: center;
+  display:flex;
+  flex-direction:column;
+  padding-left: 40%;
+  
+   
+}
+
+fieldset{
+	border-width: 1px;
+	border-style: solid;
+	border-color: grey;
+	margin: 10px;
+	padding: 25px;
+	margin-left: 10%;
+	margin-right: 10%;
+	border-radius: 100px;
+	border: 1px solid #4CAF50;
+	box-shadow: 4px 4px 10px grey;
 }
 
 #mainListeEnchere { 
     width: 800px;
     margin: 0 auto;
+}
+.ul {
+        list-style-image: url("/uploads/media/default/0001/02/1ac48d17fa5906a111bba2c4ca6f1363acb1893a.png");
+      }
+
+.checkRadioBoxAccueil{
+	display: flex;
+	justify-content: center;
+}
+
+input {
+	background-color: #c8e1cc
 }

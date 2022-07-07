@@ -14,8 +14,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 </style>
 
-<body>
+<body class = "bodyAccueil">
+
 <form action="<%=request.getContextPath()%>/accueil" method="post">
+
 	<label for="name">FILTRES :</label>
 	<br>
 	<input type="text" id="NomArticle" name="NomArticle" placeholder="Le nom de l'article contient" maxlength="30">
@@ -33,48 +35,59 @@
 <c:set var = "idUser" value ="${sessionScope.idUtilisateur}"/>
 <c:if test="${idUser != null}">
 <div class ="mainListeEnchere">
-	<div class="RadioButtonFiltre">
-		<input type="radio" id="achats" name="choixfiltre" value="achats" onclick="displayType()">
-		<label >Achats</label>
+	<div class= "checkRadioBoxAccueil">
+		<div class="RadioButtonFiltre">
+			<input type="radio" id="achats" name="choixfiltre" value="achats">
+			<label >Achats</label>
+		</div>
+		<div class="BlockFiltreVente">
+			<input type="radio" id="vente" name="choixfiltre" value="vente">
+			<label>Mes Ventes</label>
+		</div>
 	</div>
-	<div class="BlockFiltreVente">
-		<input type="radio" id="vente" name="choixfiltre" value="vente" onclick="displayType()">
-		<label>Mes Ventes</label>
+	<div class = "checkRadioBoxAccueil">
+		<div class="RadioButtonFiltre">
+			<input type="checkbox" id="EnchereOuvert" name="EnchereOuvert">
+			<label>enchères ouvertes</label>
+		</div>
+		<div class="BlockFiltreVente" >
+			<input type="checkbox" id="MesVentesEnCours" name="MesVentesEnCours">
+			<label>mes ventes en cours</label>
+		</div>
 	</div>
-	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="EnchereOuvert" name="EnchereOuvert">
-		<label>enchères ouvertes</label>
+	<div class = "checkRadioBoxAccueil">
+		<div class="RadioButtonFiltre">
+			<input type="checkbox" id="MesEnchères" name="MesEnchères">
+			<label>mes enchères</label>
+		</div>
+		<div class="BlockFiltreVente" >
+			<input type="checkbox" id="MesVentesNonDébutées" name="MesVentesNonDébutées">
+			<label>mes ventes non débutées</label>
+		</div>
 	</div>
-	<div class="BlockFiltreVente" >
-		<input type="checkbox" id="MesVentesEnCours" name="MesVentesEnCours">
-		<label>mes ventes en cours</label>
-	</div>
-	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="MesEnchères" name="MesEnchères">
-		<label>mes enchères</label>
-	</div>
-	<div class="BlockFiltreVente" >
-		<input type="checkbox" id="MesVentesNonDébutées" name="MesVentesNonDébutées">
-		<label>mes ventes non débutées</label>
-	</div>
-	<div class="RadioButtonFiltre">
-		<input type="checkbox" id="MesEnchèresNonRemportés" name="MesEnchèresNonRemportés">
-		<label>mes enchères remportées</label>
-	</div>
-	<div class="BlockFiltreVente" >
-		<input  type="checkbox" id="VentesTerminées" name="VentesTerminées">
-		<label>ventes terminées</label>
+	<div class = "checkRadioBoxAccueil">
+		<div class="RadioButtonFiltre">
+			<input type="checkbox" id="MesEnchèresNonRemportés" name="MesEnchèresNonRemportés">
+			<label>mes enchères remportées</label>
+		</div>
+		<div class="BlockFiltreVente" >
+			<input  type="checkbox" id="scales" name="scales">
+			<label>ventes terminées</label>
+		</div>
 	</div>
 </div>
 <br>
 <br>
 <br>
 </c:if>
-<button>Rechercher</button>
+<button class = "button">Rechercher</button>
+
 </form>
 
 <c:forEach items="${ListEncheres}" var="Encheres">
+<fieldset>
 <form action="<%=request.getContextPath()%>/DetailsEncheres" method="get">
+
 	<c:if test="${idUser != null}">
     	<button type="submit" class="btn-link" id="IdArticle" name="IdArticle" value ="${Encheres.noArticle}">${Encheres.nomArticle}</button>
     </c:if>
@@ -96,7 +109,9 @@
     <c:if test="${idUser == null}">
     	<label>Vendeur : ${Encheres.pseudo}</label>
     </c:if>
+    
     </form>
+    </fieldset>
     	<br>
     	<br>
     	<br>
@@ -104,8 +119,8 @@
 </body>
 <footer>
 <form>
-	 <input type="button" value="Rafraichir." onClick="refresh">
-	 <input type="button" value="Précedent." onclick="history.back()">
+	 <input class = "button" type="button" value="Rafraichir." onClick="refresh">
+	 <input class = "button" type="button" value="Précedent." onclick="history.back()">
 </form>
 </footer>
 	</body>
