@@ -36,7 +36,7 @@
 					<label for="idIdentifier">Identifiant: </label>
 					<input class="input form-control-sm mb-4 ms-4 w-10" type="text" name="identifier" id="idIdentifier" value=""/><br />
 					<label for="idPassword">Mot de passe: </label>
-					<input class="input form-control-sm mb-3 w-10" type="text" name="password" id="idPassword" value=""/><br/>		
+					<input class="input form-control-sm mb-3 w-10" type="password" name="password" id="idPassword" value=""/><br/>		
 					<button type="submit" class="button">Connexion</button>
 				</form>
 				<!-- 2EME LIGNE: CREER UN COMPTE -->

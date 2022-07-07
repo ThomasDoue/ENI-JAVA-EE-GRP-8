@@ -46,6 +46,17 @@ public class AccueilServlet extends HttpServlet {
 		System.out.println("Retour des enchères dans la servlet : " + listEncheres.toString());
 		req.setAttribute("ListCategorie", listCategorie);
 		req.setAttribute("ListEncheres", listEncheres);
+		
+		
+		HttpSession session = req.getSession();
+		Integer idUser = (Integer) session.getAttribute("idUtilisateur");
+		
+		if(idUser==null) {
+			session.setAttribute("estConnecte", "0");
+		} else {
+			session.setAttribute("estConnecte", "1");
+		}
+		
 		req.getRequestDispatcher("/WEB-INF/pages/accueil.jsp").forward(req, resp);
 	}
 	@Override

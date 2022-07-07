@@ -32,7 +32,7 @@ public class ProfilModifieServlet extends HttpServlet{
 			HttpSession session = request.getSession();
 			int idUtilisateur = (int) session.getAttribute("idUtilisateur");
 			//pour test***********************************
-			 idUtilisateur =1;
+			
 		    //**********************************************
 		try {
 			Utilisateur UserModif = utilisateurManager.selectUser(idUtilisateur);

@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
 .forminscription {
-	display: table-row-group;
-	
+	margin-left: 45%;
 }
 
 .formpagestart {
@@ -186,4 +185,23 @@ fieldset{
 
 input {
 	background-color: #c8e1cc
+}
+
+.bodyDetailEnchere{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	}
+
+.inputDetailEnchere{
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+
+.DetailsEncheres{
+		text-align: center;
 }

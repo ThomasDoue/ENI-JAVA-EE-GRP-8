@@ -39,7 +39,6 @@ public class ProfilServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int idUtilisateur = (int) session.getAttribute("idUtilisateur");
 		//pour test***********************************
-		 idUtilisateur =3;
 	    //**********************************************		
 				try {
 			//appel de la fonction manageur avec le selectUtilisateur 

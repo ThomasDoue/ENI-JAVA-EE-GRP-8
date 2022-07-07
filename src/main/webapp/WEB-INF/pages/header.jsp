@@ -23,15 +23,19 @@
 	
 	<div class="formepageend">
 		<form action="header" method="post">
-	
+			
+			<%if (session.getAttribute("estConnecte").equals("1")) {%>
 			<button class = button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
 			<button class = button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
 			<select name="actionUtilisateurSelect" onchange="location = this.value;">
+			    <option selected>Mon profil</option>
 			    <option value="RetourFormulaire">Afficher mon profil</option>
 			    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
 			</select>
-			<button class = button type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
-		
+			<button class = "button" type="submit" name="actionUtilisateur" value="deconnexion">Deconnexion</button>
+			<%} else {%>
+			<button class="button" type="submit" name="actionUtilisateur" value="connexion">Connexion</button>
+			<%} %>
 		</form>
 		</div>
 	

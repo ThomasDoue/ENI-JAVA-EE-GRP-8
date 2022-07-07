@@ -47,6 +47,9 @@ public class HeaderServlet extends HttpServlet{
 		  session.invalidate();
 		  resp.sendRedirect("accueil");
 	  }
+	  if("connexion".equals(action)) {
+		  resp.sendRedirect("ConnexionUtilisateurServlet");
+	  }
 	}
 
 }
