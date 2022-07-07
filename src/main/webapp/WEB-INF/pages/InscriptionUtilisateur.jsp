@@ -51,7 +51,7 @@
 	<br>
 	<label for="name">125 crédits sont offerts à la création d'un nouveau compte !</label>
 	<br>
-	<button>Enregistrer</button>
+	<button class = "button">Enregistrer</button>
 </form>
 </body>
 </html>
