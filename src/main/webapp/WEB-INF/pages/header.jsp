@@ -28,6 +28,7 @@
 			<button class = button type="submit" name="actionUtilisateur" value="encheres">Enchères</button>
 			<button class = button type="submit" name="actionUtilisateur" value="vendreArticle">Vendre un article</button>
 			<select name="actionUtilisateurSelect" onchange="location = this.value;">
+			    <option selected>Mon profil</option>
 			    <option value="RetourFormulaire">Afficher mon profil</option>
 			    <option value="ProfilModifierSupprimerServlet">Modifier mon profil</option>
 			</select>
