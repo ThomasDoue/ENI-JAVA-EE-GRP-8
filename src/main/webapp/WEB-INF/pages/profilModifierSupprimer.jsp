@@ -10,45 +10,45 @@
 <style><%@include file="/WEB-INF/css/style.css"%></style>
 <style><%@include file="/WEB-INF/pages/header.jsp"%></style>
 </head>
-<body>
+<body class="bodyModifierProfil">
 
   <h1>Mon Profil</h1>
 
 <form  action="<%=request.getContextPath()%>/ProfilModifierSupprimerServlet"  method="post">
   <div class="form-group">
 	    <label for="pseudo">Pseudo : </label>
-	 	<input type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}" required minlenght="1">
+	 	<input class="inputModifierProfil" type="text" id="pseudo" name="pseudo"class="form-control" value= "${pseudo}" required minlenght="1">
  
  
  	<label for="nom">Nom   :</label>
- 	<input type="text" id="nom" name="nom" class="form-control"  value= "${nom}" required minlenght="1"><br/>
+ 	<input class="inputModifierProfil" type="text" id="nom" name="nom" class="form-control"  value= "${nom}" required minlenght="1"><br/>
  </div>
  
   <div class="form-group">
  	<label for="prenom">Prenom   :</label>
- 	<input type="text" id="prenom" name="prenom" class="form-control"  value= "${prenom}" required minlenght="1">
+ 	<input class="inputModifierProfil" type="text" id="prenom" name="prenom" class="form-control"  value= "${prenom}" required minlenght="1">
  
  	<label for="email">Email   :</label>
- 	<input type="text" id="email" name="email" class="form-control" value= "${email}" required minlenght="1"><br/>
+ 	<input class="inputModifierProfil" type="text" id="email" name="email" class="form-control" value= "${email}" required minlenght="1"><br/>
  </div>
  <div class="form-group">	
  	<label for="telephone">Teléphone   :</label>
- 	<input type="text" id="telephone" name="telephone"class="form-control" value="${telephone}" required minlenght="1" >
+ 	<input class="inputModifierProfil" type="text" id="telephone" name="telephone"class="form-control" value="${telephone}" required minlenght="1" >
 
  	<label for="rue">Rue   :</label>
- 	<input type="text" id="rue" name="rue" class="form-control" value="${rue}" required minlenght="1"><br/>
+ 	<input class="inputModifierProfil" type="text" id="rue" name="rue" class="form-control" value="${rue}" required minlenght="1"><br/>
 </div>
 <div class="form-group">
 	<label for="codePostal">Code Postal :</label>
-	<input type="text" id="codePostal" name="codePostal" class="form-control" value="${codePostal}" required minlenght="1">
+	<input class="inputModifierProfil" type="text" id="codePostal" name="codePostal" class="form-control" value="${codePostal}" required minlenght="1">
 
  	<label for="ville">Ville :</label>
-	<input type="text" id="ville" name="ville" class="form-control" value="${ville}" required minlenght="1"><br/>
+	<input class="inputModifierProfil" type="text" id="ville" name="ville" class="form-control" value="${ville}" required minlenght="1"><br/>
 </div>
  
  <div class="form-group">	
  	<label for="motdepassseactuel">Mot de Passe actuel  :</label>
- 	<input type="password" id="motdepassseactuel" name="motdepassseactuel"class="form-control" required minlenght="1" ><br/>
+ 	<input class="inputModifierProfil" type="password" id="motdepassseactuel" name="motdepassseactuel"class="form-control" required minlenght="1" ><br/>
 </div>
 
 	<c:if test="${!empty erreurMotdePasse }">
@@ -57,20 +57,20 @@
 
   <div class="form-group">
  	<label for="nouveaumotdepasse">Nouveau mot de passe :</label>
- 	<input type="password" id="nouveaumotdepasse" name="nouveaumotdepasse" class="form-control" required minlenght="1">
+ 	<input class="inputModifierProfil" type="password" id="nouveaumotdepasse" name="nouveaumotdepasse" class="form-control" required minlenght="1">
 
 	
 
   	<label for="confirmation">Confirmation :</label>
- 	<input type="password" id="confirmation" name="confirmation" class="form-control" required minlenght="1"><br/>
+ 	<input class="inputModifierProfil" type="password" id="confirmation" name="confirmation" class="form-control" required minlenght="1"><br/>
  </div>
  
  <a>Credit : ${credit} </a><br/>
  
  <!-- Button prend la propriéter button et type submit permet de capter l'action name est recupperer dans la servlet  -->
- <Button type="submit" name="actionUtilisateur" value="enregister">Enregister</Button>
+ <Button class = "button" type="submit" name="actionUtilisateur" value="enregister">Enregister</Button>
  
- <Button type="submit" name="actionUtilisateur" value="supprimer">Supprimer mon Compte</Button>
+ <Button class = "button" type="submit" name="actionUtilisateur" value="supprimer">Supprimer mon Compte</Button>
  </form>
  
  
