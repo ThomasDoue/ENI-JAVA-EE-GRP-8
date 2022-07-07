@@ -183,6 +183,7 @@ fieldset{
 #mainListeEnchere { 
     width: 800px;
     margin: 0 auto;
+    display: flex;
 }
 .ul {
         list-style-image: url("/uploads/media/default/0001/02/1ac48d17fa5906a111bba2c4ca6f1363acb1893a.png");
@@ -190,7 +191,17 @@ fieldset{
 
 .checkRadioBoxAccueil{
 	display: flex;
-	justify-content: center;
+	margin-left: 25%;
+	justify-content: flex-end;
+	flex-direction: row-reverse;
+	
+	
+}
+.checkRadioBoxAccueil2{
+	display: flex;
+	margin-right: 25%;
+	justify-content: flex-start;
+	flex-direction: row-reverse;
 }
 
 input {
@@ -258,6 +269,4 @@ ul{
 }
 .form-group{
 	padding-bottom: 25px;
-	
-	
 }
