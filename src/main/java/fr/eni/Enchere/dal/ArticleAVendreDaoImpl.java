@@ -56,11 +56,6 @@ public class ArticleAVendreDaoImpl implements ArticleAVendreDao{
 			}
 			
 			// insertion de donner dans retrait
-			PreparedStatement stmtUser = conn.prepareStatement(SELECT_USER_BY_ID);
-			ResultSet rsUser = stmtUser.executeQuery();
-			while(rs.next()) {
-				user = new Utilisateur(rs.getString("rue"),rs.getString("code_postal"),rs.getString("ville"));
-			}
 			PreparedStatement stmtInsertRetrait = conn.prepareStatement(INSERT_RETRAITS_INFO);
 			stmtInsertRetrait.setInt(1, id_NouvelleArticle);
 			stmtInsertRetrait.setString(2, user.getRue());

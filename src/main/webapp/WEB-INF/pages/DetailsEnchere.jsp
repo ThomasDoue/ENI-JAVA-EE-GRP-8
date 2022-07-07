@@ -35,8 +35,9 @@
 		<br/>
 		<c:out value="Vendeur : ${Enchere.pseudo}" />
 		<br/>
-	
-			<input type="number" name="offre" min = "${Enchere.prixVente + 1}" value= "${Enchere.prixVente + 1}">
+
+			<input type="number" name="offre"  min = "${Enchere.prixVente + 1}" value= "${Enchere.prixVente + 1}">
+
 			<br/>
 			<button>Enchérir</button>
 	
