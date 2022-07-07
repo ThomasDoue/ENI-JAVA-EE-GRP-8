@@ -12,7 +12,7 @@
 	</head>
 <body class = "bodyDetailEnchere">
 	<br>
-	<form class = "forminscription" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
+	<form class = "DetailsEncheres" action="<%=request.getContextPath()%>/DetailsEncheres" method="post">
 		<input type="hidden" value="${Enchere.noArticle}" name="noArticle" />
 		<br>
 		<c:out value="Nom de l'article : ${Enchere.nomArticle}" />

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .forminscription {
-	text-align: center;
+	margin-left: 45%;
 }
 
 .formpagestart {
@@ -200,4 +200,8 @@ input {
 	color: green;
 	border-radius: 25px;
 	border: 1px solid #4CAF50;
+}
+
+.DetailsEncheres{
+		text-align: center;
 }
