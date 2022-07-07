@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>Accueil</title>
 	<style><%@include file="/WEB-INF/css/style.css"%></style>
-	<style><%@include file="/WEB-INF/pages/header.jsp"%></style>
+	<jsp:include page="/WEB-INF/pages/header.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Accueil</title>
 <style>
