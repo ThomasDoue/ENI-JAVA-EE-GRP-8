@@ -54,10 +54,10 @@
 		<% if("false".equals(request.getAttribute("estFini"))) {%>
 			<input class="inputDetailEnchere" type="number" name="offre"  min = "${Enchere.prixVente + 1}" value= "${Enchere.prixVente + 1}">
 			<br>
-			<button class = "button">Enchérir</button>
+			<button class = "button" type="submit" name="actionUtilisateur" value="encherir">Enchérir</button>
 		<%} %>
 		<% if("true".equals(request.getAttribute("estFini"))) {%>	
-			<button class = "button" type="button" name="back">back</button>
+			<button class = "button" type="submit" name="actionUtilisateur" value="back">back</button>
 		<%}%>
 		<br/>
 	</form>

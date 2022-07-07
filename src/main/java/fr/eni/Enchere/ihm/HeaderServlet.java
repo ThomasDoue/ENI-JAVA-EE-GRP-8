@@ -32,8 +32,6 @@ public class HeaderServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 	  String action = req.getParameter("actionUtilisateur");
-	  String actionSelect = req.getParameter("actionUtilisateurSelect");
-	  System.out.println(actionSelect);
 	  if ("encheres".equals(action))
 		  resp.sendRedirect("accueil");
 	  if ("vendreArticle".equals(action))

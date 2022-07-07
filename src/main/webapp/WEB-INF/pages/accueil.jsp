@@ -35,46 +35,38 @@
 <c:set var = "idUser" value ="${sessionScope.idUtilisateur}"/>
 <c:if test="${idUser != null}">
 <div class ="mainListeEnchere">
-	<div class= "checkRadioBoxAccueil">
-		<div class="RadioButtonFiltre">
+		<div class="RadioButtonFiltre checkRadioBoxAccueil">
 			<input type="radio" id="achats" name="choixfiltre" value="achats">
 			<label >Achats</label>
 		</div>
-		<div class="BlockFiltreVente">
+		<div class="BlockFiltreVente checkRadioBoxAccueil2">
 			<input type="radio" id="vente" name="choixfiltre" value="vente">
 			<label>Mes Ventes</label>
 		</div>
-	</div>
-	<div class = "checkRadioBoxAccueil">
-		<div class="RadioButtonFiltre">
+		<div class="RadioButtonFiltre checkRadioBoxAccueil">
 			<input type="checkbox" id="EnchereOuvert" name="EnchereOuvert">
 			<label>enchères ouvertes</label>
 		</div>
-		<div class="BlockFiltreVente" >
+		<div class="BlockFiltreVente checkRadioBoxAccueil2" >
 			<input type="checkbox" id="MesVentesEnCours" name="MesVentesEnCours">
 			<label>mes ventes en cours</label>
 		</div>
-	</div>
-	<div class = "checkRadioBoxAccueil">
-		<div class="RadioButtonFiltre">
+		<div class="RadioButtonFiltre checkRadioBoxAccueil">
 			<input type="checkbox" id="MesEnchères" name="MesEnchères">
 			<label>mes enchères</label>
 		</div>
-		<div class="BlockFiltreVente" >
+		<div class="BlockFiltreVente checkRadioBoxAccueil2" >
 			<input type="checkbox" id="MesVentesNonDébutées" name="MesVentesNonDébutées">
 			<label>mes ventes non débutées</label>
 		</div>
-	</div>
-	<div class = "checkRadioBoxAccueil">
-		<div class="RadioButtonFiltre">
+		<div class="RadioButtonFiltre checkRadioBoxAccueil">
 			<input type="checkbox" id="MesEnchèresNonRemportés" name="MesEnchèresNonRemportés">
 			<label>mes enchères remportées</label>
 		</div>
-		<div class="BlockFiltreVente" >
+		<div class="BlockFiltreVente checkRadioBoxAccueil2" >
 			<input  type="checkbox" id="scales" name="scales">
 			<label>ventes terminées</label>
 		</div>
-	</div>
 </div>
 <br>
 <br>

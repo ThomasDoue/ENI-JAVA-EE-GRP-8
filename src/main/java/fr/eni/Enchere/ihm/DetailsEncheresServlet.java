@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.Enchere.bll.ArticleAVendreManager;
 import fr.eni.Enchere.bll.BLLFactory;
 import fr.eni.Enchere.bll.EnchereManager;
 import fr.eni.Enchere.bo.DtoEnchereComplete;
@@ -20,12 +19,11 @@ import fr.eni.Enchere.bo.DtoEnchereComplete;
 @WebServlet("/DetailsEncheres")
 public class DetailsEncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ArticleAVendreManager articleMger;
+	
 	private EnchereManager enchereMger;
 	private int IdArticle = 0;
 	private boolean boolErreur = false;
-	public void init() throws ServletException {
-		articleMger = BLLFactory.getArticleAVendreManager();	
+	public void init() throws ServletException {	
 		enchereMger = BLLFactory.getEnchereManager();
 	}
 
@@ -44,11 +42,18 @@ public class DetailsEncheresServlet extends HttpServlet {
 			}
 			request.setAttribute("Enchere", ObjetRetour);
 			request.setAttribute("Erreurs", boolErreur);
-			
-//			if(articleMger.FinDEnchere(Integer.parseInt(request.getParameter("IdArticle"))))
-//				request.setAttribute("estFini", "true");
-//			else
-//				request.setAttribute("estFini", "false");
+			if(request.getParameter("IdArticle") != null) {
+				if(enchereMger.FinDEnchere(Integer.parseInt(request.getParameter("IdArticle"))))
+					request.setAttribute("estFini", "true");
+				else
+					request.setAttribute("estFini", "false");
+			}else {
+				if(enchereMger.FinDEnchere(IdArticle))
+					request.setAttribute("estFini", "true");
+				else
+					request.setAttribute("estFini", "false");
+			}
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -61,26 +66,34 @@ public class DetailsEncheresServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		//creation de la fonction qui verifie le solde retour bouléan 
-		//********************************************************************************
-		// retourne un booléen updatePrixVenteEnchere
 		
 		
-		
-		
-		//********************************************************************************
-		try {
-			boolean test = enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
-			if(!test) {
-				boolErreur = true;
+
+		String action = request.getParameter("actionUtilisateur");
+		if("encherir".equals(action)) {
+			try {
+				HttpSession session = request.getSession();
+				//creation de la fonction qui verifie le solde retour bouléan 
+				//********************************************************************************
+				// retourne un booléen updatePrixVenteEnchere
+				
+				
+				
+				
+				//********************************************************************************
+				boolean test = enchereMger.updatePrixVenteEnchere(Integer.parseInt(request.getParameter("noArticle")), Integer.parseInt(request.getParameter("offre")),(int)session.getAttribute( "idUtilisateur"));
+				if(!test) {
+					boolErreur = true;
+				}
+			}catch(Exception e){
+				e.printStackTrace();
 			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		finally {
-			IdArticle = Integer.parseInt(request.getParameter("noArticle"));
-			response.sendRedirect("DetailsEncheres");
+			finally {
+				IdArticle = Integer.parseInt(request.getParameter("noArticle"));
+				response.sendRedirect("DetailsEncheres");
+			}
+		} else if ("back".equals(action)) {
+			response.sendRedirect("accueil");
 		}
 	}
 
