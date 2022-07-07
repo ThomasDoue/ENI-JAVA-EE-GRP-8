@@ -205,3 +205,19 @@ input {
 .DetailsEncheres{
 		text-align: center;
 }
+
+.bodyInscription{
+	background: #c8e1cc;
+	font-family: 'Lobster', cursive;
+	font-size: 30px;
+	}
+
+.inputInscription{
+	font-family: 'Lobster', cursive;
+	height: 35px;
+	font-size: 20px;
+	color: green;
+	border-radius: 25px;
+	border: 1px solid #4CAF50;
+}
+
